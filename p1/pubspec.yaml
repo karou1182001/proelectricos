@@ -20,6 +20,8 @@ version: 1.0.0+1
 environment:
 
   sdk: ">=2.15.0-156.0.dev <3.0.0"
+  #sdk: '>=2.10.0 <3.0.0'
+
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -32,6 +34,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  signature: ^4.1.1
   #Adding necessary libraries to generate pdf
   path_provider: ^2.0.1
   open_file: ^3.1.0
