@@ -5,6 +5,7 @@ import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/menu_general/menu.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/domain/controller/TrabajosPageController.dart';
+import 'package:p1/domain/controller/controllerTablaForm1.dart';
 import 'package:get/get.dart';
 
 //Probar pdf
@@ -14,6 +15,7 @@ import "package:p1/ui/widgets/menu_general/signature_pad.dart";
 void main() async {
   Get.put(AuthenticationController());
   Get.put(TrabajosPageController());
+  Get.put(controllerTablaForm1());
   runApp(MyApp());
 }
 
