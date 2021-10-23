@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/menu_general/menu.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
+import 'package:p1/domain/controller/TrabajosPageController.dart';
 import 'package:get/get.dart';
 
 //Probar pdf
 //import "package:p1/ui/widgets/pdf/pdf_widget.dart";
 import "package:p1/ui/widgets/menu_general/signature_pad.dart";
-void main() async{
+
+void main() async {
   Get.put(AuthenticationController());
+  Get.put(TrabajosPageController());
   runApp(MyApp());
 }
 
@@ -25,8 +28,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         //El sistema debe elegir entre estas dos páginas, si el estado del usuario es logged in
-    home:  Obx(() => controller.logged ? MenuOptionsScreen() : HomePage()));
-   // home: MyHomePage(title: "pdf"));
+        home: Obx(() => controller.logged ? MenuOptionsScreen() : HomePage()));
+    // home: MyHomePage(title: "pdf"));
   }
 }
-
