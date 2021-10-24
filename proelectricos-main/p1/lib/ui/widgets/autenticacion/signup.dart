@@ -166,7 +166,7 @@ class SignupPage extends StatelessWidget {
                 children: const <Widget>[
                   Text("¿Ya tiene una cuenta?"),
                   Text(
-                    " Login",
+                    " Inicie sesión",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                   )
                 ],
