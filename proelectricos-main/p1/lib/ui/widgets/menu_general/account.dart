@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/menu_general/menu.dart';
 import 'package:p1/ui/widgets/menu_general/settings.dart';
+import 'package:p1/ui/widgets/menu_general/signature_pad.dart';
 
 class SettingsUI extends StatelessWidget {
   const SettingsUI({Key? key}) : super(key: key);
@@ -119,6 +120,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
               buildTextField("Nombre completo", "Dor Alex", false),
               buildTextField("E-mail", "alexd@gmail.com", false),
               buildTextField("Contraseña", "********", true),
+              RaisedButton(
+                  color: const Color(0xff264F95),
+                  textColor: Colors.white,
+                  child: Text(
+                    "Cambiar firma",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => SignaturePad()));
+                  }),
               const SizedBox(
                 height: 35,
               ),
