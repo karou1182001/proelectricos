@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:signature/signature.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyButton extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _MyButtonState extends State<MyButton> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: RaisedButton(
+      child: ElevatedButton(
         child: Text('Firmar'),
         onPressed: () {
           Navigator.push(
@@ -99,6 +100,8 @@ class _SignaturePadState extends State<SignaturePad> {
             );
 
             final signature = await exportController.toPngBytes();
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString('signature', String.fromCharCodes(signature!));
             exportController.dispose();
             Navigator.pop(context);
           }
