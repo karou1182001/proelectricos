@@ -20,7 +20,7 @@ class WorkHomePage extends StatelessWidget {
     return Scaffold(
       body: Column(children: [
         Flexible(
-            flex: 2,
+            flex: 3,
             fit: FlexFit.tight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -48,7 +48,8 @@ class WorkHomePage extends StatelessWidget {
                               color: Colors.white,
                               image: DecorationImage(
                                 fit: BoxFit.fitHeight,
-                                image: AssetImage('assets/placeholder.png'),
+                                // image: AssetImage('assets/placeholder.png'),
+                                image: AssetImage('assets/welcome2.png'),
                               ),
                             ),
                           ),
