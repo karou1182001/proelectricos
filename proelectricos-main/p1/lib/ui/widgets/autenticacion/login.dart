@@ -5,7 +5,6 @@ import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/menu_general/menu.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -28,9 +27,8 @@ class LoginPage extends StatelessWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            // Navigator.push(
-            //     context, MaterialPageRoute(builder: (context) => HomePage()));
-            Get.back();
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
       ),
@@ -107,8 +105,7 @@ class LoginPage extends StatelessWidget {
                                     actions: <Widget>[
                                       TextButton(
                                           onPressed: () {
-                                            // Navigator.of(context).pop();
-                                            Get.back();
+                                            Navigator.of(context).pop();
                                           },
                                           child: const Text("OK"))
                                     ],
@@ -125,13 +122,12 @@ class LoginPage extends StatelessWidget {
                           QuerySnapshot users = await query.get();
                           //Revisamos que exista algún usuario que cumpla con las condiciones
                           if (users.docs.isNotEmpty) {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder:
-                            //             (context) => //Encargamos al builder que cambie el contexto a la página de menú general
-                            //                 const MenuOptionsScreen()));
-                            Get.offAllNamed("/WorkHomePage");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder:
+                                        (context) => //Encargamos al builder que cambie el contexto a la página de menú general
+                                            const MenuOptionsScreen()));
                           } else {
                             showDialog(
                                 context: context,
@@ -143,8 +139,7 @@ class LoginPage extends StatelessWidget {
                                         TextButton(
                                             child: const Text("Ok"),
                                             onPressed: () {
-                                              // Navigator.of(context).pop();
-                                              Get.back();
+                                              Navigator.of(context).pop();
                                             })
                                       ],
                                     ));

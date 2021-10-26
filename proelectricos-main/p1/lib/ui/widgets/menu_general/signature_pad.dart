@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:signature/signature.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,11 +15,10 @@ class _MyButtonState extends State<MyButton> {
       child: ElevatedButton(
         child: Text('Firmar'),
         onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => SignaturePad()),
-          // );
-          Get.toNamed("/SignaturePad");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SignaturePad()),
+          );
         },
       ),
     );
@@ -105,8 +103,7 @@ class _SignaturePadState extends State<SignaturePad> {
             SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.setString('signature', String.fromCharCodes(signature!));
             exportController.dispose();
-            // Navigator.pop(context);
-            Get.back();
+            Navigator.pop(context);
           }
           controller.clear();
         },
