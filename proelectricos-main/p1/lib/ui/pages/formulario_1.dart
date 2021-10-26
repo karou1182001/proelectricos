@@ -50,7 +50,6 @@ class FormularioUnoPage extends State<FormularioUno> {
     }
   }
 
-  FormularioUnoPage() : super();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
