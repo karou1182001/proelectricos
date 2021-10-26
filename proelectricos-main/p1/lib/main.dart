@@ -7,14 +7,12 @@ import 'package:p1/domain/controller/workpage_controller.dart';
 import 'package:p1/ui/pages/work_page.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/widgets/autenticacion/signup.dart';
-import 'package:p1/ui/widgets/menu_general/account.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
 import 'package:get/get.dart';
 import 'package:p1/ui/widgets/menu_general/menu.dart';
-import 'package:p1/ui/widgets/menu_general/settings.dart';
 import 'package:p1/ui/widgets/menu_general/signature_pad.dart';
 
 //import 'package:p1/ui/widgets/pdf/pdf_widget.dart';
-
 
 void main() async {
   Get.put(WorkPageController());
@@ -31,7 +29,6 @@ void main() async {
         GetPage(name: '/WorkHomePage', page: () => WorkHomePage()),
         GetPage(name: '/MenuOptionsPage', page: () => MenuOptionsScreen()),
         GetPage(name: '/ProfilePage', page: () => EditProfilePage()),
-        GetPage(name: '/SettingsPage', page: () => SettingsPage()),
         GetPage(name: '/SignaturePad', page: () => SignaturePad())
       ],
     ));
