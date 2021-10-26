@@ -4,6 +4,10 @@ import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/widgets/menu_general/account.dart';
 import 'opciones_de_menu.dart';
 
+
+import 'package:p1/ui/pages/formulario_1.dart';
+
+
 class MenuOptionsScreen extends StatefulWidget {
   const MenuOptionsScreen({Key? key}) : super(key: key);
   @override
@@ -85,6 +89,12 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
               selected: _selectedOption == index - 1,
               onTap: () {
                 setState(() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder:
+                              (context) => //Encargamos al builder que cambie el contexto a la página de menú general
+                              FormularioUno()));
                   _selectedOption = index - 1;
                 });
               },
