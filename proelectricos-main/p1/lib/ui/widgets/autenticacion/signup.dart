@@ -4,6 +4,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 
 class SignupPage extends StatelessWidget {
@@ -28,8 +29,9 @@ class SignupPage extends StatelessWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => const HomePage()));
+            Get.back();
           },
         ),
       ),
@@ -133,8 +135,12 @@ class SignupPage extends StatelessWidget {
                                     actions: <Widget>[
                                       TextButton(
                                           onPressed: () {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(builder: (context) => const HomePage()));
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) =>
+                                            //             const HomePage()));
+                                            Get.back();
                                           },
                                           child: const Text('OK'))
                                     ],

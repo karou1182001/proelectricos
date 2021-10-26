@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:signature/signature.dart';
 import 'package:flutter/services.dart';
 
@@ -14,10 +15,11 @@ class _MyButtonState extends State<MyButton> {
       child: RaisedButton(
         child: Text('Firmar'),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SignaturePad()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => SignaturePad()),
+          // );
+          Get.toNamed("/SignaturePad");
         },
       ),
     );
@@ -100,7 +102,8 @@ class _SignaturePadState extends State<SignaturePad> {
 
             final signature = await exportController.toPngBytes();
             exportController.dispose();
-            Navigator.pop(context);
+            // Navigator.pop(context);
+            Get.back();
           }
           controller.clear();
         },

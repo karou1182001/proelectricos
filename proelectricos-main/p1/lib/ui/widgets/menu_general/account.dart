@@ -1,5 +1,7 @@
 //Aquí puedes acceder a tu cuenta y ver las cosas predeterminadas
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:p1/ui/widgets/menu_general/menu.dart';
 import 'package:p1/ui/widgets/menu_general/settings.dart';
 
@@ -35,10 +37,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MenuOptionsScreen()));
+            Get.back();
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => const MenuOptionsScreen()));
           },
         ),
         actions: [
@@ -48,8 +51,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
               color: Colors.black,
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const SettingsPage()));
+              // Navigator.of(context).push(MaterialPageRoute(
+              //     builder: (BuildContext context) => const SettingsPage()));
+              Get.toNamed("/SettingsPage");
             },
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,9 @@ class JobWidget extends StatelessWidget {
                           margin: const EdgeInsets.only(left: 8),
                           child: Text(jobName)),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed("/MenuOptionsPage");
+                        },
                         icon: const Icon(Icons.skip_next,
                             color: proElectricosBlue),
                       ),

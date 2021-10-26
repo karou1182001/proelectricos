@@ -1,5 +1,6 @@
 //El home es donde se da la opción de iniciar sesión o registrarse
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:p1/ui/widgets/autenticacion/signup.dart';
 import 'package:p1/ui/widgets/menu_general/signature_pad.dart';
 import "login.dart";
@@ -59,8 +60,9 @@ class HomePage extends StatelessWidget {
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => LoginPage()));
+                      Get.toNamed("/LoginPage");
                     },
                     // defining the shape
                     shape: RoundedRectangleBorder(
@@ -78,10 +80,11 @@ class HomePage extends StatelessWidget {
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignupPage()));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => SignupPage()));
+                      Get.toNamed("/SignupPage");
                     },
                     color: const Color(0xff264F95),
                     shape: RoundedRectangleBorder(

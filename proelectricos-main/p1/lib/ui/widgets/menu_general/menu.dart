@@ -1,5 +1,6 @@
 //Este es el menú general que lleva a todos los formularios
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/widgets/menu_general/account.dart';
 import 'opciones_de_menu.dart';
@@ -27,8 +28,9 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => LoginPage()));
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => LoginPage()));
+            Get.back();
           },
         ),
         actions: [
@@ -38,8 +40,9 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
               color: Colors.black,
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SettingsUI()));
+              // Navigator.of(context).push(MaterialPageRoute(
+              //     builder: (BuildContext context) => SettingsUI()));
+              Get.toNamed("/ProfilePage");
             },
           ),
         ],

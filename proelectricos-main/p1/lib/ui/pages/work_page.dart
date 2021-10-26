@@ -57,7 +57,9 @@ class WorkHomePage extends StatelessWidget {
                           margin: const EdgeInsets.all(8),
                           child: OutlinedButton(
                             style: coolstyle,
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed("/ProfilePage");
+                            },
                             child: const FittedBox(
                               fit: BoxFit.fitWidth,
                               child: Text(

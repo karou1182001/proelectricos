@@ -1,6 +1,7 @@
 //Este menú de opciones es para la configuración de la cuenta como si cambió tu
 //número de teléfono o cédula o cambio de la firma
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -18,7 +19,8 @@ class _SettingsPageState extends State<SettingsPage> {
         elevation: 1,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            // Navigator.of(context).pop();
+            Get.back();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -71,8 +73,9 @@ class _SettingsPageState extends State<SettingsPage> {
               minWidth: double.infinity,
               height: 50,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => HomePage()));
+                Get.offAllNamed("/");
               },
               color: Color(0xff264F95),
               shape: RoundedRectangleBorder(
@@ -110,7 +113,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 actions: [
                   FlatButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        // Navigator.of(context).pop();
+                        Get.back();
                       },
                       child: const Text("Close")),
                 ],
