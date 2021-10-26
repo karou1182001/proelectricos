@@ -1,7 +1,8 @@
 //Este es el menú general que lleva a todos los formularios
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
-import 'package:p1/ui/widgets/menu_general/account.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
+import 'package:p1/ui/widgets/menu_general/boton_perfil.dart';
 import 'opciones_de_menu.dart';
 
 class MenuOptionsScreen extends StatefulWidget {
@@ -15,11 +16,14 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       //BARRA DE NAVEGACIÓN
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: const Text("Menú general",
+            style: TextStyle(fontSize: 14, color: Colors.black)),
         elevation: 1,
         leading: IconButton(
           icon: const Icon(
@@ -39,83 +43,89 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
             ),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SettingsUI()));
+                  builder: (BuildContext context) => EditProfilePage()));
             },
           ),
         ],
       ),
       //CUERPO
-      /*Ponemos una lista con todas las opciones de formulario que se pueden 
-      escoger. Aquí llama a la clase menú de opciones*/
-      body: ListView.builder(
-        itemCount: options.length + 2,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return const SizedBox(height: 15.0);
-          } else if (index == options.length + 1) {
-            return const SizedBox(height: 100.0);
-          }
-          return Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.all(10.0),
-            width: double.infinity,
-            height: 80.0,
-            decoration: BoxDecoration(
-              color: const Color(0xff264F95),
-              borderRadius: BorderRadius.circular(40.0),
-              border: _selectedOption == index - 1
-                  ? Border.all(color: Colors.black26)
-                  : null,
-            ),
-            child: ListTile(
-              leading: options[index - 1].icon,
-              title: Text(
-                options[index - 1].title,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
+      //Esto es lo que va en el cuerpo de esta interfaz
+      body: Container(
+        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: ListView(
+            children: [
+              const SizedBox(
+                height: 50,
               ),
-              subtitle: Text(
-                options[index - 1].subtitle,
-                style: TextStyle(
-                  color:
-                      _selectedOption == index - 1 ? Colors.black : Colors.grey,
-                ),
+              //PARTE DE LOS FORMULARIOS
+              //Llamamos a la clase BotonPerfil
+              BotonPerfil(
+                text: "Autorización de trabajo",
+                //icon: "",
+                press: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => LoginPage()))
+                },
               ),
-              selected: _selectedOption == index - 1,
-              onTap: () {
-                setState(() {
-                  _selectedOption = index - 1;
-                });
-              },
-            ),
-          );
-        },
-      ),
-      //Parte de abajo para enviar todos los formularios juntos
-      bottomSheet: Container(
-        width: double.infinity,
-        height: 80.0,
-        color: const Color(0xFFF3F3F3),
-        child: Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: const <Widget>[
-              Text(
-                'Enviar todos',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18.0,
-                ),
+              BotonPerfil(
+                text: "Análisis de trabajo seguro",
+                //icon: "",
+                press: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => LoginPage()))
+                },
               ),
-              SizedBox(width: 8.0),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black,
-                size: 18.0,
+              BotonPerfil(
+                text: "Lista de chequeo para trabajo en alturas",
+                //icon: "",
+                press: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => LoginPage()))
+                },
               ),
+              BotonPerfil(
+                text: "Lista de chequeño para trabajos eléctricos",
+                //icon: "",
+                press: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => LoginPage()))
+                },
+              ),
+              BotonPerfil(
+                text: "Preoperacional del vehículo",
+                //icon: "",
+                press: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => LoginPage()))
+                },
+              ),
+
+              const SizedBox(
+                height: 35,
+              ),
+              //Parte de abajo que te da la opción de guardar o cancelar
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RaisedButton(
+                    onPressed: () {},
+                    color: const Color(0xff264F95),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 15),
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    child: const Text(
+                      "Enviar",
+                      style: TextStyle(fontSize: 14, color: Colors.white),
+                    ),
+                  )
+                ],
+              )
             ],
           ),
         ),

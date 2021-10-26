@@ -1,21 +1,10 @@
 //Aquí puedes acceder a tu cuenta y ver las cosas predeterminadas
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/menu_general/menu.dart';
-import 'package:p1/ui/widgets/menu_general/settings.dart';
 import 'package:p1/ui/widgets/menu_general/signature_pad.dart';
-
-class SettingsUI extends StatelessWidget {
-  const SettingsUI({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Setting UI",
-      home: EditProfilePage(),
-    );
-  }
-}
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/componentesPerfil/imagen_perfil.dart';
+import 'package:p1/ui/widgets/menu_general/boton_perfil.dart';
+import "package:p1/ui/widgets/autenticacion/login.dart";
 
 class EditProfilePage extends StatefulWidget {
   @override
@@ -24,12 +13,17 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   bool showPassword = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //Aquí va todo lo que va en la barra superior
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: const Text("Editar perfil",
+            style: TextStyle(fontSize: 14, color: Colors.black)),
         elevation: 1,
+        //Botón back que va a la pantalla anterior
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
@@ -42,19 +36,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     builder: (context) => const MenuOptionsScreen()));
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.settings,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const SettingsPage()));
-            },
-          ),
-        ],
       ),
+      //Termina todo lo que va en la barra superior
+
+      //Esto es lo que va en el cuerpo de esta interfaz
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: GestureDetector(
@@ -63,86 +48,50 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
           child: ListView(
             children: [
-              const Text(
-                "Editar perfil",
-                style: TextStyle(fontSize: 30),
-              ),
               const SizedBox(
                 height: 15,
               ),
-              Center(
-                child: Stack(
-                  children: [
-                    Container(
-                      width: 130,
-                      height: 130,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor),
-                          boxShadow: [
-                            BoxShadow(
-                                spreadRadius: 2,
-                                blurRadius: 10,
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 10))
-                          ],
-                          shape: BoxShape.circle,
-                          image: const DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage("assets/welcome2.png"))),
-                    ),
-                    Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor,
-                            ),
-                            color: const Color(0xff264F95),
-                          ),
-                          child: const Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                          ),
-                        )),
-                  ],
-                ),
-              ),
+              //IMAGEN DE LA PARTE SUPERIOR
+              //LLamamos a la clase que contiene este código
+              const ImagenPerfil(),
+              //Colocamos los campos que van abajo
               const SizedBox(
                 height: 35,
               ),
+
               buildTextField("Nombre completo", "Dor Alex", false),
-              buildTextField("E-mail", "alexd@gmail.com", false),
+              buildTextField("CC", "100299827", false),
               buildTextField("Contraseña", "********", true),
-              RaisedButton(
-                  color: const Color(0xff264F95),
-                  textColor: Colors.white,
-                  child: Text(
-                    "Cambiar firma",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => SignaturePad()));
-                  }),
+              //PARTE DE LA FIRMA
+              //Llamamos a la clase BotonPerfil
+              BotonPerfil(
+                text: "Cambiar firma",
+                //icon: "",
+                press: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => SignaturePad()))
+                },
+              ),
+              BotonPerfil(
+                text: "Cerrar sesión",
+                //icon: "",
+                press: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => LoginPage()))
+                },
+              ),
+
               const SizedBox(
                 height: 35,
               ),
+              //Parte de abajo que te da la opción de guardar o cancelar
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlineButton(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(20)),
                     onPressed: () {},
                     child: const Text("Cancelar",
                         style: TextStyle(fontSize: 14, color: Colors.black)),
@@ -153,7 +102,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     elevation: 2,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(20)),
                     child: const Text(
                       "Guardar",
                       style: TextStyle(fontSize: 14, color: Colors.white),
@@ -168,6 +117,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
+  //Widget para el textfield
   Widget buildTextField(
       String labelText, String placeholder, bool isPasswordTextField) {
     return Padding(
