@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/ui/widgets/autenticacion/signup.dart';
+import 'package:p1/ui/widgets/menu_general/signature_pad.dart';
 import "login.dart";
 
 class HomePage extends StatelessWidget {
