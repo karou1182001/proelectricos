@@ -89,6 +89,9 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
               selected: _selectedOption == index - 1,
               onTap: () {
                 setState(() {
+                  print("SelectedOption");
+                  print(_selectedOption);//Va de 0 a 4 para los 5 forms
+                  //Aqui se puede hacer un switch una vez se tengan todos los formularuis
                   Navigator.push(
                       context,
                       MaterialPageRoute(

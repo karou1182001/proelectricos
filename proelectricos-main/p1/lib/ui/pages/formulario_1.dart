@@ -21,6 +21,7 @@ class FormularioUnoPage extends State<FormularioUno> {
   final _claveFormulario2 = GlobalKey<FormState>();
   final TextEditingController _codigoBarras = TextEditingController();
   final TextEditingController _descripcion = TextEditingController();
+  final TextEditingController _nombre_tecnico = TextEditingController();
   final TextEditingController _nombre_apellido = TextEditingController();
   final TextEditingController _cargo = TextEditingController();
   final TextEditingController _cedula = TextEditingController();
@@ -140,8 +141,8 @@ class FormularioUnoPage extends State<FormularioUno> {
                       }
                       return null;
                     },
-                    controller: _descripcion,
-                    decoration: InputDecoration(
+                    controller: _nombre_tecnico,
+                    decoration: const InputDecoration(
                       hintText: 'Escribe nombre de quien diligencia',
                       labelText: "Nombre de quien diligencia",
                     ),
