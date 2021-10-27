@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 
 //import 'package:p1/ui/widgets/pdf/pdf_widget.dart';
 
-
 void main() async {
   Get.put(WorkPageController());
   WidgetsFlutterBinding.ensureInitialized();

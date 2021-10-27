@@ -36,6 +36,7 @@ class _SignaturePadState extends State<SignaturePad> {
   @override
   void initState() {
     super.initState();
+    //Si quitamos esta parte cambiaríamos la orientación de la pantalla
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
