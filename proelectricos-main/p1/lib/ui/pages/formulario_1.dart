@@ -128,9 +128,13 @@ class FormularioUnoPage extends State<FormularioUno> {
                 },
               ),
             ),
+            Align(
+                  child: TablaPeligroForm1(),
+                  alignment: Alignment.center,
+                ),
             Form(
               key: _claveFormulario,
-              child: ListView(shrinkWrap: true, children: <Widget>[
+              child: Column(children: <Widget>[
                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: TextFormField(
@@ -163,10 +167,7 @@ class FormularioUnoPage extends State<FormularioUno> {
                     ),
                   ),
                 ),
-                Align(
-                  child: TablaPeligroForm1(),
-                  alignment: Alignment.center,
-                ),
+                
                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: TextFormField(
