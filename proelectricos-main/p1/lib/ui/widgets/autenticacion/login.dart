@@ -1,7 +1,10 @@
 //Aquí se realiza el inicio de sesión
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
+import 'package:p1/ui/pages/work_page.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 
 class LoginPage extends StatelessWidget {
@@ -179,8 +182,8 @@ class LoginPage extends StatelessWidget {
                                     MaterialPageRoute(
                                         builder:
                                             (context) => //Encargamos al builder que cambie el contexto a la página de menú general
-                                                const MenuOptionsScreen()));
-                              } else {
+                                              WorkHomePage()));
+                                    } else {
                                 showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
