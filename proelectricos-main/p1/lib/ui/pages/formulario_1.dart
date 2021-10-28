@@ -128,10 +128,7 @@ class FormularioUnoPage extends State<FormularioUno> {
                 },
               ),
             ),
-            Align(
-                  child: TablaPeligroForm1(),
-                  alignment: Alignment.center,
-                ),
+            
             Form(
               key: _claveFormulario,
               child: Column(children: <Widget>[
@@ -140,7 +137,7 @@ class FormularioUnoPage extends State<FormularioUno> {
                   child: TextFormField(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Escribe Cliente';
+                        return 'Escribe nombre dell diligenciador';
                       }
                       return null;
                     },
@@ -148,15 +145,23 @@ class FormularioUnoPage extends State<FormularioUno> {
                     decoration: const InputDecoration(
                       hintText: 'Escribe nombre de quien diligencia',
                       labelText: "Nombre de quien diligencia",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)), 
+                        borderSide: BorderSide(color: Color(0xff264F95))
+                      ),
                     ),
                   ),
+                ),
+                Align(
+                  child: TablaPeligroForm1(),
+                  alignment: Alignment.center,
                 ),
                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: TextFormField(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Escribe Cliente';
+                        return 'Escribe trabajo realizado';
                       }
                       return null;
                     },
@@ -164,6 +169,10 @@ class FormularioUnoPage extends State<FormularioUno> {
                     decoration: InputDecoration(
                       hintText: 'Escribe trabajo realizado',
                       labelText: "Trabajo realizado",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)), 
+                        borderSide: BorderSide(color: Color(0xff264F95))
+                      ),
                     ),
                   ),
                 ),
@@ -181,6 +190,10 @@ class FormularioUnoPage extends State<FormularioUno> {
                     decoration: InputDecoration(
                       hintText: 'Escribe Nombre y Apellido',
                       labelText: "Nombre y Apellido",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)), 
+                        borderSide: BorderSide(color: Color(0xff264F95))
+                      ),
                     ),
                   ),
                 ),
@@ -197,6 +210,10 @@ class FormularioUnoPage extends State<FormularioUno> {
                     decoration: InputDecoration(
                       hintText: 'Escribe Cargo a Desempeñar',
                       labelText: "Cargo a Desempeñar",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)), 
+                        borderSide: BorderSide(color: Color(0xff264F95))
+                      ),
                     ),
                   ),
                 ),
@@ -214,6 +231,10 @@ class FormularioUnoPage extends State<FormularioUno> {
                     decoration: InputDecoration(
                       hintText: 'Escribe Número de Cedula',
                       labelText: "Número de Cedula",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)), 
+                        borderSide: BorderSide(color: Color(0xff264F95))
+                      ),
                     ),
                   ),
                 ),
@@ -230,6 +251,10 @@ class FormularioUnoPage extends State<FormularioUno> {
                     decoration: InputDecoration(
                       hintText: 'Escribe ARL',
                       labelText: "ARL",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)), 
+                        borderSide: BorderSide(color: Color(0xff264F95))
+                      ),
                     ),
                   ),
                 ),
@@ -246,6 +271,10 @@ class FormularioUnoPage extends State<FormularioUno> {
                     decoration: InputDecoration(
                       hintText: 'Escribe EPS',
                       labelText: "EPS",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)), 
+                        borderSide: BorderSide(color: Color(0xff264F95))
+                      ),
                     ),
                   ),
                 ),

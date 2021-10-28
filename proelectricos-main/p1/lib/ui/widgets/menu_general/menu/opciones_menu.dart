@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p1/ui/pages/formulario_2.dart';
 import 'package:p1/ui/widgets/menu_general/componentes/boton_widget.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/pages/formulario_1.dart';
@@ -56,7 +57,7 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioUno()))
+                  builder: (BuildContext context) => FormularioDos()))
             },
           ),
           const SizedBox(

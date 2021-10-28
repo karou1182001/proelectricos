@@ -12,7 +12,7 @@ void main() async {
   Get.put(WorkPageController());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((value) {
-    runApp(MaterialApp(
+    runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
     ));
