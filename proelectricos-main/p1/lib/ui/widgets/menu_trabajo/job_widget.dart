@@ -1,5 +1,6 @@
 import 'package:p1/common/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 
 class JobWidget extends StatelessWidget {
   final String jobName;
@@ -42,7 +43,14 @@ class JobWidget extends StatelessWidget {
                           margin: const EdgeInsets.only(left: 8),
                           child: Text(jobName)),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder:
+                                      (context) => //Encargamos al builder que cambie el contexto a la página de menú general
+                                  MenuOptionsScreen()));
+                        },
                         icon: const Icon(Icons.skip_next,
                             color: proElectricosBlue),
                       ),

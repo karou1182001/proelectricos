@@ -21,7 +21,7 @@ class OpcionesMenu extends StatelessWidget {
             icon: const Icon(Icons.feed, size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => LoginPage()))
+                  builder: (BuildContext context) => FormularioUno()))
             },
           ),
           BotonWidget(
@@ -38,7 +38,7 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => LoginPage()))
+                  builder: (BuildContext context) => FormularioUno()))
             },
           ),
           BotonWidget(
@@ -47,7 +47,7 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => LoginPage()))
+                  builder: (BuildContext context) => FormularioUno()))
             },
           ),
           BotonWidget(
@@ -56,7 +56,7 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => LoginPage()))
+                  builder: (BuildContext context) => FormularioUno()))
             },
           ),
           const SizedBox(

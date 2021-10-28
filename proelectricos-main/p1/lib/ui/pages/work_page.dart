@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/workpage_controller.dart';
 import 'package:p1/common/constants.dart';
-
 ButtonStyle coolstyle = ButtonStyle(
   side: MaterialStateProperty.all(
       const BorderSide(width: 1, color: proElectricosBlue)),
@@ -58,7 +57,9 @@ class WorkHomePage extends StatelessWidget {
                           margin: const EdgeInsets.all(8),
                           child: OutlinedButton(
                             style: coolstyle,
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed("/ProfilePage");
+                            },
                             child: const FittedBox(
                               fit: BoxFit.fitWidth,
                               child: Text(
