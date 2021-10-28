@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
+import 'package:p1/ui/widgets/autenticacion/login.dart';
 
 class SignupPage extends StatelessWidget {
   SignupPage({Key? key}) : super(key: key);
@@ -133,8 +134,11 @@ class SignupPage extends StatelessWidget {
                                     actions: <Widget>[
                                       TextButton(
                                           onPressed: () {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(builder: (context) => const HomePage()));
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const HomePage()));
                                           },
                                           child: const Text('OK'))
                                     ],
@@ -163,12 +167,21 @@ class SignupPage extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text("¿Ya tiene una cuenta?"),
-                  Text(
-                    " Inicie sesión",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                  )
+                children: <Widget>[
+                  const Text("¿Ya tiene una cuenta?"),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
+                    },
+                    child: const Text(
+                      " Inicie sesión",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
                 ],
               )
             ],

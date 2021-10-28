@@ -1,8 +1,7 @@
 //Este es el menú general que lleva a todos los formularios
 import 'package:flutter/material.dart';
-import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
-import 'package:p1/ui/widgets/menu_general/componentes/encabezado.dart';
+import 'package:p1/ui/widgets/componentes/encabezado.dart';
 import 'package:p1/ui/widgets/menu_general/menu/opciones_menu.dart';
 
 class MenuOptionsScreen extends StatefulWidget {
@@ -26,9 +25,9 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
             Icons.arrow_back,
             color: Colors.white,
           ),
+          //Te regresa a la ruta inmediatamente anterior
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => LoginPage()));
+            Navigator.pop(context);
           },
         ),
         actions: [
@@ -50,7 +49,8 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Encabezado(size: size),
+            Encabezado(
+                size: size, text: "Hola, Sandra \n\n ¡Llena tus formularios!"),
             const OpcionesMenu(),
           ],
         ),

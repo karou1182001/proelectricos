@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class Encabezado extends StatelessWidget {
   const Encabezado({
     Key? key,
+    required this.text,
     required this.size,
   }) : super(key: key);
 
+  final String text;
   final Size size;
 
   @override
@@ -32,8 +34,8 @@ class Encabezado extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                const Text("Hola, Sandra \n\n ¡Llena tus formularios!",
-                    style: TextStyle(
+                Text(text,
+                    style: const TextStyle(
                         fontSize: 15,
                         color: Colors.white,
                         fontWeight: FontWeight.bold)),

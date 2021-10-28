@@ -1,23 +1,32 @@
-import 'package:p1/common/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:p1/ui/widgets/componentes/boton_widget.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 
 class JobWidget extends StatelessWidget {
-  final String jobName;
   const JobWidget({
     // Receives Value to display in cell, and it's respective pos in matrix
     Key? key,
     required this.jobName,
   }) : super(key: key);
 
+  final String jobName;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 100,
+    return BotonWidget(
+      text: jobName,
+      icon: const Icon(Icons.check_box, size: 20.0, color: Color(0xff264F95)),
+      press: () => {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) => const MenuOptionsScreen()))
+      },
+    );
+
+    /*height: 100,
         margin: const EdgeInsets.only(left: 30, right: 60),
         child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.start,
+            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Indicator
               Container(
@@ -49,13 +58,13 @@ class JobWidget extends StatelessWidget {
                               MaterialPageRoute(
                                   builder:
                                       (context) => //Encargamos al builder que cambie el contexto a la página de menú general
-                                  MenuOptionsScreen()));
+                                          const MenuOptionsScreen()));
                         },
                         icon: const Icon(Icons.skip_next,
                             color: proElectricosBlue),
                       ),
                     ]),
               ))
-            ]));
+            ])*/
   }
 }

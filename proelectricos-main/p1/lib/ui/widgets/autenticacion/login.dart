@@ -2,10 +2,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
-import 'package:p1/ui/pages/work_page.dart';
-import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
+import 'package:p1/ui/widgets/autenticacion/signup.dart';
+import 'package:p1/ui/widgets/menu_trabajo/menu_trabajos.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -125,15 +124,23 @@ class LoginPage extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            Text("¿No tienes cuenta aún?"),
-                            Text(
-                              " Regístrate.",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
+                          children: <Widget>[
+                            const Text("¿No tienes cuenta aún?"),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SignupPage()));
+                              },
+                              child: const Text(
+                                " Regístrate",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15,
+                                ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                         const SizedBox(
@@ -182,8 +189,8 @@ class LoginPage extends StatelessWidget {
                                     MaterialPageRoute(
                                         builder:
                                             (context) => //Encargamos al builder que cambie el contexto a la página de menú general
-                                              WorkHomePage()));
-                                    } else {
+                                                const MenuTrabajos()));
+                              } else {
                                 showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(

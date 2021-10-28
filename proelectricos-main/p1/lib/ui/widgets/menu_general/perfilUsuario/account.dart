@@ -1,12 +1,13 @@
 //Aquí puedes acceder a tu cuenta y ver las cosas predeterminadas
 import 'package:flutter/material.dart';
-import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/imagen_perfil.dart';
-import 'package:p1/ui/widgets/menu_general/componentes/boton_widget.dart';
+import 'package:p1/ui/widgets/componentes/boton_widget.dart';
 import "package:p1/ui/widgets/autenticacion/login.dart";
 
 class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({Key? key}) : super(key: key);
+
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
@@ -29,11 +30,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Icons.arrow_back,
             color: Colors.black,
           ),
+          //Te regresa a la ruta inmediatamente anterior
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MenuOptionsScreen()));
+            Navigator.pop(context);
           },
         ),
       ),

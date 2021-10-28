@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:p1/ui/pages/formulario_2.dart';
-import 'package:p1/ui/widgets/menu_general/componentes/boton_widget.dart';
+import 'package:p1/ui/widgets/componentes/boton_widget.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/pages/formulario_1.dart';
 

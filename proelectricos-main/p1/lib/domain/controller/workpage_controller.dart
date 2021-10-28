@@ -7,6 +7,7 @@ class WorkPageController extends GetxController {
 
   RxList<Widget> get joblist => _joblist;
 
+  //Esta función añade el botón que permite añadir nuevos trabajos
   void addAddJobButton() {
     _joblist.add(IconButton(
       onPressed: () => {addJob()},
@@ -14,9 +15,12 @@ class WorkPageController extends GetxController {
     ));
   }
 
+  //Esta función te permite añadir nuevos trabajos a la lista de trabajo
   void addJob() {
     _joblist.removeLast();
+    //Llamamos a JobWidget para añadir un nuevo botón de trabajo
     _joblist.add(JobWidget(jobName: "Trabajo: ${_joblist.length}"));
+    //Esto añade el botón debajo de la lista
     addAddJobButton();
   }
 }
