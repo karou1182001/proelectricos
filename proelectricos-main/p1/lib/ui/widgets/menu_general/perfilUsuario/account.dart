@@ -4,6 +4,7 @@ import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/imagen_perfil.dart';
 import 'package:p1/ui/widgets/componentes/boton_widget.dart';
 import "package:p1/ui/widgets/autenticacion/login.dart";
+import 'package:get/get.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
@@ -65,6 +66,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
               //Llamamos a la clase BotonWidget
               MyButton("Firmar/Cambiar firma", "tech_signature",
                   const Icon(Icons.feed, size: 0, color: Colors.black)),
+              BotonWidget(
+                text: "Ver firma",
+                icon: const Icon(Icons.feed, size: 0, color: Colors.black),
+                press: () => {
+                  Get.toNamed('/SignaturePreview', arguments: 'tech_signature')
+                },
+              ),
               BotonWidget(
                 text: "Cerrar sesión",
                 icon: const Icon(Icons.feed, size: 0, color: Colors.black),

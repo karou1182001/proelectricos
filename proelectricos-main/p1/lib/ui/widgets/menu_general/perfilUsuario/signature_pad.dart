@@ -138,7 +138,8 @@ class _SignaturePadState extends State<SignaturePad> {
               prefs.setString(widget.agent, base64.encode(signature));
             }
             exportController.dispose();
-            Get.toNamed("/SignaturePreview", arguments: widget.agent);
+            // Get.toNamed("/SignaturePreview", arguments: widget.agent);
+            Get.back();
             controller.clear();
           }
         },
@@ -163,20 +164,20 @@ class _SignaturePreviewState extends State<SignaturePreview> {
   void initState() {
     super.initState();
     _getSignature();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.landscapeRight,
+    //   DeviceOrientation.landscapeLeft,
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    // ]);
   }
 
   @override
   void dispose() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.landscapeRight,
+    //   DeviceOrientation.landscapeLeft,
+    // ]);
     super.dispose();
   }
 
