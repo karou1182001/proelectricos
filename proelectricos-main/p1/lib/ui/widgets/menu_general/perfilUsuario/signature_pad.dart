@@ -125,7 +125,7 @@ class _SignaturePadState extends State<SignaturePad> {
               prefs.setString(widget.agent, base64.encode(signature));
             }
             exportController.dispose();
-            Get.toNamed("/SignaturePreview");
+            Get.toNamed("/SignaturePreview", arguments: widget.agent);
             controller.clear();
           }
         },
@@ -157,12 +157,13 @@ Future<String> getSupervisorSignature() async {
 }
 
 class SignaturePreview extends StatefulWidget {
+  final String agent = Get.arguments;
   @override
   _SignaturePreviewState createState() => _SignaturePreviewState();
 }
 
 class _SignaturePreviewState extends State<SignaturePreview> {
-  String _tech_signature = "";
+  String _signature = "";
   @override
   void initState() {
     super.initState();
@@ -185,9 +186,15 @@ class _SignaturePreviewState extends State<SignaturePreview> {
   }
 
   _SignaturePreviewState() {
-    getTechSignature().then((val) => setState(() {
-          _tech_signature = val;
-        }));
+    if (widget.agent == "tech_signature") {
+      getTechSignature().then((val) => setState(() {
+            _signature = val;
+          }));
+    } else {
+      getSupervisorSignature().then((val) => setState(() {
+            _signature = val;
+          }));
+    }
   }
 
   @override
@@ -199,7 +206,7 @@ class _SignaturePreviewState extends State<SignaturePreview> {
       ),
       body: Center(
         child: Image.memory(
-          base64.decode(_tech_signature),
+          base64.decode(_signature),
         ),
       ),
     );
