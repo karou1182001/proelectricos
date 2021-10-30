@@ -81,7 +81,20 @@ class _SignaturePadState extends State<SignaturePad> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
-        title: Text('Firmar'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: const Text("Firma",
+            style: TextStyle(fontSize: 14, color: Colors.black)),
+        elevation: 1,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          //Te regresa a la ruta inmediatamente anterior
+          onPressed: () {
+            Get.back();
+          },
+        ),
       ),
       body: Column(
         children: <Widget>[
@@ -138,24 +151,6 @@ class _SignaturePadState extends State<SignaturePad> {
       );
 }
 
-Future<String> getTechSignature() async {
-  final prefs = await SharedPreferences.getInstance();
-  final sig = prefs.getString('tech_signature');
-  if (sig != null) {
-    return sig;
-  }
-  return '-1';
-}
-
-Future<String> getSupervisorSignature() async {
-  final prefs = await SharedPreferences.getInstance();
-  final sig = prefs.getString('supervisor_signature');
-  if (sig != null) {
-    return sig;
-  }
-  return '-1';
-}
-
 class SignaturePreview extends StatefulWidget {
   final String agent = Get.arguments;
   @override
@@ -167,7 +162,7 @@ class _SignaturePreviewState extends State<SignaturePreview> {
   @override
   void initState() {
     super.initState();
-    getTechSignature();
+    _getSignature();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
@@ -185,24 +180,36 @@ class _SignaturePreviewState extends State<SignaturePreview> {
     super.dispose();
   }
 
-  _SignaturePreviewState() {
-    if (widget.agent == "tech_signature") {
-      getTechSignature().then((val) => setState(() {
-            _signature = val;
-          }));
-    } else {
-      getSupervisorSignature().then((val) => setState(() {
-            _signature = val;
-          }));
+  Future<void> _getSignature() async {
+    final prefs = await SharedPreferences.getInstance();
+    final sig = prefs.getString(widget.agent);
+    if (sig != null) {
+      setState(() => _signature = sig);
     }
+  }
+
+  _SignaturePreviewState() {
+    _getSignature();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Signature Preview'),
-        centerTitle: true,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: const Text("Vista Previa",
+            style: TextStyle(fontSize: 14, color: Colors.black)),
+        elevation: 1,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          //Te regresa a la ruta inmediatamente anterior
+          onPressed: () {
+            Get.back();
+          },
+        ),
       ),
       body: Center(
         child: Image.memory(
