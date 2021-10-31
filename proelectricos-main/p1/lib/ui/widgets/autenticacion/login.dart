@@ -2,6 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/autenticacion/signup.dart';
 import 'package:p1/ui/widgets/menu_trabajo/menu_trabajos.dart';
@@ -11,7 +13,7 @@ class LoginPage extends StatelessWidget {
 
   final ccController = TextEditingController();
   final passController = TextEditingController();
-
+  AuthenticationController controller = Get.find<AuthenticationController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,17 +175,10 @@ class LoginPage extends StatelessWidget {
                                         ],
                                       ));
                             } else {
-                              //Collection Reference para acceder a la colección "usuarios" de nuestra base de datos
-                              var cr = FirebaseFirestore.instance
-                                  .collection("usuario");
-                              //Realizamos la consulta sobre la colección
-                              var query = cr
-                                  .where("cc", isEqualTo: int.parse(cc))
-                                  .where("password", isEqualTo: password);
-                              //Extraemos los datos de el query en cuestión
-                              QuerySnapshot users = await query.get();
-                              //Revisamos que exista algún usuario que cumpla con las condiciones
-                              if (users.docs.isNotEmpty) {
+                              var value = await controller.login(cc, password);
+                              if (value) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('User ok')));
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -191,6 +186,8 @@ class LoginPage extends StatelessWidget {
                                             (context) => //Encargamos al builder que cambie el contexto a la página de menú general
                                                 const MenuTrabajos()));
                               } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('User problem')));
                                 showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(

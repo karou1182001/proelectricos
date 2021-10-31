@@ -1,5 +1,6 @@
 //Aquí puedes acceder a tu cuenta y ver las cosas predeterminadas
 import 'package:flutter/material.dart';
+import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/imagen_perfil.dart';
 import 'package:p1/ui/widgets/componentes/boton_widget.dart';
@@ -14,6 +15,14 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+
+  AuthenticationController controller = Get.find<AuthenticationController>();
+
+  void cerrarSesion(controller,context) {
+    var value = controller.logout();
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) => LoginPage()));
+  }
   bool showPassword = false;
 
   @override
@@ -77,8 +86,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 text: "Cerrar sesión",
                 icon: const Icon(Icons.feed, size: 0, color: Colors.black),
                 press: () => {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => LoginPage()))
+                  cerrarSesion(controller,context)
                 },
               ),
 

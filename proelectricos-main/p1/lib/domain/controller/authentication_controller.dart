@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:p1/data/local_preferences.dart';
 
@@ -19,24 +20,27 @@ class AuthenticationController extends GetxController {
 
   void init() async {
     _logged.value = await lp.retrieveData<bool>("logged") ?? false;
-    //_logged.value = false;
-    setLogged(false);
+      //setLogged(false);
   }
 
 
-  Future<bool> login(user, password) async {
-    //String userT = await lp.retrieveData<String>("email") ?? "";
-    //String passwordT = await lp.retrieveData<String>("password") ?? "";
-    String userT = "proelectricos@hotmail.com";
-    String passwordT = "123456789";
-    //print("$userT $passwordT $user $password");
-    if (userT == user && passwordT == password) {
+  Future<bool> login(cc, password) async {
+    //Collection Reference para acceder a la colección "usuarios" de nuestra base de datos
+    var cr = FirebaseFirestore.instance
+        .collection("usuario");
+    //Realizamos la consulta sobre la colección
+    var query = cr
+        .where("cc", isEqualTo: int.parse(cc))
+        .where("password", isEqualTo: password);
+    //Extraemos los datos de el query en cuestión
+    QuerySnapshot users = await query.get();
+    //Revisamos que exista algún usuario que cumpla con las condiciones
+    if (users.docs.isNotEmpty) {
       await lp.storeData<bool>("logged", true);
-      print("Guardado con exito");
       //_logged.value = true;
       setLogged(true);
-    } else {
-      print("Guardado sin exito");
+    }
+    else{
       await lp.storeData<bool>("logged", false);
       //_logged.value = false;
       setLogged(false);
