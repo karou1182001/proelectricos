@@ -1,12 +1,18 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/menu_trabajo/job_widget.dart';
+import 'package:flutter/services.Dart';
+
 
 class WorkPageController extends GetxController {
+
   final RxList<Widget> _joblist = <Widget>[].obs;
 
   RxList<Widget> get joblist => _joblist;
 
+  void init() async {
+    addAddJobButton();
+  }
   //Esta función añade el botón que permite añadir nuevos trabajos
   void addAddJobButton() {
     _joblist.add(IconButton(
@@ -23,4 +29,5 @@ class WorkPageController extends GetxController {
     //Esto añade el botón debajo de la lista
     addAddJobButton();
   }
+
 }

@@ -56,10 +56,10 @@ class _SignaturePadState extends State<SignaturePad> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
+    //SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.landscapeRight,
+    //  DeviceOrientation.landscapeLeft,
+    //]);
     controller = SignatureController(
       penStrokeWidth: 5,
       penColor: Colors.black,
@@ -69,12 +69,12 @@ class _SignaturePadState extends State<SignaturePad> {
   @override
   void dispose() {
     controller.dispose();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    //SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.landscapeRight,
+    //  DeviceOrientation.landscapeLeft,
+     // DeviceOrientation.portraitUp,
+      //DeviceOrientation.portraitDown,
+    //]);
     super.dispose();
   }
 

@@ -1,5 +1,7 @@
 //Este es el menú general que lleva a todos los formularios
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
 import 'package:p1/ui/widgets/componentes/encabezado.dart';
@@ -13,12 +15,16 @@ class MenuTrabajos extends StatefulWidget {
 }
 
 class _MenuTrabajosState extends State<MenuTrabajos> {
-  //Revisar esto
-  final WorkPageController controller = Get.find<WorkPageController>();
+  AuthenticationController authentication_controller = Get.find<AuthenticationController>();
+  WorkPageController controller = Get.find<WorkPageController>();
 
   @override
   Widget build(BuildContext context) {
-    controller.addAddJobButton();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+     controller.init();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -72,10 +78,11 @@ class _MenuTrabajosState extends State<MenuTrabajos> {
             fit: FlexFit.tight,
             child: Container(
                 alignment: Alignment.centerLeft,
-                child: Obx(() => ListView(
+                child: authentication_controller.logged ? Obx(() => ListView(
                     // mainAxisAlignment: MainAxisAlignment.start,
                     // crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: controller.joblist))),
+                    children: controller.joblist)):Container(),
+            ),
           )
         ],
       ),
