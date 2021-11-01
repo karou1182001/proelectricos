@@ -721,7 +721,7 @@ class TablaPeligroForm1 extends StatelessWidget {
               DataCell(
                 Obx(
                   () => Checkbox(
-                    value: C.no[22].value,
+                    value: C.no[27].value,
                     onChanged: (bool? val) {
                       C.cambiarvalorno(val!, 27);
                     },

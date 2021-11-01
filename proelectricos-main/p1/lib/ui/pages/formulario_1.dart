@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p1/domain/pdf/pdf_generation.dart';
 import 'package:p1/ui/widgets/formularios/tabla_peligro_form1.dart';
 import 'package:p1/domain/controller/controller_tabla_form1.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ class FormularioUnoPage extends State<FormularioUno> {
   DateTime pickedDate = DateTime.now();
   SingingCharacter? _character = SingingCharacter.rutinario;
   SingingCharacter1? _character1 = SingingCharacter1.alturas;
+  // ControllerTablaForm1 tablaController = Get.find()
   final _claveFormulario = GlobalKey<FormState>();
   final _claveFormulario2 = GlobalKey<FormState>();
   final TextEditingController _codigoBarras = TextEditingController();
@@ -128,7 +130,6 @@ class FormularioUnoPage extends State<FormularioUno> {
                 },
               ),
             ),
-            
             Form(
               key: _claveFormulario,
               child: Column(children: <Widget>[
@@ -137,7 +138,7 @@ class FormularioUnoPage extends State<FormularioUno> {
                   child: TextFormField(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Escribe nombre dell diligenciador';
+                        return 'Escribe nombre del diligenciador';
                       }
                       return null;
                     },
@@ -146,9 +147,8 @@ class FormularioUnoPage extends State<FormularioUno> {
                       hintText: 'Escribe nombre de quien diligencia',
                       labelText: "Nombre de quien diligencia",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)), 
-                        borderSide: BorderSide(color: Color(0xff264F95))
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
                     ),
                   ),
                 ),
@@ -170,13 +170,11 @@ class FormularioUnoPage extends State<FormularioUno> {
                       hintText: 'Escribe trabajo realizado',
                       labelText: "Trabajo realizado",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)), 
-                        borderSide: BorderSide(color: Color(0xff264F95))
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
                     ),
                   ),
                 ),
-                
                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: TextFormField(
@@ -191,9 +189,8 @@ class FormularioUnoPage extends State<FormularioUno> {
                       hintText: 'Escribe Nombre y Apellido',
                       labelText: "Nombre y Apellido",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)), 
-                        borderSide: BorderSide(color: Color(0xff264F95))
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
                     ),
                   ),
                 ),
@@ -211,9 +208,8 @@ class FormularioUnoPage extends State<FormularioUno> {
                       hintText: 'Escribe Cargo a Desempeñar',
                       labelText: "Cargo a Desempeñar",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)), 
-                        borderSide: BorderSide(color: Color(0xff264F95))
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
                     ),
                   ),
                 ),
@@ -232,9 +228,8 @@ class FormularioUnoPage extends State<FormularioUno> {
                       hintText: 'Escribe Número de Cedula',
                       labelText: "Número de Cedula",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)), 
-                        borderSide: BorderSide(color: Color(0xff264F95))
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
                     ),
                   ),
                 ),
@@ -252,9 +247,8 @@ class FormularioUnoPage extends State<FormularioUno> {
                       hintText: 'Escribe ARL',
                       labelText: "ARL",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)), 
-                        borderSide: BorderSide(color: Color(0xff264F95))
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
                     ),
                   ),
                 ),
@@ -272,9 +266,8 @@ class FormularioUnoPage extends State<FormularioUno> {
                       hintText: 'Escribe EPS',
                       labelText: "EPS",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)), 
-                        borderSide: BorderSide(color: Color(0xff264F95))
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
                     ),
                   ),
                 ),
@@ -290,7 +283,25 @@ class FormularioUnoPage extends State<FormularioUno> {
                     // Process data.
                   }
                 },
-                child: const Text('Submit'),
+                child: ElevatedButton(
+                  child: const Text("Submit"),
+                  // onPressed: () {},
+                  onPressed: () => generateForm1PDF(
+                      "formulario1.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      _nombre_tecnico.text,
+                      SingingCharacter.rutinario == _character,
+                      SingingCharacter.norutinario == _character,
+                      SingingCharacter1.alturas == _character1,
+                      SingingCharacter1.electrico == _character1,
+                      _descripcion.text,
+                      _nombre_apellido.text,
+                      _cargo.text,
+                      _cedula.text,
+                      _ARL.text,
+                      _EPS.text,
+                      Get.find<ControllerTablaForm1>()),
+                ),
               ),
             ),
           ],
