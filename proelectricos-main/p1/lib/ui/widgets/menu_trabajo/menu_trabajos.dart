@@ -20,10 +20,6 @@ class _MenuTrabajosState extends State<MenuTrabajos> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
      controller.init();
     Size size = MediaQuery.of(context).size;
     return Scaffold(

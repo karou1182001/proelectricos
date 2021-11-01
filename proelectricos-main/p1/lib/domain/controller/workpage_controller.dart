@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/menu_trabajo/job_widget.dart';
-import 'package:flutter/services.Dart';
 
 
 class WorkPageController extends GetxController {
