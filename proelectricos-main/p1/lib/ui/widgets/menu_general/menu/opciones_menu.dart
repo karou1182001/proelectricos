@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:p1/ui/pages/formulario_2.dart';
+import 'package:p1/ui/pages/formulario_5.dart';
+import 'package:p1/ui/pages/formulario_4.dart';
 import 'package:p1/ui/widgets/componentes/boton_widget.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
-import 'package:p1/ui/pages/formulario_1.dart';
+import 'package:p1/ui/pages/formulario_2.dart';
 import 'package:p1/ui/pages/formulario_0.dart';
 
 class OpcionesMenu extends StatelessWidget {
@@ -31,7 +32,7 @@ class OpcionesMenu extends StatelessWidget {
             icon: const Icon(Icons.lock, size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioUno()))
+                  builder: (BuildContext context) => FormularioDos()))
             },
           ),
           BotonWidget(
@@ -40,7 +41,7 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioUno()))
+                  builder: (BuildContext context) => FormularioDos()))
             },
           ),
           BotonWidget(
@@ -49,7 +50,7 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioUno()))
+                  builder: (BuildContext context) => FormularioCuatro()))
             },
           ),
           BotonWidget(
@@ -58,7 +59,7 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioDos()))
+                  builder: (BuildContext context) => FormularioCinco()))
             },
           ),
           const SizedBox(

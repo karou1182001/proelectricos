@@ -1,4 +1,4 @@
-import 'package:p1/domain/controller/controller_tabla_form1.dart';
+import 'package:p1/domain/controller/controller_tabla_form2.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';

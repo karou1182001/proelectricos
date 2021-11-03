@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-class ControllerTablaForm1 extends GetxController {
-  RxList<RxBool> si = RxList.generate(59, (_) => false.obs);
-  RxList<RxBool> no = RxList.generate(59, (_) => false.obs);
+class ControllerTablaForm3 extends GetxController {
+  RxList<RxBool> si = RxList.generate(30, (_) => true.obs);
+  RxList<RxBool> no = RxList.generate(30, (_) => false.obs);
 
   void cambiarvalorsi(bool valor, int i) {
     si[i].value = valor;

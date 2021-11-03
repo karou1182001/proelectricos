@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:p1/domain/pdf/pdf_generation.dart';
 import 'package:p1/ui/widgets/formularios/tabla_peligro_form2.dart';
 import 'package:p1/domain/controller/controller_tabla_form2.dart';
-import 'package:p1/ui/widgets/formularios/rellenar.dart';
 import 'package:get/get.dart';
 
 class FormularioDos extends StatefulWidget {
@@ -11,16 +11,17 @@ class FormularioDos extends StatefulWidget {
   FormularioDosPage createState() => FormularioDosPage();
 }
 
-enum SingingCharacter { grua, canasta }
-enum SingingCharacter1 { si, no }
-enum SingingCharacter2 { yes, not }
+enum SingingCharacter { rutinario, norutinario }
+enum SingingCharacter1 { alturas, electrico }
 
 class FormularioDosPage extends State<FormularioDos> {
   DateTime pickedDate = DateTime.now();
-  SingingCharacter? _character = SingingCharacter.grua;
-  SingingCharacter1? _character1 = SingingCharacter1.si;
-  SingingCharacter2? _character2 = SingingCharacter2.yes;
+  SingingCharacter? _character = SingingCharacter.rutinario;
+  SingingCharacter1? _character1 = SingingCharacter1.alturas;
+  // ControllerTablaForm1 tablaController = Get.find()
   final _claveFormulario = GlobalKey<FormState>();
+  final _claveFormulario2 = GlobalKey<FormState>();
+  final TextEditingController _codigoBarras = TextEditingController();
   final TextEditingController _descripcion = TextEditingController();
   final TextEditingController _nombre_tecnico = TextEditingController();
   final TextEditingController _nombre_apellido = TextEditingController();
@@ -28,13 +29,15 @@ class FormularioDosPage extends State<FormularioDos> {
   final TextEditingController _cedula = TextEditingController();
   final TextEditingController _ARL = TextEditingController();
   final TextEditingController _EPS = TextEditingController();
-  
+
   @override
   void initState() {
-    Get.put(ControllerTablaForm2());
+    Get.put(ControllerTablaForm1());
     pickedDate = DateTime.now();
+
     super.initState();
   }
+
   _pickDate() async {
     DateTime? date = await showDatePicker(
       context: context,
@@ -53,7 +56,7 @@ class FormularioDosPage extends State<FormularioDos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inspección preoperacional de carro canasta'),
+        title: Text('Autorización y ejecución de trabajos'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -68,14 +71,14 @@ class FormularioDosPage extends State<FormularioDos> {
             Container(
               padding: const EdgeInsets.all(40),
               child: Text(
-                'Tipo de vehiculo',
+                'Clasificación del trabajo',
                 style: TextStyle(height: 3, fontSize: 20),
               ),
             ),
             ListTile(
-              title: const Text('Grua'),
+              title: const Text('Rutinario'),
               leading: Radio<SingingCharacter>(
-                value: SingingCharacter.grua,
+                value: SingingCharacter.rutinario,
                 groupValue: _character,
                 onChanged: (SingingCharacter? value) {
                   setState(() {
@@ -85,9 +88,9 @@ class FormularioDosPage extends State<FormularioDos> {
               ),
             ),
             ListTile(
-              title: const Text('Canasta'),
+              title: const Text('No rutinario'),
               leading: Radio<SingingCharacter>(
-                value: SingingCharacter.canasta,
+                value: SingingCharacter.norutinario,
                 groupValue: _character,
                 onChanged: (SingingCharacter? value) {
                   setState(() {
@@ -99,14 +102,14 @@ class FormularioDosPage extends State<FormularioDos> {
             Container(
               padding: const EdgeInsets.all(40),
               child: Text(
-                'Tecnico mecanica vigente:',
+                'La actividad incluye:',
                 style: TextStyle(height: 3, fontSize: 20),
               ),
             ),
             ListTile(
-              title: const Text('Sí'),
+              title: const Text('Trabajo en alturas'),
               leading: Radio<SingingCharacter1>(
-                value: SingingCharacter1.si,
+                value: SingingCharacter1.alturas,
                 groupValue: _character1,
                 onChanged: (SingingCharacter1? value) {
                   setState(() {
@@ -116,9 +119,9 @@ class FormularioDosPage extends State<FormularioDos> {
               ),
             ),
             ListTile(
-              title: const Text('No'),
+              title: const Text('Trabajo electrico'),
               leading: Radio<SingingCharacter1>(
-                value: SingingCharacter1.no,
+                value: SingingCharacter1.electrico,
                 groupValue: _character1,
                 onChanged: (SingingCharacter1? value) {
                   setState(() {
@@ -127,47 +130,148 @@ class FormularioDosPage extends State<FormularioDos> {
                 },
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(40),
-              child: Text(
-                'SOAT vigente:',
-                style: TextStyle(height: 3, fontSize: 20),
-              ),
-            ),
-            ListTile(
-              title: const Text('Sí'),
-              leading: Radio<SingingCharacter2>(
-                value: SingingCharacter2.yes,
-                groupValue: _character2,
-                onChanged: (SingingCharacter2? value) {
-                  setState(() {
-                    _character2 = value;
-                  });
-                },
-              ),
-            ),
-            ListTile(
-              title: const Text('No'),
-              leading: Radio<SingingCharacter2>(
-                value: SingingCharacter2.not,
-                groupValue: _character2,
-                onChanged: (SingingCharacter2? value) {
-                  setState(() {
-                    _character2 = value;
-                  });
-                },
-              ),
-            ),
-            
-            Container(
-              child: RellenarForm(),
-            ),
-            Align(
-                  child: TablaPeligroForm2(),
+            Form(
+              key: _claveFormulario,
+              child: Column(children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Escribe nombre del diligenciador';
+                      }
+                      return null;
+                    },
+                    controller: _nombre_tecnico,
+                    decoration: const InputDecoration(
+                      hintText: 'Escribe nombre de quien diligencia',
+                      labelText: "Nombre de quien diligencia",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
+                    ),
+                  ),
+                ),
+                Align(
+                  child: TablaPeligroForm1(),
                   alignment: Alignment.center,
                 ),
-            Container(
-              child: RellenarForm2(),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Escribe trabajo realizado';
+                      }
+                      return null;
+                    },
+                    controller: _descripcion,
+                    decoration: InputDecoration(
+                      hintText: 'Escribe trabajo realizado',
+                      labelText: "Trabajo realizado",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Escribe Nombre y Apellido';
+                      }
+                      return null;
+                    },
+                    controller: _nombre_apellido,
+                    decoration: InputDecoration(
+                      hintText: 'Escribe Nombre y Apellido',
+                      labelText: "Nombre y Apellido",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Escribe Cargo a Desempeñar';
+                      }
+                      return null;
+                    },
+                    controller: _cargo,
+                    decoration: InputDecoration(
+                      hintText: 'Escribe Cargo a Desempeñar',
+                      labelText: "Cargo a Desempeñar",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Escribe Número de Cedula';
+                      }
+                      return null;
+                    },
+                    controller: _cedula,
+                    decoration: InputDecoration(
+                      hintText: 'Escribe Número de Cedula',
+                      labelText: "Número de Cedula",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Escribe ARL';
+                      }
+                      return null;
+                    },
+                    controller: _ARL,
+                    decoration: InputDecoration(
+                      hintText: 'Escribe ARL',
+                      labelText: "ARL",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Escribe EPS';
+                      }
+                      return null;
+                    },
+                    controller: _EPS,
+                    decoration: InputDecoration(
+                      hintText: 'Escribe EPS',
+                      labelText: "EPS",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderSide: BorderSide(color: Color(0xff264F95))),
+                    ),
+                  ),
+                ),
+              ]),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -179,7 +283,25 @@ class FormularioDosPage extends State<FormularioDos> {
                     // Process data.
                   }
                 },
-                child: const Text('Submit'),
+                child: ElevatedButton(
+                  child: const Text("Submit"),
+                  // onPressed: () {},
+                  onPressed: () => generateForm1PDF(
+                      "formulario1.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      _nombre_tecnico.text,
+                      SingingCharacter.rutinario == _character,
+                      SingingCharacter.norutinario == _character,
+                      SingingCharacter1.alturas == _character1,
+                      SingingCharacter1.electrico == _character1,
+                      _descripcion.text,
+                      _nombre_apellido.text,
+                      _cargo.text,
+                      _cedula.text,
+                      _ARL.text,
+                      _EPS.text,
+                      Get.find<ControllerTablaForm1>()),
+                ),
               ),
             ),
           ],

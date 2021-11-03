@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:p1/domain/controller/controller_tabla_form2.dart';
 import 'package:get/get.dart';
 
-class TablaPeligroForm2 extends StatelessWidget {
-  static ControllerTablaForm2 C = Get.find<ControllerTablaForm2>();
+class TablaPeligroForm1 extends StatelessWidget {
+  static ControllerTablaForm1 C = Get.find<ControllerTablaForm1>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -11,7 +11,7 @@ class TablaPeligroForm2 extends StatelessWidget {
         columns: const <DataColumn>[
           DataColumn(
             label: Text(
-              'Condicion inspeccionar',
+              'Riesgo',
               style: TextStyle(fontStyle: FontStyle.italic),
             ),
           ),
@@ -31,7 +31,7 @@ class TablaPeligroForm2 extends StatelessWidget {
         rows: <DataRow>[
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('LLANTAS: Espárragos')),
+              DataCell(Text('ELECTRICO:Supervisión de trabajos eléctricos.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -56,7 +56,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Labrado')),
+              DataCell(Text('Autorización y/o orden de trabajo.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -81,7 +81,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Presión de aire')),
+              DataCell(Text('Usar botas dieléctricas.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -106,7 +106,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Repuesto')),
+              DataCell(Text('Casco dieléctrico.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -131,7 +131,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Tuercas')),
+              DataCell(Text('Mantiene las distancias de seguridad correctas.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -157,7 +157,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(Text(
-                  'ORDEN Y ASEO: Cabina limpia y en orden')),
+                  'MECANICOS: Mecanismos en movimientos, Ele. cortanas, Proy. de particulas')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -182,7 +182,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Exterior del vehículo limpio y en orden')),
+              DataCell(Text('Usar guantes de vaqueta, nitrilo o carnaza.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -207,7 +207,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Kit antiderramante')),
+              DataCell(Text('Dotación (camisa manga larga y pantalón).')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -232,7 +232,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Vidrios y espejos limpios y completos')),
+              DataCell(Text('Usar casco con barbuquejo.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -257,7 +257,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('FLUIDOS (NIVELES Y FUGAS): Filtro depurador')),
+              DataCell(Text('Protección visual gafas con filtro UV')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -282,7 +282,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Nivel de aceite de la transmisión.')),
+              DataCell(Text('Usar botas dielectricas.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -307,7 +307,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Nivel de aceite hidráulico')),
+              DataCell(Text('Herramientas en buen estado.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -332,7 +332,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Nivel de aceite motor')),
+              DataCell(Text('Barandas o cintas antideslizantes.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -357,7 +357,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Nivel de combustible')),
+              DataCell(Text('TRABAJO EN ALTURAS.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -382,7 +382,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Nivel de líquido refrigerante')),
+              DataCell(Text('Usar puntos de anclaje portatíl (Tie off).')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -407,7 +407,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('EQUIPO DE CARRETERA Y DE SEGURIDAD: Botiquín')),
+              DataCell(Text('Usar linea de vida.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -432,7 +432,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Chaleco reflectivo disponible')),
+              DataCell(Text('Usar casco con barbuquejo.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -457,7 +457,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Cinturones de seguridad')),
+              DataCell(Text('Eslinga para protección de caidas.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -482,7 +482,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Conos o triángulos y tacos disponibles')),
+              DataCell(Text('Eslinga de posicionamiento.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -507,7 +507,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Cruceta disponible')),
+              DataCell(Text('Arnés de seguridad.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -532,7 +532,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Extintor disponible')),
+              DataCell(Text('Verificación del sistema de acceso.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -557,7 +557,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Guantes disponibles')),
+              DataCell(Text('Aplicación de Procedimiento de trabajo seguros.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -582,7 +582,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Herramientas')),
+              DataCell(Text('QUIMICO: Gases, vapores, particulas, liquidos.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -607,7 +607,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('El vehículo cuenta con cintas reflectivas (blanco y rojo)')),
+              DataCell(Text('Protección respiratoria.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -632,7 +632,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Linterna disponible y funcionable')),
+              DataCell(Text('Usar gafas con filtro UV.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -657,7 +657,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('SISTEMA HIDRÁULICO: Balero de rotación')),
+              DataCell(Text('Kit de derrames.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -682,7 +682,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Cilindros de estabilizadores libre de fuga')),
+              DataCell(Text('PSICOSOCIAL.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -707,7 +707,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Cilindros de extensiones del brazo libres de fuga')),
+              DataCell(Text('manejo de estres.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -721,7 +721,7 @@ class TablaPeligroForm2 extends StatelessWidget {
               DataCell(
                 Obx(
                   () => Checkbox(
-                    value: C.no[22].value,
+                    value: C.no[27].value,
                     onChanged: (bool? val) {
                       C.cambiarvalorno(val!, 27);
                     },
@@ -732,7 +732,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Cilindros principal y auxiliar del brazo libres de fuga')),
+              DataCell(Text('Comunicación efectiva.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -757,7 +757,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Estabilizadores y zapatas')),
+              DataCell(Text('PUBLICO.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -783,7 +783,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(
-                  Text('Estado de las extensiones')),
+                  Text('Sistema de monitoreo - Acompañamiento policiaco.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -808,7 +808,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Estado del boom principal o articulaciones principales y sus pasadores')),
+              DataCell(Text('Comunicación y plantificación.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -833,7 +833,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Mandos de operación funcionables y libres de fuga')),
+              DataCell(Text('TRANSITO.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -859,7 +859,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(Text(
-                  'Mangueras y conexiones libres de fugas')),
+                  'Señalización con vallas, conos, tubulares, cinta, etc.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -884,7 +884,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('SISTEMA DE IZAJE: Equipo de barrena, malacate, canasta, pistola, guía de poste o winche')),
+              DataCell(Text('Protección completa de la zona de trabajo.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -910,7 +910,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(Text(
-                  'Eslingas, guayas, cadena, manila en buen estado')),
+                  'BIOLOGICO: Virus, hongos, bacterias, animales, COVID-19')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -935,7 +935,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Grillete, estrobos, gancho en buen estado')),
+              DataCell(Text('Usar botas de caucho caña alta')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -960,7 +960,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Indicador de ángulo disponible y funcionable')),
+              DataCell(Text('Higienización de vahículo y herramientas.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -985,7 +985,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('SISTEMA DE FRENOS: Freno de motor')),
+              DataCell(Text('Usar protector respiratorio y gafas.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1010,7 +1010,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Freno de parqueo')),
+              DataCell(Text('Dotación camisa manga larga.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1035,7 +1035,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Freno de servicio')),
+              DataCell(Text('Lavado de manos con agua y jabon.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1061,7 +1061,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(Text(
-                  'Mangueras, tanques y tuberías')),
+                  'FISICO: Temperaturas extremas, ilumionación, ruido, radiaciones.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1086,7 +1086,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Presión de aire sistema de frenos')),
+              DataCell(Text('Hidratación.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1111,7 +1111,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Max: 800 KPa o 120 PSI (Cargue sistema y registre presión máxima)')),
+              DataCell(Text('Uso de protector solar.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1136,7 +1136,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Activación de alarma de baja presión de aire')),
+              DataCell(Text('Usar linterna.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1161,7 +1161,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Debajo de 500 KPa o 65 PSI (Descargue y registre la presión)')),
+              DataCell(Text('Uso de iluminación preventiva en vehículos.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1186,7 +1186,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Activación automática de freno de parqueo')),
+              DataCell(Text('Usar protección auditiva.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1211,7 +1211,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Debajo de 400 KPa o 45 PSI (Descargue y registre la presión)')),
+              DataCell(Text('Dotación de uniforme camisas manga larga.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1236,7 +1236,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('SISTEMA ELECTRICO (LUCES Y CONTROLES): Direccionales')),
+              DataCell(Text('Usar gafas con filtro UV.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1262,7 +1262,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(Text(
-                  'Exploradoras')),
+                  'LOCATIVOS: Defectos del piso (lisos, irregulares, humedos o fangosos).')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1287,7 +1287,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Lámparas medias y altas')),
+              DataCell(Text('Señalización y demarcación de area.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1312,7 +1312,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Limpia parabrisas')),
+              DataCell(Text('Caminar con precaución.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1337,7 +1337,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Parqueo')),
+              DataCell(Text('Verificación del area de trabajo.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1362,7 +1362,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Reversa y alarma')),
+              DataCell(Text('Usar botas de seguridad.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1387,7 +1387,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('SISTEMA MECÁNICO: Caja de cambio')),
+              DataCell(Text('Usar botas de caña alta.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1412,7 +1412,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Control del toma fuerza')),
+              DataCell(Text('BIOMECANICOS')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1437,7 +1437,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Correas')),
+              DataCell(Text('Hacer calentamiento previo.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1462,7 +1462,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('Transmisión')),
+              DataCell(Text('Levantar correctamente las cargas.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1487,7 +1487,7 @@ class TablaPeligroForm2 extends StatelessWidget {
           ),
           DataRow(
             cells: <DataCell>[
-              DataCell(Text('OTROS: Dirección')),
+              DataCell(Text('Realización de pausas activas.')),
               DataCell(
                 Obx(
                   () => Checkbox(
@@ -1510,58 +1510,22 @@ class TablaPeligroForm2 extends StatelessWidget {
               ),
             ],
           ),
-          DataRow(
-            cells: <DataCell>[
-              DataCell(Text('Estado general de la carrocería')),
-              DataCell(
-                Obx(
-                  () => Checkbox(
-                    value: C.si[59].value,
-                    onChanged: (bool? val) {
-                      C.cambiarvalorsi(val!, 59);
-                    },
-                  ),
-                ),
-              ),
-              DataCell(
-                Obx(
-                  () => Checkbox(
-                    value: C.no[59].value,
-                    onChanged: (bool? val) {
-                      C.cambiarvalorno(val!, 59);
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-          DataRow(
-            cells: <DataCell>[
-              DataCell(Text('Suspensión')),
-              DataCell(
-                Obx(
-                  () => Checkbox(
-                    value: C.si[60].value,
-                    onChanged: (bool? val) {
-                      C.cambiarvalorsi(val!, 60);
-                    },
-                  ),
-                ),
-              ),
-              DataCell(
-                Obx(
-                  () => Checkbox(
-                    value: C.no[60].value,
-                    onChanged: (bool? val) {
-                      C.cambiarvalorno(val!, 60);
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
         ],
       ),
     );
   }
 }
+
+// class HomePage extends StatelessWidget {
+//   const HomePage({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body:Align(
+//         child:TablaPeligro(),
+//         alignment:Alignment.center,)
+//     );
+//   }
+// }
+
