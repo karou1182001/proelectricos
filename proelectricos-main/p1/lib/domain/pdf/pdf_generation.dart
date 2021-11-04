@@ -26,8 +26,7 @@ void modifyBoolField(PdfDocument document, int index, bool val,
   }
 }
 
-// void generateForm1PDF(String filename, ControllerTablaForm1 cont) async {
-void generateForm1PDF(
+void generateForm2PDF(
     String filename,
     String fecha,
     String nombre,
@@ -92,7 +91,7 @@ void generateForm1PDF(
     document.form.fields[i].readOnly = true;
   }
   String appDocs = await _localPath;
-  print(appDocs + "/" + filename);
+  // print(appDocs + "/" + filename);
   await File(appDocs + "/" + filename).writeAsBytes(document.save());
 
   document.dispose();

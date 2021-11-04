@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p1/domain/pdf/pdf_upload.dart';
 import 'package:p1/ui/pages/formulario_5.dart';
 import 'package:p1/ui/pages/formulario_4.dart';
 import 'package:p1/ui/widgets/componentes/boton_widget.dart';
@@ -70,7 +71,9 @@ class OpcionesMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  uploadPdf2();
+                },
                 color: const Color(0xff264F95),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 50, vertical: 15),

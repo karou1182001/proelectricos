@@ -286,8 +286,8 @@ class FormularioDosPage extends State<FormularioDos> {
                 child: ElevatedButton(
                   child: const Text("Submit"),
                   // onPressed: () {},
-                  onPressed: () => generateForm1PDF(
-                      "formulario1.pdf",
+                  onPressed: () => generateForm2PDF(
+                      "formulario2.pdf",
                       "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
                       _nombre_tecnico.text,
                       SingingCharacter.rutinario == _character,
