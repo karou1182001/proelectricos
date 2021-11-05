@@ -6,6 +6,7 @@ import 'package:p1/ui/widgets/componentes/boton_widget.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/pages/formulario_2.dart';
 import 'package:p1/ui/pages/formulario_0.dart';
+import 'package:p1/ui/pages/formulario_3/formulario_3.dart';
 
 class OpcionesMenu extends StatelessWidget {
   const OpcionesMenu({
@@ -42,7 +43,7 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: Color(0xff264F95)),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioDos()))
+                  builder: (BuildContext context) => const FormularioTres()))
             },
           ),
           BotonWidget(
