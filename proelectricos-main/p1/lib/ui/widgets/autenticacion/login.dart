@@ -7,6 +7,12 @@ import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/autenticacion/signup.dart';
 import 'package:p1/ui/widgets/menu_trabajo/menu_trabajos.dart';
+import 'package:encrypt/encrypt.dart' as enc;
+
+final llave = enc.Key.fromLength(32);
+final encrypter = enc.Encrypter(enc.AES(llave));
+final iv = enc.IV.fromLength(16);
+
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -175,7 +181,7 @@ class LoginPage extends StatelessWidget {
                                         ],
                                       ));
                             } else {
-                              var value = await controller.login(cc, password);
+                              var value = await controller.login(cc, encrypter.encrypt(password, iv: iv).base64);
                               if (value) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text('User ok')));

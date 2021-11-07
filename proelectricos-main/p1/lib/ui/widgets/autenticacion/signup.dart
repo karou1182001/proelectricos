@@ -6,6 +6,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
+import 'package:encrypt/encrypt.dart' as enc;
+
+final llave = enc.Key.fromLength(32);
+final encrypter = enc.Encrypter(enc.AES(llave));
+final iv = enc.IV.fromLength(16);
 
 class SignupPage extends StatelessWidget {
   SignupPage({Key? key}) : super(key: key);
@@ -123,7 +128,7 @@ class SignupPage extends StatelessWidget {
                             "cc": int.parse(cc),
                             "email": email,
                             "nombre": nombre,
-                            "password": password
+                            "password": encrypter.encrypt(password, iv: iv).base64
                           })
                           .then((value) => showDialog(
                               context: context,
