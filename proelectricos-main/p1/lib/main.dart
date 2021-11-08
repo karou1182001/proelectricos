@@ -2,6 +2,7 @@
 //El main llama al home donde se puede iniciar sesión o registrarse
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:p1/ui/pages/sheets/sheets_connection.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/domain/controller/workpage_controller.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
@@ -16,6 +17,7 @@ void main() async {
   Get.put(AuthenticationController());
   Get.put(WorkPageController());
   WidgetsFlutterBinding.ensureInitialized();
+  await FormSheets.init(); 
   await Firebase.initializeApp().then((value) {
     runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
