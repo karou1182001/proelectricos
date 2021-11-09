@@ -765,7 +765,8 @@ class FormularioZeroPage extends State<FormularioZero> {
                     form1Fields.cantidad: _cantidad.text.trim(),
                     form1Fields.nuevo: nuevo
                   };
-                  await FormSheets.insert([dataForm1]);
+                  //Función que añadirá la data al sheets
+                  await FormSheets.insertar([dataForm1]);
                   // Validate will return true if the form is valid, or false if
                   // the form is invalid.
                   if (_claveFormulario.currentState!.validate()) {

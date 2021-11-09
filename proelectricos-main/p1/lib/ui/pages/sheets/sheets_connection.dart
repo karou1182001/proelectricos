@@ -1,4 +1,5 @@
 //Importamos el paquete de google sheets
+import 'package:flutter/cupertino.dart';
 import 'package:gsheets/gsheets.dart';
 import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
 
@@ -51,7 +52,8 @@ class FormSheets {
   }
 
   //Función para enviar info a una fila de Google Sheets
-  static Future insert(List<Map<String, dynamic>> row) async {
-    if(form1Sheet == null) return form1Sheet!.values.map.appendRows(row);
+  static Future insertar(List<Map<String, dynamic>> row) async {
+      if(form1Sheet == null) return;
+      form1Sheet!.values.map.appendRows(row, inRange: true);
   }
 }
