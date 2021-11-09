@@ -2,42 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_tablaparte3_form3.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
-import 'package:p1/ui/pages/formulario_3/components/partes/parte1_form3.dart';
-import 'package:p1/ui/pages/formulario_3/components/partes/tablas_form3.dart';
 
-import 'package:p1/ui/pages/formulario_3/components/camposDePartes/campos_form3.dart';
-
-import 'components/partes/parte4_form3.dart';
-
-class FormularioTres extends StatefulWidget {
-  const FormularioTres({Key? key}) : super(key: key);
+class FormularioUno extends StatefulWidget {
+  const FormularioUno({Key? key}) : super(key: key);
   @override
-  _FormularioTresPage createState() => _FormularioTresPage();
+  _FormularioUnoPage createState() => _FormularioUnoPage();
 }
 
-class _FormularioTresPage extends State<FormularioTres> {
+class _FormularioUnoPage extends State<FormularioUno> {
   int currentStep = 0;
   final _formKey = GlobalKey<FormState>();
-  //Parte1 form3
-  DateTime pickedDate = DateTime.now();
-  final TextEditingController horaInicio = TextEditingController();
-  final TextEditingController horaFin = TextEditingController();
-  final TextEditingController lugarTrabajo = TextEditingController();
-  final TextEditingController ubicacion = TextEditingController();
-  final TextEditingController altura = TextEditingController();
-  final TextEditingController tipoTrabajoAltura = TextEditingController();
-  //Las segundas variables son los vectores de los sw
-  //Parte 4 form 4
-  final TextEditingController nombreapellidos = TextEditingController();
-  final TextEditingController cedula = TextEditingController();
-  final TextEditingController arl = TextEditingController();
-  final TextEditingController eps = TextEditingController();
-  final TextEditingController cargo = TextEditingController();
 
   @override
   void initState() {
     Get.put(ControllerTablasForm3());
-    pickedDate = DateTime.now();
     super.initState();
   }
 
@@ -60,7 +38,7 @@ class _FormularioTresPage extends State<FormularioTres> {
             Navigator.pop(context);
           },
         ),
-        title: const Text('Lista de chequeo para trabajo en alturas',
+        title: const Text('Autorización de trabajo',
             style: TextStyle(
               fontSize: 13,
               color: Colors.white,
@@ -162,50 +140,35 @@ class _FormularioTresPage extends State<FormularioTres> {
           //Que si el estado actual es >=0 se ponga en azul el botón
           isActive: currentStep >= 0,
           title: const Text("General"),
-          content: Parte1Form3(
-            pickedDate: pickedDate,
-            horaInicio: horaInicio,
-            horaFin: horaFin,
-            lugarTrabajo: lugarTrabajo,
-            ubicacion: ubicacion,
-            altura: altura,
-            tipoTrabajoAltura: tipoTrabajoAltura,
+          content: Align(
+            child: Container(),
+            alignment: Alignment.center,
           ),
         ),
         Step(
           state: currentStep > 1 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 1,
-          title: const Text("Equipo de trabajo"),
-          content: Parte4Form3(
-            nombreapellidos: nombreapellidos,
-            cedula: cedula,
-            arl: arl,
-            eps: eps,
-            cargo: cargo,
+          title: const Text("Personal que ejecuta el trabajo"),
+          content: Align(
+            child: Container(),
+            alignment: Alignment.center,
           ),
         ),
         Step(
           state: currentStep > 2 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 2,
-          title: const Text("Verificaciones de los elementos de protección"),
+          title: const Text("Trabajo realizado"),
           content: Align(
-            child: TablasForm3(
-                titleColumns: const ['EPP', 'No/Sí'],
-                titleRows: CamposForm3.camposParte3Form3,
-                valorsw: C.valorswparte3),
+            child: Container(),
             alignment: Alignment.center,
           ),
         ),
         Step(
           state: currentStep > 3 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 3,
-          title:
-              const Text("Verificaciones previas a la ejecución del trabajo"),
+          title: const Text("Materiales"),
           content: Align(
-            child: TablasForm3(
-                titleColumns: const ['Concepto a analizar', 'No/Sí'],
-                titleRows: CamposForm3.camposParte4Form3,
-                valorsw: C.valorswparte4),
+            child: Container(),
             alignment: Alignment.center,
           ),
         ),
