@@ -1,7 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
+
+import 'sheets/sheets_connection.dart';
 
 class FormularioZero extends StatefulWidget {
   const FormularioZero({Key? key}) : super(key: key);
@@ -42,6 +46,8 @@ class FormularioZeroPage extends State<FormularioZero> {
   final TextEditingController _material = TextEditingController();
   final TextEditingController _cantidad = TextEditingController();
   SingingCharacter1? _character1 = SingingCharacter1.nuevo;
+  String preservacion = "";
+  String nuevo = "";
 
 
   final _claveFormulario = GlobalKey<FormState>();
@@ -678,7 +684,89 @@ class FormularioZeroPage extends State<FormularioZero> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  var data =
+                      FirebaseFirestore.instance.collection("formulario_1");
+
+                  Future<void> enviarData() {
+                    String preservacion;
+                    if (_character == SingingCharacter.preservacion) {
+                      preservacion = "Sí";
+                    } else {
+                      preservacion = "No";
+                    }
+                    String nuevo;
+                    if (_character1 == SingingCharacter1.nuevo) {
+                      nuevo = "Sí";
+                    } else {
+                      nuevo = "No";
+                    }//Enviamos la data a una colección de Firebase
+                    return data.add({
+                      "01_empresa": _empresa.text.trim(),
+                      "02_municipio": _municipio.text.trim(),
+                      "03_fecha": pickedDate,
+                      "04_cliente": _cliente.text.trim(),
+                      "05_jornada": _jornada.text.trim(),
+                      "06_vehiculo": _vehiculo.text.trim(),
+                      "07_distrito": _distrito.text.trim(),
+                      "08_direccion": _direccion.text.trim(),
+                      "09_no": _no.text.trim(),
+                      "10_horaInicio": _horaInicio.text.trim(),
+                      "11_horaFin": _horaFin.text.trim(),
+                      "12_descargo": _descargo.text.trim(),
+                      "13_incidencia": _incidencia.text.trim(),
+                      "14_nic": _nic.text.trim(),
+                      "15_aviso": _aviso.text.trim(),
+                      "16_numero": _numero.text.trim(),
+                      "17_circuito": _circuito.text.trim(),
+                      "18_mt": _mt.text.trim(),
+                      "19_ct": _ct.text.trim(),
+                      "20_tension": _tension.text.trim(),
+                      "21_nombreCompleto": _nombreCompleto.text.trim(),
+                      "22_cargo": _cargo.text.trim(),
+                      "23_cedula": _cedula.text.trim(),
+                      "24_descripcion": _descripcion.text.trim(),
+                      "25_preservacion": preservacion,
+                      "26_material": _material.text.trim(),
+                      "27_cantidad": _cantidad.text.trim(),
+                      "28_nuevo": nuevo
+                    });
+                  }
+
+                  enviarData();
+                  //Enviamos la data a google sheets
+                  final dataForm1 = {
+                    form1Fields.empresa: _empresa.text.trim(),
+                    form1Fields.municipio: _municipio.text.trim(),
+                    form1Fields.fecha: pickedDate.toString(),
+                    form1Fields.cliente: _cliente.text.trim(),
+                    form1Fields.jornada: _jornada.text.trim(),
+                    form1Fields.vehiculo: _vehiculo.text.trim(),
+                    form1Fields.distrito: _distrito.text.trim(),
+                    form1Fields.direccion: _direccion.text.trim(),
+                    form1Fields.no: _no.text.trim(), 
+                    form1Fields.horaInicio: _horaInicio.text.trim(),
+                    form1Fields.horaFin: _horaFin.text.trim(),
+                    form1Fields.descargo: _descargo.text.trim(),
+                    form1Fields.incidencia: _incidencia,
+                    form1Fields.nic: _nic.text.trim(),
+                    form1Fields.aviso: _aviso.text.trim(),
+                    form1Fields.numero: _numero.text.trim(),
+                    form1Fields.circuito: _circuito.text.trim(),
+                    form1Fields.mt: _mt.text.trim(),
+                    form1Fields.ct: _ct.text.trim(),
+                    form1Fields.tension: _tension.text.trim(),
+                    form1Fields.nombreCompleto: _nombreCompleto.text.trim(),
+                    form1Fields.cargo: _cargo.text.trim(),
+                    form1Fields.cedula: _cedula.text.trim(),
+                    form1Fields.descripcion: _descripcion.text.trim(),
+                    form1Fields.preservacion: preservacion,
+                    form1Fields.material: _material.text.trim(),
+                    form1Fields.cantidad: _cantidad.text.trim(),
+                    form1Fields.nuevo: nuevo
+                  };
+                  //Función que añadirá la data al sheets
+                  await FormSheets.insertar([dataForm1]);
                   // Validate will return true if the form is valid, or false if
                   // the form is invalid.
                   if (_claveFormulario.currentState!.validate()) {
