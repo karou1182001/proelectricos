@@ -34,7 +34,7 @@ dependencies:
   signature: ^4.1.1
 
   #Dependencies for Google sheets
-  gsheets: 
+  gsheets: ^0.3.0
 
   #Adding necessary libraries to generate pdf
   path_provider: ^2.0.6

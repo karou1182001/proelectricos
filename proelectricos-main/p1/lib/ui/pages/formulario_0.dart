@@ -687,20 +687,18 @@ class FormularioZeroPage extends State<FormularioZero> {
                 onPressed: () async {
                   var data =
                       FirebaseFirestore.instance.collection("formulario_1");
-
-                  Future<void> enviarData() {
-                    String preservacion;
-                    if (_character == SingingCharacter.preservacion) {
+                  if (_character == SingingCharacter.preservacion) {
                       preservacion = "Sí";
                     } else {
                       preservacion = "No";
                     }
-                    String nuevo;
                     if (_character1 == SingingCharacter1.nuevo) {
                       nuevo = "Sí";
                     } else {
                       nuevo = "No";
-                    }//Enviamos la data a una colección de Firebase
+                    }
+                  Future<void> enviarData() {
+                    //Enviamos la data a una colección de Firebase
                     return data.add({
                       "01_empresa": _empresa.text.trim(),
                       "02_municipio": _municipio.text.trim(),
@@ -748,7 +746,7 @@ class FormularioZeroPage extends State<FormularioZero> {
                     form1Fields.horaInicio: _horaInicio.text.trim(),
                     form1Fields.horaFin: _horaFin.text.trim(),
                     form1Fields.descargo: _descargo.text.trim(),
-                    form1Fields.incidencia: _incidencia,
+                    form1Fields.incidencia: _incidencia.text.trim(),
                     form1Fields.nic: _nic.text.trim(),
                     form1Fields.aviso: _aviso.text.trim(),
                     form1Fields.numero: _numero.text.trim(),

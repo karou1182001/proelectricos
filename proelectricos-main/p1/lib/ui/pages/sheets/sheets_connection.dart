@@ -52,8 +52,13 @@ class FormSheets {
   }
 
   //Función para enviar info a una fila de Google Sheets
-  static Future insertar(List<Map<String, dynamic>> row) async {
+  static Future insertar(List<Map<String, dynamic>> rowList) async {
       if(form1Sheet == null) return;
-      form1Sheet!.values.map.appendRows(row, inRange: true);
+      try {
+        form1Sheet!.values.map.appendRows(rowList, inRange: true);  
+      } catch (e) {
+        print('La data no se pudo agregar.');
+      }
+      
   }
 }
