@@ -2,7 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:p1/ui/pages/formulario_3/components/widgetsReutilizables/comp_textformfield.dart';
 
 class Parte1Form3 extends StatefulWidget {
-  const Parte1Form3({Key? key}) : super(key: key);
+  Parte1Form3(
+      {Key? key,
+      required this.pickedDate,
+      required this.horaInicio,
+      required this.horaFin,
+      required this.lugarTrabajo,
+      required this.ubicacion,
+      required this.altura,
+      required this.tipoTrabajoAltura})
+      : super(key: key);
+
+  DateTime pickedDate = DateTime.now();
+  final TextEditingController horaInicio;
+  final TextEditingController horaFin;
+  final TextEditingController lugarTrabajo;
+  final TextEditingController ubicacion;
+  final TextEditingController altura;
+  final TextEditingController tipoTrabajoAltura;
 
   @override
   Parte1Form3State createState() {
@@ -13,18 +30,27 @@ class Parte1Form3 extends StatefulWidget {
 // Create a corresponding State class.
 // Esta clase guarda los datos relacionados con la parte 1 form 3
 class Parte1Form3State extends State<Parte1Form3> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<Parte1Form3State>.
-  final TextEditingController _horaInicio = TextEditingController();
-  final TextEditingController _horaFin = TextEditingController();
-  final TextEditingController _lugarTrabajo = TextEditingController();
-  final TextEditingController _ubicacion = TextEditingController();
-  final TextEditingController _altura = TextEditingController();
+  late DateTime pickedDate = widget.pickedDate;
+  late TextEditingController horaInicio = widget.horaInicio;
+  late TextEditingController horaFin = widget.horaFin;
+  late TextEditingController lugarTrabajo = widget.lugarTrabajo;
+  late TextEditingController ubicacion = widget.ubicacion;
+  late TextEditingController altura = widget.altura;
+  late TextEditingController tipoTrabajoAltura = widget.tipoTrabajoAltura;
 
-  //final _formKey = GlobalKey<FormState>();
+  _pickDate() async {
+    DateTime? date = await showDatePicker(
+      context: context,
+      firstDate: DateTime(DateTime.now().year - 5),
+      lastDate: DateTime(DateTime.now().year + 5),
+      initialDate: pickedDate,
+    );
+    if (date != null) {
+      setState(() {
+        pickedDate = date;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,38 +59,51 @@ class Parte1Form3State extends State<Parte1Form3> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(width: 10),
+        ListTile(
+          title: Text(
+            "Fecha: ${pickedDate.day}/ ${pickedDate.month}/ ${pickedDate.year}",
+            style: const TextStyle(fontSize: 15),
+          ),
+          trailing: const Icon(Icons.keyboard_arrow_down),
+          onTap: _pickDate,
+        ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
           labelText: 'Hora de inicio',
-          cont: _horaInicio,
+          cont: horaInicio,
         ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
           labelText: 'Hora de fin',
-          cont: _horaFin,
+          cont: horaFin,
         ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
           labelText: 'Lugar de trabajo',
-          cont: _lugarTrabajo,
+          cont: lugarTrabajo,
         ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
           labelText: 'Ubicación donde se realiza el trabajo',
-          cont: _ubicacion,
+          cont: ubicacion,
         ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: 'mts',
           labelText: 'Altura aprox. de desarrollo de act.',
-          cont: _altura,
+          cont: altura,
+        ),
+        CompTextFormField(
+          casoVacio: 'Rellene todos los campos',
+          hintText: '',
+          labelText: 'Tipo de trabajo en altura',
+          cont: tipoTrabajoAltura,
         ),
       ],
     );
-    //);
   }
 }
