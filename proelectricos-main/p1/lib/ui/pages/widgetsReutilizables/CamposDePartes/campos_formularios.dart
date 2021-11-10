@@ -1,5 +1,5 @@
 class CamposFormularios {
-  //Formulario 33
+  //Formulario 3
   static var camposParte3Form3 = [
     "Se dispone de los elementos necesarios para trabajar en alturas",
     "Trabajadores autorizados y capacitados para el trabajo en alturas",
@@ -64,5 +64,65 @@ class CamposFormularios {
     'Exterior del vehículo limpio y en orden',
     'Kit antiderramante',
     'Vidrios y espejos limpios y completos'
+  ];
+  static var camposParte3Form5 = [
+    'Filtro depurador',
+    'Nivel de aceite de la transmisión',
+    'Nivel de aceite hidráulico',
+    'Nivel de aceite motor',
+    'Nivel de combustible',
+    'Nivel de líquido refrigerante',
+    'Botiquín',
+    'Chaleco reflectivo disponible',
+    'Cinturones de seguridad',
+    'Conos o triángulos y tacos disponibles',
+    'Cruceta disponible',
+    'Extintor disponible',
+    'Guantes disponibles',
+    'Herramientas',
+    'El vehículo cuenta con cintas reflectivas (blanco y rojo)',
+    'Linterna disponible y funcionable',
+  ];
+  static var camposParte4Form5 = [
+    'Balero de rotación',
+    'Cilindros de estabilizadores libre de fuga',
+    'Cilindros de extensiones del brazo libres de fuga',
+    'Cilindros principal y auxiliar del brazo libres de fuga',
+    'Estabilizadores y zapatas',
+    'Estado de las extensiones',
+    'Estado del boom principal o articulaciones principales y sus pasadores',
+    'Mandos de operación funcionables y libres de fuga',
+    'Mangueras y conexiones libres de fugas',
+    'Equipo de barrena, malacate, canasta, pistola, guía de poste o winche',
+    'Eslingas, guayas, cadena, manila en buen estado',
+    'Grillete, estrobos, gancho en buen estado',
+    'Indicador de ángulo disponible y funcionable',
+  ];
+  static var camposParte5Form5 = [
+    'Freno de motor',
+    'Freno de parqueo',
+    'Freno de servicio',
+    'Mangueras, tanques y tuberías',
+    'Presión de aire sistema de frenos',
+    'Max: 800 KPa o 120 PSI (Cargue sistema y registre presión máxima)',
+    'Activación de alarma de baja presión de aire',
+    'Debajo de 500 KPa o 65 PSI (Descargue y registre la presión)',
+    'Activación automática de freno de parqueo',
+    'Debajo de 400 KPa o 45 PSI (Descargue y registre la presión)',
+    'Direccionales',
+    'Exploradoras',
+    'Lámparas medias y altas',
+    'Limpia parabrisas',
+    'Parqueo',
+    'Reversa y alarma'
+  ];
+  static var camposParte6Form5 = [
+    'Caja de cambio',
+    'Control del toma fuerza',
+    'Correas',
+    'Transmisión',
+    'Dirección',
+    'Estado general de la carrocería',
+    'Suspensión'
   ];
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form5.dart';
 import 'package:p1/ui/pages/formulario_5/components/partes/parte1_form5.dart';
+import 'package:p1/ui/pages/formulario_5/components/partes/parte7_form5.dart';
 import 'package:p1/ui/pages/widgetsReutilizables/CamposDePartes/campos_formularios.dart';
 import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/widgetsReutilizables/tablas_form.dart';
@@ -31,8 +32,14 @@ class _FormularioCincoPage extends State<FormularioCinco> {
   //Llamar al controlador
   //ControllerForm5 C = Get.find<ControllerForm5>();
   //Son los vectores de booleanos para las tablas
+  //C.valorswparte2 tiene valores de la tabla 2
   //C.valorswparte3 tiene valores de la tabla 3
-  //C.valorswparte4
+  //C.valorswparte4 tiene valores de la tabla 4
+  //C.valorswparte5 tiene valores de la tabla 5
+  //C.valorswparte6 tiene valores de la tabla 6
+  //Parte7 form5
+  final TextEditingController kilometraje = TextEditingController();
+  final TextEditingController horometro = TextEditingController();
 
   @override
   void initState() {
@@ -169,7 +176,10 @@ class _FormularioCincoPage extends State<FormularioCinco> {
           title: const Text(
               "Fluidos(Niveles y fugas)/Equipo de carretería y seguridad"),
           content: Align(
-            child: Container(),
+            child: TablasForm(
+                titleColumns: const ['Condiciones a inspeccionar', 'No/Sí'],
+                titleRows: CamposFormularios.camposParte3Form5,
+                valorsw: C.valorswparte3),
             alignment: Alignment.center,
           ),
         ),
@@ -178,32 +188,47 @@ class _FormularioCincoPage extends State<FormularioCinco> {
           isActive: currentStep >= 3,
           title: const Text("Sistema hidraúlico/ Sistema de Izaje"),
           content: Align(
-            child: Container(),
-            alignment: Alignment.center,
-          ),
-        ),
-        Step(
-          state: currentStep > 3 ? StepState.complete : StepState.indexed,
-          isActive: currentStep >= 3,
-          title: const Text(
-              "Sistema de frenos/ Sistema eléctrico (Luces y controles)"),
-          content: Align(
-            child: Container(),
-            alignment: Alignment.center,
-          ),
-        ),
-        Step(
-          state: currentStep > 3 ? StepState.complete : StepState.indexed,
-          isActive: currentStep >= 3,
-          title: const Text("Sistema mecánico/ Otros"),
-          content: Align(
-            child: Container(),
+            child: TablasForm(
+                titleColumns: const ['Condiciones a inspeccionar', 'No/Sí'],
+                titleRows: CamposFormularios.camposParte4Form5,
+                valorsw: C.valorswparte4),
             alignment: Alignment.center,
           ),
         ),
         Step(
           state: currentStep > 4 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 4,
+          title: const Text(
+              "Sistema de frenos/ Sistema eléctrico (Luces y controles)"),
+          content: Align(
+            child: TablasForm(
+                titleColumns: const ['Condiciones a inspeccionar', 'No/Sí'],
+                titleRows: CamposFormularios.camposParte5Form5,
+                valorsw: C.valorswparte5),
+            alignment: Alignment.center,
+          ),
+        ),
+        Step(
+          state: currentStep > 5 ? StepState.complete : StepState.indexed,
+          isActive: currentStep >= 5,
+          title: const Text("Sistema mecánico/ Otros"),
+          content: Align(
+            child: TablasForm(
+                titleColumns: const ['Condiciones a inspeccionar', 'No/Sí'],
+                titleRows: CamposFormularios.camposParte6Form5,
+                valorsw: C.valorswparte6),
+            alignment: Alignment.center,
+          ),
+        ),
+        Step(
+            state: currentStep > 6 ? StepState.complete : StepState.indexed,
+            isActive: currentStep >= 6,
+            title: const Text("Kilometraje y horometro"),
+            content:
+                Parte7Form5(kilometraje: kilometraje, horometro: horometro)),
+        Step(
+          state: currentStep > 7 ? StepState.complete : StepState.indexed,
+          isActive: currentStep >= 7,
           title: const Text("Firmas"),
           content: Align(
             child: Container(),
