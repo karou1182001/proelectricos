@@ -33,6 +33,12 @@ class _FormularioTresPage extends State<FormularioTres> {
   final TextEditingController arl = TextEditingController();
   final TextEditingController eps = TextEditingController();
   final TextEditingController cargo = TextEditingController();
+  //Vectores para booleanos
+  //Llamar al controlador
+  //ControllerTablasForm3 C = Get.find<ControllerTablasForm3>();
+  //Son los vectores de booleanos para las tablas
+  //C.valorswparte3 tiene valores de la tabla 3
+  //C.valorswparte4
 
   @override
   void initState() {
