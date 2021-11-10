@@ -106,17 +106,18 @@ class _FormularioTresPage extends State<FormularioTres> {
               final isLastStep = currentStep == getSteps(C).length - 1;
               if (isLastStep) {
                 print("Completed");
+                print(C.valorswparte3.length);
                 //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
                 //Data que se enviará al sheets
-                var arr3 = [];
-                for (var i = 0; i < C.valorswparte3.length; i++) {                  
+                var arr3 = List.filled(C.valorswparte3.length, '', growable: false);
+                for (var i = 0; i < C.valorswparte3.length; i++) {               
                    if (C.valorswparte3[i].value == true) {
                      arr3[i] = 'Sí';
                    } else {
                      arr3[i] = 'No';
                    }
                 }
-                var arr4 = [];
+                var arr4 = List.filled(C.valorswparte4.length, '', growable: false);
                 for (var i = 0; i < C.valorswparte4.length; i++) {                  
                    if (C.valorswparte4[i].value == true) {
                      arr4[i] = 'Sí';
