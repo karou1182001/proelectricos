@@ -6,9 +6,9 @@ import 'package:p1/ui/pages/formulario_1/components/partes/parte1_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte2_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte3_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte4_form1.dart';
+import 'package:p1/ui/pages/formulario_3/components/widgetsReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_1.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
-import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
 import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
 
 class FormularioUno extends StatefulWidget {
@@ -59,7 +59,6 @@ class _FormularioUnoPage extends State<FormularioUno> {
   //Variables usadas para el google sheets
   String pres = "";
 
-
   @override
   void initState() {
     Get.put(ControllerTablasForm3());
@@ -73,36 +72,10 @@ class _FormularioUnoPage extends State<FormularioUno> {
     return Scaffold(
       backgroundColor: Colors.white,
       //BARRA DE NAVEGACIÓN
-      appBar: AppBar(
-        backgroundColor: const Color(0xff264F95),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          //Te regresa a la ruta inmediatamente anterior
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text('Autorización de trabajo',
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.white,
-            )),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.account_circle,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const EditProfilePage()));
-            },
-          ),
-        ],
+      appBar: const AppBarWidget(
+        text: 'Lista de chequeo para trabajo en alturas',
+        backgroundColor: Color(0xff264F95),
+        height: 60,
       ),
       //CUERPO
       //Esto es lo que va en el cuerpo de esta interfaz
@@ -122,102 +95,111 @@ class _FormularioUnoPage extends State<FormularioUno> {
             //Si oprimimos continue se aumenta en 1 el estado actual
             onStepContinue: () async {
               final isLastStep = currentStep == getSteps(C).length - 1;
-              if (isLastStep) {
+              if (!isLastStep) {
+                //Y hace las cosas del form
+                // Validate returns true if the form is valid, or false otherwise.
+                //if (_formKey.currentState!.validate()) {
+                // If the form is valid, display a snackbar. In the real world,
+                // you'd often call a server or save the information in a database.
+                setState(() => currentStep += 1);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Prosiga')),
+                );
+                //}
+              } else {
                 print("Completed");
                 //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
                 //Se envia a Firebase y a GoogleSheets
                 var data =
-                      FirebaseFirestore.instance.collection("formulario_1");
-                  if (preservacion) {
-                      pres = "Sí";
-                    } else {
-                      pres = "No";
-                    }
-                  Future<void> enviarData() {
-                    //Enviamos la data a una colección de Firebase
-                    return data.add({
-                      "01_empresa": empresa.text.trim(),
-                      "02_municipio": municipio.text.trim(),
-                      "03_fecha": pickedDate,
-                      "04_cliente": cliente.text.trim(),
-                      "05_jornada": jornada.text.trim(),
-                      "06_vehiculo": vehiculo.text.trim(),
-                      "07_distrito": distrito.text.trim(),
-                      "08_direccion": direccion.text.trim(),
-                      "09_no": no.text.trim(),
-                      "10_horaInicio": horaInicio.text.trim(),
-                      "11_horaFin": horaFin.text.trim(),
-                      "12_descargo": descargo.text.trim(),
-                      "13_incidencia": incidencia.text.trim(),
-                      "14_nic": nic.text.trim(),
-                      "15_aviso": aviso.text.trim(),
-                      "16_numero": numero.text.trim(),
-                      "17_circuito": circuito.text.trim(),
-                      "18_mt": mt.text.trim(),
-                      "19_ct": ct.text.trim(),
-                      "20_tension": tension.text.trim(),
-                      "21_nombreCompleto": nombre.text.trim(),
-                      "22_cargo": cargo.text.trim(),
-                      "23_cedula": cedula.text.trim(),
-                      "24_descripcion": trabajoRealizado.text.trim(),
-                      "25_preservacion": pres,
-                      "26_material": material.text.trim(),
-                      "27_cantidad": cantidad.text.trim(),
-                      "28_nuevo": nuevo.text.trim(),
-                    });
-                  }
+                    FirebaseFirestore.instance.collection("formulario_1");
+                if (preservacion) {
+                  pres = "Sí";
+                } else {
+                  pres = "No";
+                }
+                Future<void> enviarData() {
+                  //Enviamos la data a una colección de Firebase
+                  return data.add({
+                    "01_empresa": empresa.text.trim(),
+                    "02_municipio": municipio.text.trim(),
+                    "03_fecha": pickedDate,
+                    "04_cliente": cliente.text.trim(),
+                    "05_jornada": jornada.text.trim(),
+                    "06_vehiculo": vehiculo.text.trim(),
+                    "07_distrito": distrito.text.trim(),
+                    "08_direccion": direccion.text.trim(),
+                    "09_no": no.text.trim(),
+                    "10_horaInicio": horaInicio.text.trim(),
+                    "11_horaFin": horaFin.text.trim(),
+                    "12_descargo": descargo.text.trim(),
+                    "13_incidencia": incidencia.text.trim(),
+                    "14_nic": nic.text.trim(),
+                    "15_aviso": aviso.text.trim(),
+                    "16_numero": numero.text.trim(),
+                    "17_circuito": circuito.text.trim(),
+                    "18_mt": mt.text.trim(),
+                    "19_ct": ct.text.trim(),
+                    "20_tension": tension.text.trim(),
+                    "21_supervisor": supervisor.text.trim(),
+                    "22_celSupervisor": celSupervisor.text.trim(),
+                    "23_agenteDescargo": agenteDescargo.text.trim(),
+                    "24_celAgenteDescargo": celAgenteDescargo.text.trim(),
+                    "25_nombre": nombre.text.trim(),
+                    "26_cedula": cedula.text.trim(),
+                    "27_cargo": cargo.text.trim(),
+                    "28_trabajoRealizado": trabajoRealizado.text.trim(),
+                    "29_preservacion": pres,
+                    "30_material": material.text.trim(),
+                    "31_cantidad": cantidad.text.trim(),
+                    "31_nuevo": nuevo.text.trim(),
+                  });
+                }
 
-                  enviarData();
-                  //Enviamos la data a google sheets
-                  final dataForm1 = {
-                    form1Fields.empresa: empresa.text.trim(),
-                    form1Fields.municipio: municipio.text.trim(),
-                    form1Fields.fecha: pickedDate.toString(),
-                    form1Fields.cliente: cliente.text.trim(),
-                    form1Fields.jornada: jornada.text.trim(),
-                    form1Fields.vehiculo: vehiculo.text.trim(),
-                    form1Fields.distrito: distrito.text.trim(),
-                    form1Fields.direccion: direccion.text.trim(),
-                    form1Fields.no: no.text.trim(), 
-                    form1Fields.horaInicio: horaInicio.text.trim(),
-                    form1Fields.horaFin: horaFin.text.trim(),
-                    form1Fields.descargo: descargo.text.trim(),
-                    form1Fields.incidencia: incidencia.text.trim(),
-                    form1Fields.nic: nic.text.trim(),
-                    form1Fields.aviso: aviso.text.trim(),
-                    form1Fields.numero: numero.text.trim(),
-                    form1Fields.circuito: circuito.text.trim(),
-                    form1Fields.mt: mt.text.trim(),
-                    form1Fields.ct: ct.text.trim(),
-                    form1Fields.tension: tension.text.trim(),
-                    form1Fields.nombreCompleto: nombre.text.trim(),
-                    form1Fields.cargo: cargo.text.trim(),
-                    form1Fields.cedula: cedula.text.trim(),
-                    form1Fields.descripcion: trabajoRealizado.text.trim(),
-                    form1Fields.preservacion: pres,
-                    form1Fields.material: material.text.trim(),
-                    form1Fields.cantidad: cantidad.text.trim(),
-                    form1Fields.nuevo: nuevo.text.trim(),
-                  };
-                  //Función que añadirá la data al sheets
-                  await FormSheets.insertar([dataForm1]);
-                  // Validate will return true if the form is valid, or false if
-                  // the form is invalid.
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => const MenuOptionsScreen()));
-                    // Process data.
-                  }
-              } else {
-                //Y hace las cosas del form
-                // Validate returns true if the form is valid, or false otherwise.
+                enviarData();
+                //Enviamos la data a google sheets
+                final dataForm1 = {
+                  form1Fields.empresa: empresa.text.trim(),
+                  form1Fields.municipio: municipio.text.trim(),
+                  form1Fields.fecha: pickedDate.toString(),
+                  form1Fields.cliente: cliente.text.trim(),
+                  form1Fields.jornada: jornada.text.trim(),
+                  form1Fields.vehiculo: vehiculo.text.trim(),
+                  form1Fields.distrito: distrito.text.trim(),
+                  form1Fields.direccion: direccion.text.trim(),
+                  form1Fields.no: no.text.trim(),
+                  form1Fields.horaInicio: horaInicio.text.trim(),
+                  form1Fields.horaFin: horaFin.text.trim(),
+                  form1Fields.descargo: descargo.text.trim(),
+                  form1Fields.incidencia: incidencia.text.trim(),
+                  form1Fields.nic: nic.text.trim(),
+                  form1Fields.aviso: aviso.text.trim(),
+                  form1Fields.numero: numero.text.trim(),
+                  form1Fields.circuito: circuito.text.trim(),
+                  form1Fields.mt: mt.text.trim(),
+                  form1Fields.ct: ct.text.trim(),
+                  form1Fields.tension: tension.text.trim(),
+                  form1Fields.supervisor: supervisor.text.trim(),
+                  form1Fields.celSupervisor: celSupervisor.text.trim(),
+                  form1Fields.agenteDescargo: celAgenteDescargo.text.trim(),
+                  form1Fields.celAgenteDescargo: tension.text.trim(),
+                  form1Fields.nombre: nombre.text.trim(),
+                  form1Fields.cedula: cedula.text.trim(),
+                  form1Fields.cargo: cargo.text.trim(),
+                  form1Fields.trabajoRealizado: trabajoRealizado.text.trim(),
+                  form1Fields.preservacion: pres,
+                  form1Fields.material: material.text.trim(),
+                  form1Fields.cantidad: cantidad.text.trim(),
+                  form1Fields.nuevo: nuevo.text.trim(),
+                };
+                //Función que añadirá la data al sheets
+                await FormSheets.insertar([dataForm1]);
+                // Validate will return true if the form is valid, or false if
+                // the form is invalid.
                 if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  setState(() => currentStep += 1);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Prosiga')),
-                  );
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          const MenuOptionsScreen()));
+                  // Process data.
                 }
               }
             },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_tablaparte3_form3.dart';
+import 'package:p1/ui/pages/formulario_3/components/widgetsReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/form_3_sheet.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_3.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
@@ -55,36 +56,10 @@ class _FormularioTresPage extends State<FormularioTres> {
     return Scaffold(
       backgroundColor: Colors.white,
       //BARRA DE NAVEGACIÓN
-      appBar: AppBar(
-        backgroundColor: const Color(0xff264F95),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          //Te regresa a la ruta inmediatamente anterior
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text('Lista de chequeo para trabajo en alturas',
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.white,
-            )),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.account_circle,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const EditProfilePage()));
-            },
-          ),
-        ],
+      appBar: const AppBarWidget(
+        text: 'Lista de chequeo para trabajo en alturas',
+        backgroundColor: Color(0xff264F95),
+        height: 60,
       ),
       //CUERPO
       //Esto es lo que va en el cuerpo de esta interfaz
@@ -104,26 +79,40 @@ class _FormularioTresPage extends State<FormularioTres> {
             //Si oprimimos continue se aumenta en 1 el estado actual
             onStepContinue: () async {
               final isLastStep = currentStep == getSteps(C).length - 1;
-              if (isLastStep) {
+              if (!isLastStep) {
+                //Y hace las cosas del form
+                // Validate returns true if the form is valid, or false otherwise.
+                //if (_formKey.currentState!.validate()) {
+                // If the form is valid, display a snackbar. In the real world,
+                // you'd often call a server or save the information in a database.
+                setState(() => currentStep += 1);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Prosiga')),
+                );
+                //}
+
+              } else {
                 print("Completed");
                 print(C.valorswparte3.length);
                 //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
                 //Data que se enviará al sheets
-                var arr3 = List.filled(C.valorswparte3.length, '', growable: false);
-                for (var i = 0; i < C.valorswparte3.length; i++) {               
-                   if (C.valorswparte3[i].value == true) {
-                     arr3[i] = 'Sí';
-                   } else {
-                     arr3[i] = 'No';
-                   }
+                var arr3 =
+                    List.filled(C.valorswparte3.length, '', growable: false);
+                for (var i = 0; i < C.valorswparte3.length; i++) {
+                  if (C.valorswparte3[i].value == true) {
+                    arr3[i] = 'Sí';
+                  } else {
+                    arr3[i] = 'No';
+                  }
                 }
-                var arr4 = List.filled(C.valorswparte4.length, '', growable: false);
-                for (var i = 0; i < C.valorswparte4.length; i++) {                  
-                   if (C.valorswparte4[i].value == true) {
-                     arr4[i] = 'Sí';
-                   } else {
-                     arr4[i] = 'No';
-                   }
+                var arr4 =
+                    List.filled(C.valorswparte4.length, '', growable: false);
+                for (var i = 0; i < C.valorswparte4.length; i++) {
+                  if (C.valorswparte4[i].value == true) {
+                    arr4[i] = 'Sí';
+                  } else {
+                    arr4[i] = 'No';
+                  }
                 }
                 final dataForm3 = {
                   form3Fields.fecha: pickedDate.toString(),
@@ -160,17 +149,6 @@ class _FormularioTresPage extends State<FormularioTres> {
                 };
                 //Llamamos a la función .insertar() para que inserte la info en el sheets
                 await FormSheets3.insertar([dataForm3]);
-              } else {
-                //Y hace las cosas del form
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  setState(() => currentStep += 1);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Prosiga')),
-                  );
-                }
               }
             },
             onStepCancel: () {
