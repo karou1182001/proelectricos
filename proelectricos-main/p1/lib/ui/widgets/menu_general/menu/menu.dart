@@ -18,7 +18,7 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
       backgroundColor: Colors.white,
       //BARRA DE NAVEGACIÓN
       appBar: const AppBarWidget(
-        text: 'Lista de chequeo para trabajo en alturas',
+        text: '',
         backgroundColor: Color(0xff264F95),
         height: 60,
       ),
