@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:p1/domain/controller/ControllersForm3/controller_tablaparte3_form3.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte1_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte2_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte3_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte4_form1.dart';
-import 'package:p1/ui/pages/formulario_3/components/widgetsReutilizables/app_bar.dart';
+import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_1.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
@@ -61,14 +60,12 @@ class _FormularioUnoPage extends State<FormularioUno> {
 
   @override
   void initState() {
-    Get.put(ControllerTablasForm3());
     pickedDate = DateTime.now();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    ControllerTablasForm3 C = Get.find<ControllerTablasForm3>();
     return Scaffold(
       backgroundColor: Colors.white,
       //BARRA DE NAVEGACIÓN
@@ -88,13 +85,13 @@ class _FormularioUnoPage extends State<FormularioUno> {
           child: Stepper(
             type: StepperType.vertical,
             //getSteps() contiene la interfaz como tal
-            steps: getSteps(C),
+            steps: getSteps(),
             //Lo que sigue aquí abajo son los métodos del getsteps
             //Variable que guarda el estado actual
             currentStep: currentStep,
             //Si oprimimos continue se aumenta en 1 el estado actual
             onStepContinue: () async {
-              final isLastStep = currentStep == getSteps(C).length - 1;
+              final isLastStep = currentStep == getSteps().length - 1;
               if (!isLastStep) {
                 //Y hace las cosas del form
                 // Validate returns true if the form is valid, or false otherwise.
@@ -210,7 +207,7 @@ class _FormularioUnoPage extends State<FormularioUno> {
             onStepTapped: (step) => setState(() => currentStep = step),
             //Diseño para los botones
             controlsBuilder: (context, {onStepContinue, onStepCancel}) {
-              final isLastStep = currentStep == getSteps(C).length - 1;
+              final isLastStep = currentStep == getSteps().length - 1;
               return Container(
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -246,7 +243,7 @@ class _FormularioUnoPage extends State<FormularioUno> {
   }
 
   //Aquí están los formularios divididos en sus respectivas partes
-  List<Step> getSteps(ControllerTablasForm3 C) => [
+  List<Step> getSteps() => [
         Step(
             //Que cuando esté en un paso mayor a este, se ponga un chilito en la bolita
             state: currentStep > 0 ? StepState.complete : StepState.indexed,

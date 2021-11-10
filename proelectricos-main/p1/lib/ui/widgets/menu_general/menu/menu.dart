@@ -1,6 +1,6 @@
 //Este es el menú general que lleva a todos los formularios
 import 'package:flutter/material.dart';
-import 'package:p1/ui/pages/formulario_3/components/widgetsReutilizables/app_bar.dart';
+import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
 import 'package:p1/ui/widgets/componentes/encabezado.dart';
 import 'package:p1/ui/widgets/menu_general/menu/opciones_menu.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:p1/ui/pages/formulario_3/components/widgetsReutilizables/scrollable_widget.dart';
+import 'package:p1/ui/pages/widgetsReutilizables/scrollable_widget.dart';
 
-class TablasForm3 extends StatefulWidget {
-  const TablasForm3(
+class TablasForm extends StatefulWidget {
+  const TablasForm(
       {Key? key,
       required this.titleColumns,
       required this.titleRows,
@@ -15,14 +15,14 @@ class TablasForm3 extends StatefulWidget {
   final RxList<RxBool> valorsw;
 
   @override
-  TablasForm3State createState() {
-    return TablasForm3State();
+  TablasFormState createState() {
+    return TablasFormState();
   }
 }
 
 // Create a corresponding State class.
 // Esta clase guarda los datos relacionados con la parte 1 form 3
-class TablasForm3State extends State<TablasForm3> {
+class TablasFormState extends State<TablasForm> {
   //Le pasamos por parámetro los titulos de las filas y de las columnas y el vector con los valores de los sw
   late List<String> titleColumns = widget.titleColumns;
   late List<String> titleRows = widget.titleRows;
