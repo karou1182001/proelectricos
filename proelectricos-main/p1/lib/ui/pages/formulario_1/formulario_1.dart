@@ -104,99 +104,104 @@ class _FormularioUnoPage extends State<FormularioUno> {
                 );
                 //}
               } else {
-                print("Completed");
-                //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
-                //Se envia a Firebase y a GoogleSheets
-                var data =
-                    FirebaseFirestore.instance.collection("formulario_1");
-                if (preservacion) {
-                  pres = "Sí";
-                } else {
-                  pres = "No";
-                }
-                Future<void> enviarData() {
-                  //Enviamos la data a una colección de Firebase
-                  return data.add({
-                    "01_empresa": empresa.text.trim(),
-                    "02_municipio": municipio.text.trim(),
-                    "03_fecha": pickedDate,
-                    "04_cliente": cliente.text.trim(),
-                    "05_jornada": jornada.text.trim(),
-                    "06_vehiculo": vehiculo.text.trim(),
-                    "07_distrito": distrito.text.trim(),
-                    "08_direccion": direccion.text.trim(),
-                    "09_no": no.text.trim(),
-                    "10_horaInicio": horaInicio.text.trim(),
-                    "11_horaFin": horaFin.text.trim(),
-                    "12_descargo": descargo.text.trim(),
-                    "13_incidencia": incidencia.text.trim(),
-                    "14_nic": nic.text.trim(),
-                    "15_aviso": aviso.text.trim(),
-                    "16_numero": numero.text.trim(),
-                    "17_circuito": circuito.text.trim(),
-                    "18_mt": mt.text.trim(),
-                    "19_ct": ct.text.trim(),
-                    "20_tension": tension.text.trim(),
-                    "21_supervisor": supervisor.text.trim(),
-                    "22_celSupervisor": celSupervisor.text.trim(),
-                    "23_agenteDescargo": agenteDescargo.text.trim(),
-                    "24_celAgenteDescargo": celAgenteDescargo.text.trim(),
-                    "25_nombre": nombre.text.trim(),
-                    "26_cedula": cedula.text.trim(),
-                    "27_cargo": cargo.text.trim(),
-                    "28_trabajoRealizado": trabajoRealizado.text.trim(),
-                    "29_preservacion": pres,
-                    "30_material": material.text.trim(),
-                    "31_cantidad": cantidad.text.trim(),
-                    "31_nuevo": nuevo.text.trim(),
-                  });
-                }
-
-                enviarData();
-                //Enviamos la data a google sheets
-                final dataForm1 = {
-                  form1Fields.empresa: empresa.text.trim(),
-                  form1Fields.municipio: municipio.text.trim(),
-                  form1Fields.fecha: pickedDate.toString(),
-                  form1Fields.cliente: cliente.text.trim(),
-                  form1Fields.jornada: jornada.text.trim(),
-                  form1Fields.vehiculo: vehiculo.text.trim(),
-                  form1Fields.distrito: distrito.text.trim(),
-                  form1Fields.direccion: direccion.text.trim(),
-                  form1Fields.no: no.text.trim(),
-                  form1Fields.horaInicio: horaInicio.text.trim(),
-                  form1Fields.horaFin: horaFin.text.trim(),
-                  form1Fields.descargo: descargo.text.trim(),
-                  form1Fields.incidencia: incidencia.text.trim(),
-                  form1Fields.nic: nic.text.trim(),
-                  form1Fields.aviso: aviso.text.trim(),
-                  form1Fields.numero: numero.text.trim(),
-                  form1Fields.circuito: circuito.text.trim(),
-                  form1Fields.mt: mt.text.trim(),
-                  form1Fields.ct: ct.text.trim(),
-                  form1Fields.tension: tension.text.trim(),
-                  form1Fields.supervisor: supervisor.text.trim(),
-                  form1Fields.celSupervisor: celSupervisor.text.trim(),
-                  form1Fields.agenteDescargo: celAgenteDescargo.text.trim(),
-                  form1Fields.celAgenteDescargo: tension.text.trim(),
-                  form1Fields.nombre: nombre.text.trim(),
-                  form1Fields.cedula: cedula.text.trim(),
-                  form1Fields.cargo: cargo.text.trim(),
-                  form1Fields.trabajoRealizado: trabajoRealizado.text.trim(),
-                  form1Fields.preservacion: pres,
-                  form1Fields.material: material.text.trim(),
-                  form1Fields.cantidad: cantidad.text.trim(),
-                  form1Fields.nuevo: nuevo.text.trim(),
-                };
-                //Función que añadirá la data al sheets
-                await FormSheets.insertar([dataForm1]);
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
+                  print("Completed");
+                  //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                  //Se envia a Firebase y a GoogleSheets
+                  var data =
+                      FirebaseFirestore.instance.collection("formulario_1");
+                  if (preservacion) {
+                    pres = "Sí";
+                  } else {
+                    pres = "No";
+                  }
+                  Future<void> enviarData() {
+                    //Enviamos la data a una colección de Firebase
+                    return data.add({
+                      "01_empresa": empresa.text.trim(),
+                      "02_municipio": municipio.text.trim(),
+                      "03_fecha": pickedDate,
+                      "04_cliente": cliente.text.trim(),
+                      "05_jornada": jornada.text.trim(),
+                      "06_vehiculo": vehiculo.text.trim(),
+                      "07_distrito": distrito.text.trim(),
+                      "08_direccion": direccion.text.trim(),
+                      "09_no": no.text.trim(),
+                      "10_horaInicio": horaInicio.text.trim(),
+                      "11_horaFin": horaFin.text.trim(),
+                      "12_descargo": descargo.text.trim(),
+                      "13_incidencia": incidencia.text.trim(),
+                      "14_nic": nic.text.trim(),
+                      "15_aviso": aviso.text.trim(),
+                      "16_numero": numero.text.trim(),
+                      "17_circuito": circuito.text.trim(),
+                      "18_mt": mt.text.trim(),
+                      "19_ct": ct.text.trim(),
+                      "20_tension": tension.text.trim(),
+                      "21_supervisor": supervisor.text.trim(),
+                      "22_celSupervisor": celSupervisor.text.trim(),
+                      "23_agenteDescargo": agenteDescargo.text.trim(),
+                      "24_celAgenteDescargo": celAgenteDescargo.text.trim(),
+                      "25_nombre": nombre.text.trim(),
+                      "26_cedula": cedula.text.trim(),
+                      "27_cargo": cargo.text.trim(),
+                      "28_trabajoRealizado": trabajoRealizado.text.trim(),
+                      "29_preservacion": pres,
+                      "30_material": material.text.trim(),
+                      "31_cantidad": cantidad.text.trim(),
+                      "31_nuevo": nuevo.text.trim(),
+                    });
+                  }
+
+                  enviarData();
+                  //Enviamos la data a google sheets
+                  final dataForm1 = {
+                    form1Fields.empresa: empresa.text.trim(),
+                    form1Fields.municipio: municipio.text.trim(),
+                    form1Fields.fecha: pickedDate.toString(),
+                    form1Fields.cliente: cliente.text.trim(),
+                    form1Fields.jornada: jornada.text.trim(),
+                    form1Fields.vehiculo: vehiculo.text.trim(),
+                    form1Fields.distrito: distrito.text.trim(),
+                    form1Fields.direccion: direccion.text.trim(),
+                    form1Fields.no: no.text.trim(),
+                    form1Fields.horaInicio: horaInicio.text.trim(),
+                    form1Fields.horaFin: horaFin.text.trim(),
+                    form1Fields.descargo: descargo.text.trim(),
+                    form1Fields.incidencia: incidencia.text.trim(),
+                    form1Fields.nic: nic.text.trim(),
+                    form1Fields.aviso: aviso.text.trim(),
+                    form1Fields.numero: numero.text.trim(),
+                    form1Fields.circuito: circuito.text.trim(),
+                    form1Fields.mt: mt.text.trim(),
+                    form1Fields.ct: ct.text.trim(),
+                    form1Fields.tension: tension.text.trim(),
+                    form1Fields.supervisor: supervisor.text.trim(),
+                    form1Fields.celSupervisor: celSupervisor.text.trim(),
+                    form1Fields.agenteDescargo: celAgenteDescargo.text.trim(),
+                    form1Fields.celAgenteDescargo: tension.text.trim(),
+                    form1Fields.nombre: nombre.text.trim(),
+                    form1Fields.cedula: cedula.text.trim(),
+                    form1Fields.cargo: cargo.text.trim(),
+                    form1Fields.trabajoRealizado: trabajoRealizado.text.trim(),
+                    form1Fields.preservacion: pres,
+                    form1Fields.material: material.text.trim(),
+                    form1Fields.cantidad: cantidad.text.trim(),
+                    form1Fields.nuevo: nuevo.text.trim(),
+                  };
+                  //Función que añadirá la data al sheets
+                  await FormSheets.insertar([dataForm1]);
+                  //LLeva al menu
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) =>
                           const MenuOptionsScreen()));
                   // Process data.
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Rellene todos los campos')),
+                  );
                 }
               }
             },

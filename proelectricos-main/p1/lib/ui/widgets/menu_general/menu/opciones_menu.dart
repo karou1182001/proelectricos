@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:p1/domain/pdf/pdf_upload.dart';
 import 'package:p1/ui/pages/formulario_1/formulario_1.dart';
-import 'package:p1/ui/pages/formulario_5.dart';
-import 'package:p1/ui/pages/forrmulario_4/formulario4.dart';
+import 'package:p1/ui/pages/formulario_4/formulario4.dart';
+import 'package:p1/ui/pages/formulario_5/components/formulario_5.dart';
 import 'package:p1/ui/widgets/componentes/boton_widget.dart';
-import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:p1/ui/pages/formulario_2.dart';
-import 'package:p1/ui/pages/formulario_0.dart';
 import 'package:p1/ui/pages/formulario_3/formulario_3.dart';
 
 class OpcionesMenu extends StatelessWidget {

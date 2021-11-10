@@ -91,62 +91,69 @@ class _FormularioTresPage extends State<FormularioTres> {
                 //}
 
               } else {
-                print("Completed");
-                //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
-                //Data que se enviará al sheets
-                var arr3 =
-                    List.filled(C.valorswparte3.length, '', growable: false);
-                for (var i = 0; i < C.valorswparte3.length; i++) {
-                  if (C.valorswparte3[i].value == true) {
-                    arr3[i] = 'Sí';
-                  } else {
-                    arr3[i] = 'No';
+                if (_formKey.currentState!.validate()) {
+                  print("Completed");
+                  //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                  //Data que se enviará al sheets
+                  var arr3 =
+                      List.filled(C.valorswparte3.length, '', growable: false);
+                  for (var i = 0; i < C.valorswparte3.length; i++) {
+                    if (C.valorswparte3[i].value == true) {
+                      arr3[i] = 'Sí';
+                    } else {
+                      arr3[i] = 'No';
+                    }
                   }
-                }
-                var arr4 =
-                    List.filled(C.valorswparte4.length, '', growable: false);
-                for (var i = 0; i < C.valorswparte4.length; i++) {
-                  if (C.valorswparte4[i].value == true) {
-                    arr4[i] = 'Sí';
-                  } else {
-                    arr4[i] = 'No';
+                  var arr4 =
+                      List.filled(C.valorswparte4.length, '', growable: false);
+                  for (var i = 0; i < C.valorswparte4.length; i++) {
+                    if (C.valorswparte4[i].value == true) {
+                      arr4[i] = 'Sí';
+                    } else {
+                      arr4[i] = 'No';
+                    }
                   }
+                  final dataForm3 = {
+                    form3Fields.fecha: pickedDate.toString(),
+                    form3Fields.horaInicio: horaInicio.text.trim(),
+                    form3Fields.horaFin: horaFin.text.trim(),
+                    form3Fields.lugarTrabajo: lugarTrabajo.text.trim(),
+                    form3Fields.ubicacion: ubicacion.text.trim(),
+                    form3Fields.altura: altura.text.trim(),
+                    form3Fields.tipoTrabajoAltura:
+                        tipoTrabajoAltura.text.trim(),
+                    form3Fields.nombreapellidos: nombreapellidos.text.trim(),
+                    form3Fields.cedula: cedula.text.trim(),
+                    form3Fields.arl: arl.text.trim(),
+                    form3Fields.eps: eps.text.trim(),
+                    form3Fields.cargo: cargo.text.trim(),
+                    form3Fields.vect3_1: arr3[0],
+                    form3Fields.vect3_2: arr3[1],
+                    form3Fields.vect3_3: arr3[2],
+                    form3Fields.vect3_4: arr3[3],
+                    form3Fields.vect3_5: arr3[4],
+                    form3Fields.vect3_6: arr3[5],
+                    form3Fields.vect3_7: arr3[6],
+                    form3Fields.vect3_8: arr3[7],
+                    form3Fields.vect3_9: arr3[8],
+                    form3Fields.vect3_10: arr3[9],
+                    form3Fields.vect3_11: arr3[10],
+                    form3Fields.vect3_12: arr3[11],
+                    form3Fields.vect4_1: arr4[0],
+                    form3Fields.vect4_2: arr4[1],
+                    form3Fields.vect4_3: arr4[2],
+                    form3Fields.vect4_4: arr4[3],
+                    form3Fields.vect4_5: arr4[4],
+                    form3Fields.vect4_6: arr4[5],
+                    form3Fields.vect4_7: arr4[6]
+                  };
+                  //Llamamos a la función .insertar() para que inserte la info en el sheets
+                  await FormSheets3.insertar([dataForm3]);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Rellene todos los campos')),
+                  );
                 }
-                final dataForm3 = {
-                  form3Fields.fecha: pickedDate.toString(),
-                  form3Fields.horaInicio: horaInicio.text.trim(),
-                  form3Fields.horaFin: horaFin.text.trim(),
-                  form3Fields.lugarTrabajo: lugarTrabajo.text.trim(),
-                  form3Fields.ubicacion: ubicacion.text.trim(),
-                  form3Fields.altura: altura.text.trim(),
-                  form3Fields.tipoTrabajoAltura: tipoTrabajoAltura.text.trim(),
-                  form3Fields.nombreapellidos: nombreapellidos.text.trim(),
-                  form3Fields.cedula: cedula.text.trim(),
-                  form3Fields.arl: arl.text.trim(),
-                  form3Fields.eps: eps.text.trim(),
-                  form3Fields.cargo: cargo.text.trim(),
-                  form3Fields.vect3_1: arr3[0],
-                  form3Fields.vect3_2: arr3[1],
-                  form3Fields.vect3_3: arr3[2],
-                  form3Fields.vect3_4: arr3[3],
-                  form3Fields.vect3_5: arr3[4],
-                  form3Fields.vect3_6: arr3[5],
-                  form3Fields.vect3_7: arr3[6],
-                  form3Fields.vect3_8: arr3[7],
-                  form3Fields.vect3_9: arr3[8],
-                  form3Fields.vect3_10: arr3[9],
-                  form3Fields.vect3_11: arr3[10],
-                  form3Fields.vect3_12: arr3[11],
-                  form3Fields.vect4_1: arr4[0],
-                  form3Fields.vect4_2: arr4[1],
-                  form3Fields.vect4_3: arr4[2],
-                  form3Fields.vect4_4: arr4[3],
-                  form3Fields.vect4_5: arr4[4],
-                  form3Fields.vect4_6: arr4[5],
-                  form3Fields.vect4_7: arr4[6]
-                };
-                //Llamamos a la función .insertar() para que inserte la info en el sheets
-                await FormSheets3.insertar([dataForm3]);
               }
             },
             onStepCancel: () {

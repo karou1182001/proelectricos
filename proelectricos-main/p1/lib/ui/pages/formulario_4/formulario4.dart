@@ -4,9 +4,9 @@ import 'package:p1/domain/controller/ControllersForm3/controller_form4.dart';
 import 'package:p1/ui/pages/widgetsReutilizables/CamposDePartes/campos_formularios.dart';
 import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/widgetsReutilizables/tablas_form.dart';
-import 'package:p1/ui/pages/forrmulario_4/components/partes/parte1_form4.dart';
-import 'package:p1/ui/pages/forrmulario_4/components/partes/parte2_form4.dart';
-import 'package:p1/ui/pages/forrmulario_4/components/partes/parte3_form4.dart';
+import 'package:p1/ui/pages/formulario_4/components/partes/parte1_form4.dart';
+import 'package:p1/ui/pages/formulario_4/components/partes/parte2_form4.dart';
+import 'package:p1/ui/pages/formulario_4/components/partes/parte3_form4.dart';
 
 class FormularioCuatro extends StatefulWidget {
   const FormularioCuatro({Key? key}) : super(key: key);
@@ -88,8 +88,14 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                 //}
 
               } else {
-                print("Completed");
-                //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                if (_formKey.currentState!.validate()) {
+                  print("Completed");
+                  //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Rellene todos los campos')),
+                  );
+                }
               }
             },
             onStepCancel: () {

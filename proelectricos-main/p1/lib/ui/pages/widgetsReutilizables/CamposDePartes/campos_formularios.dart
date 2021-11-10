@@ -53,4 +53,16 @@ class CamposFormularios {
     'Antes de realizar el trabajo eléctricos verifique todas las herramientas y protecciones que va utilizar',
     'El trabajador se encuentra concientizado al riesgo que se va enfrentar'
   ];
+  //Formulario 5
+  static var camposParte2Form5 = [
+    "Espárragos",
+    'Labrado',
+    'Presión de aire',
+    'Repuesto',
+    'Tuercas',
+    'Cabina limpia y en orden',
+    'Exterior del vehículo limpio y en orden',
+    'Kit antiderramante',
+    'Vidrios y espejos limpios y completos'
+  ];
 }
