@@ -1,5 +1,7 @@
 //Este es el menú general que lleva a todos los formularios
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
 import 'package:p1/ui/widgets/componentes/encabezado.dart';
 import 'package:p1/ui/widgets/menu_general/menu/opciones_menu.dart';
@@ -12,6 +14,8 @@ class MenuOptionsScreen extends StatefulWidget {
 
 class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
   @override
+  AuthenticationController authentication_controller = Get.find<AuthenticationController>();
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -50,7 +54,7 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Encabezado(
-                size: size, text: "Hola, Sandra \n\n ¡Llena tus formularios!"),
+                size: size, text: "Hola, "+authentication_controller.name+" \n\n ¡Llena tus formularios!"),
             const OpcionesMenu(),
           ],
         ),
