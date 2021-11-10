@@ -19,10 +19,14 @@ class form1Fields {
   static String mt = "mt";
   static String ct = "ct";
   static String tension = "tensión";
-  static String nombreCompleto = "nombre completo";
-  static String cargo = "cargo";
+  static String supervisor = "supervisor";
+  static String celSupervisor = "cel supervisor";
+  static String agenteDescargo = "agente descargo";
+  static String celAgenteDescargo = "cel agente descargo";
+  static String nombre = "nombre";
   static String cedula = "cédula";
-  static String descripcion = "descripción";
+  static String cargo = "cargo";
+  static String trabajoRealizado = "Trabajo realizado";
   static String preservacion = "preservación";
   static String material = "material";
   static String cantidad = "cantidad";
@@ -40,19 +44,23 @@ class form1Fields {
         no,
         horaInicio,
         horaFin,
-        descargo, 
-        incidencia, 
-        nic, 
-        aviso, 
-        numero, 
+        descargo,
+        incidencia,
+        nic,
+        aviso,
+        numero,
         circuito,
         mt,
         ct,
         tension,
-        nombreCompleto,
-        cargo,
+        supervisor,
+        celSupervisor,
+        agenteDescargo,
+        celAgenteDescargo,
+        nombre,
         cedula,
-        descripcion,
+        cargo,
+        trabajoRealizado,
         preservacion,
         material,
         cantidad,

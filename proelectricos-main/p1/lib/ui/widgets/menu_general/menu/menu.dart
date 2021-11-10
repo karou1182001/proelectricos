@@ -1,8 +1,12 @@
 //Este es el menú general que lleva a todos los formularios
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/account.dart';
+=======
+import 'package:p1/ui/pages/widgetsReutilizables/app_bar.dart';
+>>>>>>> b798847b0cf9be29c7ab6cc6a54198bf16650134
 import 'package:p1/ui/widgets/componentes/encabezado.dart';
 import 'package:p1/ui/widgets/menu_general/menu/opciones_menu.dart';
 
@@ -21,31 +25,10 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       //BARRA DE NAVEGACIÓN
-      appBar: AppBar(
-        backgroundColor: const Color(0xff264F95),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          //Te regresa a la ruta inmediatamente anterior
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.account_circle,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => EditProfilePage()));
-            },
-          ),
-        ],
+      appBar: const AppBarWidget(
+        text: '',
+        backgroundColor: Color(0xff264F95),
+        height: 60,
       ),
       //CUERPO
       //Esto es lo que va en el cuerpo de esta interfaz

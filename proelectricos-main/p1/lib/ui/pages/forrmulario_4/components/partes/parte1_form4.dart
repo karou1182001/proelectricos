@@ -1,42 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:p1/ui/pages/widgetsReutilizables/comp_textformfield.dart';
 
-class Parte1Form3 extends StatefulWidget {
-  Parte1Form3(
+class Parte1Form4 extends StatefulWidget {
+  Parte1Form4(
       {Key? key,
       required this.pickedDate,
-      required this.horaInicio,
-      required this.horaFin,
-      required this.lugarTrabajo,
+      required this.lider,
       required this.ubicacion,
-      required this.altura,
-      required this.tipoTrabajoAltura})
+      required this.contratista})
       : super(key: key);
 
   DateTime pickedDate = DateTime.now();
-  final TextEditingController horaInicio;
-  final TextEditingController horaFin;
-  final TextEditingController lugarTrabajo;
+  final TextEditingController lider;
   final TextEditingController ubicacion;
-  final TextEditingController altura;
-  final TextEditingController tipoTrabajoAltura;
+  final TextEditingController contratista;
 
   @override
-  Parte1Form3State createState() {
-    return Parte1Form3State();
+  Parte1Form4State createState() {
+    return Parte1Form4State();
   }
 }
 
 // Create a corresponding State class.
 // Esta clase guarda los datos relacionados con la parte 1 form 3
-class Parte1Form3State extends State<Parte1Form3> {
+class Parte1Form4State extends State<Parte1Form4> {
   late DateTime pickedDate = widget.pickedDate;
-  late TextEditingController horaInicio = widget.horaInicio;
-  late TextEditingController horaFin = widget.horaFin;
-  late TextEditingController lugarTrabajo = widget.lugarTrabajo;
+  late TextEditingController lider = widget.lider;
   late TextEditingController ubicacion = widget.ubicacion;
-  late TextEditingController altura = widget.altura;
-  late TextEditingController tipoTrabajoAltura = widget.tipoTrabajoAltura;
+  late TextEditingController contratista = widget.contratista;
 
   _pickDate() async {
     DateTime? date = await showDatePicker(
@@ -70,38 +61,20 @@ class Parte1Form3State extends State<Parte1Form3> {
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
-          labelText: 'Hora de inicio',
-          cont: horaInicio,
+          labelText: 'Lider de cuadrilla',
+          cont: lider,
         ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
           hintText: '',
-          labelText: 'Hora de fin',
-          cont: horaFin,
-        ),
-        CompTextFormField(
-          casoVacio: 'Rellene todos los campos',
-          hintText: '',
-          labelText: 'Lugar de trabajo',
-          cont: lugarTrabajo,
-        ),
-        CompTextFormField(
-          casoVacio: 'Rellene todos los campos',
-          hintText: '',
-          labelText: 'Ubicación donde se realiza el trabajo',
+          labelText: 'Lugar y ubicación donde se realizo el trabajo',
           cont: ubicacion,
         ),
         CompTextFormField(
           casoVacio: 'Rellene todos los campos',
-          hintText: 'mts',
-          labelText: 'Altura aprox. de desarrollo de act.',
-          cont: altura,
-        ),
-        CompTextFormField(
-          casoVacio: 'Rellene todos los campos',
           hintText: '',
-          labelText: 'Tipo de trabajo en altura',
-          cont: tipoTrabajoAltura,
+          labelText: 'Contratista',
+          cont: contratista,
         ),
       ],
     );
