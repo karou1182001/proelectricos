@@ -70,8 +70,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 height: 35,
               ),
 
-              buildTextField("Nombre completo", "Dor Alex", false),
-              buildTextField("CC", "100299827", false),
+              buildTextField("Nombre completo", controller.name, false),
+              buildTextField("CC", controller.cc, false),
               buildTextField("Contraseña", "********", true),
               //PARTE DE LA FIRMA
               //Llamamos a la clase BotonWidget

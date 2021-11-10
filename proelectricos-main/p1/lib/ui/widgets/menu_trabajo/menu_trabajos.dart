@@ -56,7 +56,7 @@ class _MenuTrabajosState extends State<MenuTrabajos> {
       body: Column(
         //crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Encabezado(size: size, text: "Hola, Sandra \n\n Progreso diario"),
+          Encabezado(size: size, text: "Hola, "+authentication_controller.name+" \n\n Progreso diario"),
           Container(
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.only(bottom: 8, left: 16),
