@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 
-import 'sheets/sheets_connection.dart';
+import 'sheets/sheet connection/sheets_connection_1.dart';
 
 class FormularioZero extends StatefulWidget {
   const FormularioZero({Key? key}) : super(key: key);

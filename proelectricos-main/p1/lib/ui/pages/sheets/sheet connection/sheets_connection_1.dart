@@ -18,7 +18,7 @@ class FormSheets {
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/form-sheets%40appproelectricos-53634.iam.gserviceaccount.com"
-}  
+  }  
   ''';
   //Obtenemos el spreadsheetId del link del documento que creamos en Google Sheets
   static const sheetId = '1GZgGIlz6wXnUvXG8gWTMjat9pciKvtN1c4WPbnXOID0';
@@ -53,12 +53,11 @@ class FormSheets {
 
   //Función para enviar info a una fila de Google Sheets
   static Future insertar(List<Map<String, dynamic>> rowList) async {
-      if(form1Sheet == null) return;
-      try {
-        form1Sheet!.values.map.appendRows(rowList, inRange: true);  
-      } catch (e) {
-        print('La data no se pudo agregar.');
-      }
-      
+    if (form1Sheet == null) return;
+    try {
+      form1Sheet!.values.map.appendRows(rowList, inRange: true);
+    } catch (e) {
+      print('La data no se pudo agregar.');
+    }
   }
 }

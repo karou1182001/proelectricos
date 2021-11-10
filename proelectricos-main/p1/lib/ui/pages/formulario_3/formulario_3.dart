@@ -105,6 +105,9 @@ class _FormularioTresPage extends State<FormularioTres> {
               if (isLastStep) {
                 print("Completed");
                 //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                final dataForm3 = {
+                  
+                };
               } else {
                 //Y hace las cosas del form
                 // Validate returns true if the form is valid, or false otherwise.
