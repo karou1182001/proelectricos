@@ -8,6 +8,7 @@ import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte1_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte2_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte3_form4.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioCuatro extends StatefulWidget {
   final int jobNumber; // Representa a que trabajo pertenece este formulario.
@@ -194,9 +195,10 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
         Step(
           state: currentStep > 4 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 4,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),

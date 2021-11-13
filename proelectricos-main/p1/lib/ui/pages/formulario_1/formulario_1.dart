@@ -11,6 +11,7 @@ import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_1.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioUno extends StatefulWidget {
   final int jobNumber; // Representa a que trabajo pertenece este formulario.
@@ -315,9 +316,10 @@ class _FormularioUnoPage extends State<FormularioUno> {
         Step(
           state: currentStep > 4 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 4,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),

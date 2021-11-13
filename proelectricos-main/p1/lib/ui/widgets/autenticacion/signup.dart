@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:encrypt/encrypt.dart' as enc;
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 final llave = enc.Key.fromLength(32);
 final encrypter = enc.Encrypter(enc.AES(llave));
@@ -80,6 +81,7 @@ class SignupPage extends StatelessWidget {
                       label: "Confirmar contraseña:",
                       obscureText: true,
                       controller: confirmpassController),
+                  sigButton(),
                 ],
               ),
               Container(
@@ -224,6 +226,27 @@ Widget inputFile({label, obscureText = false, controller}) {
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
       ),
       const SizedBox(
+        height: 10,
+      )
+    ],
+  );
+}
+
+Widget sigButton() {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: const <Widget>[
+      Text(
+        'Firma:',
+        style: TextStyle(
+            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
+      ),
+      SizedBox(
+        height: 5,
+      ),
+      MyButton("Añadir Firma", "tech_signature",
+          Icon(Icons.feed, size: 0, color: Colors.black)),
+      SizedBox(
         height: 10,
       )
     ],
