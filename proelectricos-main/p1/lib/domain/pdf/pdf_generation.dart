@@ -104,7 +104,7 @@ void generateForm2PDF(
   document.dispose();
 }
 
-void generateDummyPDF(String filename) async {
+Future<void> generateDummyPDF(String filename) async {
   // Genera PDF Vacio dummy, solo para hacer pruebas
   // La estructura del filename y del nombre del archivo SI es la que debería seguir:
   // job${job_number}/formulario1.pdf

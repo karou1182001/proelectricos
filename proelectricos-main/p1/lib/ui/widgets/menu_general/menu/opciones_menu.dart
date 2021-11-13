@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
+import 'package:p1/domain/controller/workpage_controller.dart';
 import 'package:p1/domain/pdf/pdf_upload.dart';
 import 'package:p1/ui/pages/formulario_1/formulario_1.dart';
 import 'package:p1/ui/pages/formulario_2/formulario_2.dart';
@@ -8,10 +10,13 @@ import 'package:p1/ui/pages/formulario_5/components/formulario_5.dart';
 import 'package:p1/ui/widgetReutilizables/boton_widget.dart';
 import 'package:p1/ui/pages/formulario_3/formulario_3.dart';
 
+Color completedGreen = Colors.green;
+
 class OpcionesMenu extends StatelessWidget {
   final int jobNumber; // representa el número del trabajo de este menu
-  const OpcionesMenu({Key? key, required this.jobNumber}) : super(key: key);
+  OpcionesMenu({Key? key, required this.jobNumber}) : super(key: key);
 
+  WorkPageController C = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -76,8 +81,17 @@ class OpcionesMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RaisedButton(
-                onPressed: () {
-                  uploadStoredJobPDFS(jobNumber);
+                onPressed: () async {
+                  if (await uploadStoredJobPDFS(jobNumber)) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(
+                            'Se enviaron los formularios correctamente.')));
+                    Navigator.pop(context);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content:
+                            Text('Completar todos los formularios primero!')));
+                  }
                 },
                 color: proElectricosBlue,
                 padding:
