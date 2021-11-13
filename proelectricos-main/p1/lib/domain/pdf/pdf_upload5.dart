@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/domain/controller/workpage_controller.dart';
-import 'package:p1/domain/pdf/pdf_generation.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;

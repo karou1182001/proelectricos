@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/data/local_preferences.dart';
+import 'package:p1/ui/widgets/autenticacion/home.dart';
 
 class AuthenticationController extends GetxController {
   LocalPreferences lp = LocalPreferences();
@@ -85,6 +86,41 @@ class AuthenticationController extends GetxController {
     }
     return Future.value(_logged.value);
   }
+
+  Future<void> register(cc,email,nombre,password,cPassword,firma,llave,encrypter,iv,context) {
+    var users =
+    FirebaseFirestore.instance.collection("usuario");
+    //Función encargada de añadir usuarios a la base de datos
+    return users
+        .add({
+      "cc": int.parse(cc),
+      "email": email,
+      "nombre": nombre,
+      "firma":firma,
+      "password":
+      encrypter.encrypt(password, iv: iv).base64
+    }).then((value) => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Registro Exitoso"),
+          content:
+          const Text("Gracias por registrarse"),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                          const HomePage()));
+                },
+                child: const Text('OK'))
+          ],
+        )))
+        .catchError(
+            (error) => debugPrint("Error al añadir usuario"));
+  }
+
 
   Future<bool> logout() async {
     await lp.storeData<bool>("logged", false);

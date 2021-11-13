@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_tablaparte3_form3.dart';
+<<<<<<< HEAD
+import 'package:p1/domain/pdf/pdf_generation3.dart';
+=======
 import 'package:p1/domain/pdf/pdf_generation.dart';
+>>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/form_3_sheet.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_3.dart';
@@ -98,6 +102,21 @@ class _FormularioTresPage extends State<FormularioTres> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                  generateForm3PDF(
+                    "Formulario3.pdf", 
+                    "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}", 
+                    horaInicio.text, 
+                    horaFin.text, 
+                    lugarTrabajo.text, 
+                    ubicacion.text, 
+                    altura.text, 
+                    tipoTrabajoAltura.text, 
+                    nombreapellidos.text, 
+                    cedula.text, 
+                    arl.text, 
+                    eps.text, 
+                    cargo.text,  
+                    Get.find<ControllerTablasForm3>());
                   //Data que se enviará al sheets
 
                   var arr3 =
@@ -150,7 +169,14 @@ class _FormularioTresPage extends State<FormularioTres> {
                     form3Fields.vect4_4: arr4[3],
                     form3Fields.vect4_5: arr4[4],
                     form3Fields.vect4_6: arr4[5],
-                    form3Fields.vect4_7: arr4[6]
+                    form3Fields.vect4_7: arr4[6],
+                    form3Fields.vect4_8: arr4[7],
+                    form3Fields.vect4_9: arr4[8],
+                    form3Fields.vect4_10: arr4[9],
+                    form3Fields.vect4_11: arr4[10],
+                    form3Fields.vect4_12: arr4[11],
+                    form3Fields.vect4_13: arr4[12],
+                    form3Fields.vect4_14: arr4[13]
                   };
                   //Llamamos a la función .insertar() para que inserte la info en el sheets
                   await FormSheets3.insertar([dataForm3]);
