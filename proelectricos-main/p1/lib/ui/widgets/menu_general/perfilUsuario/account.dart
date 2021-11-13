@@ -63,7 +63,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
               buildTextField("Nombre completo", controller.name, false),
               buildTextField("CC", controller.cc, false),
+              buildTextField("Email", controller.email, false),
+              buildTextField("arl", controller.arl, false),
+              buildTextField("eps", controller.eps, false),
+              buildTextField("telefono", controller.tel, false),
+
               buildTextField("Contraseña", "********", true),
+
               //PARTE DE LA FIRMA
               //Llamamos a la clase BotonWidget
               const MyButton("Cambiar firma", "tech_signature",
@@ -98,45 +104,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   RaisedButton(
                     onPressed: () async {
-                      print("Me presionaron");
-                      var users =
-                      FirebaseFirestore.instance.collection("usuario");
-                      print("Saque la instancia");
-                      var document_id = users.doc().id;
-
-                      //User getUser = await FirebaseAuth.instance.currentUser!;
-                      print("Saco al usuario");
-                      print(document_id);
-                      print("Su ID es");
-                      print(document_id);
-
-                      //Realizamos la consulta sobre la colección
-                      var query = users
-                          .where("cc", isEqualTo: int.parse(controller.cc));
-
-                      //Extraemos los datos de el query en cuestión
-                      QuerySnapshot user = await query.get();
-                      print("Esto es user");
-                      print(user);
-                      print("Esto es user docs 0 id ");
-                      print(user.docs[0].id);
-                      var user_ID = user.docs[0].id;
-                      Future<void> updateUser() {
-                      print("Entre a update y cambiare al usuario:");
-                      print(document_id);
-                      return users
-                          .doc(user_ID)
-                          .update({
-                      "cc": 1,//int.parse(cc),
-                      "email": "123456789",
-                      "nombre": "Funciona",
-                      "password":
-                      encrypter.encrypt("1", iv: iv).base64
-                      }) // <-- Updated data
-                          .then((_) => print('Success'))
-                          .catchError((error) => print('Failed: $error'));
-                      }
-                      updateUser();
+                      controller.updateData();
                     },
                     color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 50),

@@ -25,6 +25,9 @@ class SignupPage extends StatelessWidget {
   final ccController = TextEditingController();
   final nombreController = TextEditingController();
   final emailController = TextEditingController();
+  final arlController = TextEditingController();
+  final telefonoController = TextEditingController();
+  final epsController = TextEditingController();
   final passController = TextEditingController();
   final confirmpassController = TextEditingController();
   @override
@@ -79,6 +82,9 @@ class SignupPage extends StatelessWidget {
                   inputFile(label: "CC:", controller: ccController),
                   inputFile(label: "Nombre:", controller: nombreController),
                   inputFile(label: "Email:", controller: emailController),
+                  inputFile(label: "Telefono:", controller: telefonoController),
+                  inputFile(label: "arl:", controller: arlController),
+                  inputFile(label: "eps:", controller: epsController),
                   inputFile(
                       label: "Contraseña:",
                       obscureText: true,

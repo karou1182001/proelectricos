@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/data/local_preferences.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
+import 'package:encrypt/encrypt.dart' as enc;
+
+final llave = enc.Key.fromLength(32);
+final encrypter = enc.Encrypter(enc.AES(llave));
+final iv = enc.IV.fromLength(16);
 
 class AuthenticationController extends GetxController {
   LocalPreferences lp = LocalPreferences();
@@ -11,11 +16,19 @@ class AuthenticationController extends GetxController {
   var _name = "".obs;
   var _cc = "".obs;
   var _password = "".obs;
+  var _email = "".obs;
+  var _arl = "".obs;
+  var _eps = "".obs;
+  var _telefono = "".obs;
 
   bool get logged => _logged.value;
   String get name => _name.value;
   String get cc => _cc.value;
   String get password => _password.value;
+  String get email => _email.value;
+  String get arl => _arl.value;
+  String get eps => _eps.value;
+  String get tel => _telefono.value;
 
   void setLogged(bool l) {
     _logged.value = l;
@@ -24,6 +37,26 @@ class AuthenticationController extends GetxController {
 
   void setname(String l) {
     _name.value = l;
+    update();
+  }
+
+  void setarl(String l) {
+    _arl.value = l;
+    update();
+  }
+
+  void seteps(String l) {
+    _eps.value = l;
+    update();
+  }
+
+  void settel(String l) {
+    _telefono.value = l;
+    update();
+  }
+
+  void setemail(String l) {
+    _email.value = l;
     update();
   }
 
@@ -46,8 +79,10 @@ class AuthenticationController extends GetxController {
     _name.value = await lp.retrieveData<String>("name") ?? "";
     _cc.value = await lp.retrieveData<String>("cc") ?? "";
     _password.value = await lp.retrieveData<String>("password") ?? "";
-
-    //setLogged(false);
+    _email.value = await lp.retrieveData<String>("email") ?? "";
+    _arl.value = await lp.retrieveData<String>("arl") ?? "";
+    _eps.value = await lp.retrieveData<String>("eps") ?? "";
+    _telefono.value = await lp.retrieveData<String>("telefono") ?? "";
   }
 
   Future<bool> login(cc, password) async {
@@ -68,17 +103,29 @@ class AuthenticationController extends GetxController {
       String password = datos['password'] ?? '';
       String email = datos['email'] ?? '';
 
+      String arl = datos['arl'] ?? '';
+      String eps = datos['eps'] ?? '';
+      String telefono = datos['telefono'] ?? '';
+
       String cc = c.toString();
 
       await lp.storeData<bool>("logged", true);
       await lp.storeData<String>("name", name);
       await lp.storeData<String>("cc", cc);
       await lp.storeData<String>("password", password);
+      await lp.storeData<String>("email", email);
+      await lp.storeData<String>("arl", arl);
+      await lp.storeData<String>("eps", eps);
+      await lp.storeData<String>("telefono", telefono);
 
       setLogged(true);
       setname(name);
       setcc(cc);
       setpassword(password);
+      setemail(email);
+      setarl(arl);
+      seteps(eps);
+      settel(telefono);
     } else {
       await lp.storeData<bool>("logged", false);
       //_logged.value = false;
@@ -125,11 +172,21 @@ class AuthenticationController extends GetxController {
 
     await lp.storeData<String>("name", "");
     await lp.storeData<String>("cc", "");
-    await lp.storeData<String>("password", " ");
+    await lp.storeData<String>("password", "");
+    await lp.storeData<String>("email", "");
+    await lp.storeData<String>("eps", "");
+    await lp.storeData<String>("arl", "");
+    await lp.storeData<String>("telefono", "");
+
     //_logged.value = true;
     setname("");
     setcc("");
     setpassword("");
+    setemail("");
+    seteps("");
+    setarl("");
+    settel("");
+
     return Future.value(true);
   }
 }
