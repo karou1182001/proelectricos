@@ -29,6 +29,7 @@ void main() async {
       getPages: [
         GetPage(name: '/SignaturePad', page: () => SignaturePad()),
         GetPage(name: '/SignaturePreview', page: () => SignaturePreview()),
+        GetPage(name: '/UpdateSignaturePad', page: () => updateSignaturePad()),
         GetPage(name: '/MenuTrabajos', page: () => MenuTrabajos()),
         GetPage(name: '/LoginPage', page: () => LoginPage()),
       ],

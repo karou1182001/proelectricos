@@ -21,14 +21,17 @@ class AuthenticationController extends GetxController {
     _logged.value = l;
     update();
   }
+
   void setname(String l) {
     _name.value = l;
     update();
   }
+
   void setcc(String l) {
     _cc.value = l;
     update();
   }
+
   void setpassword(String l) {
     _password.value = l;
     update();
@@ -47,11 +50,9 @@ class AuthenticationController extends GetxController {
     //setLogged(false);
   }
 
-
   Future<bool> login(cc, password) async {
     //Collection Reference para acceder a la colección "usuarios" de nuestra base de datos
-    var cr = FirebaseFirestore.instance
-        .collection("usuario");
+    var cr = FirebaseFirestore.instance.collection("usuario");
     //Realizamos la consulta sobre la colección
     var query = cr
         .where("cc", isEqualTo: int.parse(cc))
@@ -60,12 +61,12 @@ class AuthenticationController extends GetxController {
     QuerySnapshot users = await query.get();
     //Revisamos que exista algún usuario que cumpla con las condiciones
     if (users.docs.isNotEmpty) {
-      Map<String,dynamic> datos = users.docs[0].data() as Map<String,dynamic>;
+      Map<String, dynamic> datos = users.docs[0].data() as Map<String, dynamic>;
 
       String name = datos['nombre'] ?? '';
       int c = datos['cc'] ?? 0;
-      String  password = datos['password'] ?? '';
-      String  email = datos['email'] ?? '';
+      String password = datos['password'] ?? '';
+      String email = datos['email'] ?? '';
 
       String cc = c.toString();
 
@@ -78,8 +79,7 @@ class AuthenticationController extends GetxController {
       setname(name);
       setcc(cc);
       setpassword(password);
-    }
-    else{
+    } else {
       await lp.storeData<bool>("logged", false);
       //_logged.value = false;
       setLogged(false);
@@ -87,40 +87,36 @@ class AuthenticationController extends GetxController {
     return Future.value(_logged.value);
   }
 
-  Future<void> register(cc,email,nombre,password,cPassword,firma,llave,encrypter,iv,context) {
-    var users =
-    FirebaseFirestore.instance.collection("usuario");
+  Future<void> register(cc, email, nombre, password, cPassword, firma, llave,
+      encrypter, iv, context) {
+    var users = FirebaseFirestore.instance.collection("usuario");
     //Función encargada de añadir usuarios a la base de datos
     return users
         .add({
-      "cc": int.parse(cc),
-      "email": email,
-      "nombre": nombre,
-      //"firma":firma,
-      "password":
-      encrypter.encrypt(password, iv: iv).base64
-    }).then((value) => showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text("Registro Exitoso"),
-          content:
-          const Text("Gracias por registrarse"),
-          actions: <Widget>[
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                          const HomePage()));
-                },
-                child: const Text('OK'))
-          ],
-        )))
-        .catchError(
-            (error) => debugPrint("Error al añadir usuario"));
+          "cc": int.parse(cc),
+          "email": email,
+          "nombre": nombre,
+          "firma": firma,
+          "password": encrypter.encrypt(password, iv: iv).base64
+        })
+        .then((value) => showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: const Text("Registro Exitoso"),
+                  content: const Text("Gracias por registrarse"),
+                  actions: <Widget>[
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomePage()));
+                        },
+                        child: const Text('OK'))
+                  ],
+                )))
+        .catchError((error) => debugPrint("Error al añadir usuario"));
   }
-
 
   Future<bool> logout() async {
     await lp.storeData<bool>("logged", false);

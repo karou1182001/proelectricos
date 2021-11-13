@@ -12,6 +12,7 @@ import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:encrypt/encrypt.dart' as enc;
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final llave = enc.Key.fromLength(32);
 final encrypter = enc.Encrypter(enc.AES(llave));
@@ -103,13 +104,17 @@ class SignupPage extends StatelessWidget {
                   minWidth: double.infinity,
                   height: 60,
                   onPressed: () async {
+                    //Extraemos la firma del sharedPreferences
+                    final prefs = await SharedPreferences.getInstance();
+                    final sig = prefs.getString('tech_signature');
+
                     //Extraemos la información de los textboxes
                     String cc = ccController.text.trim();
                     String nombre = nombreController.text.trim();
                     String email = emailController.text.trim();
                     String password = passController.text.trim();
                     String cPassword = confirmpassController.text.trim();
-                    String firma = "Mi firma";
+                    String firma = sig!;
                     //Validamos que cada campo esté llenado
                     if (cc.isEmpty) {
                       debugPrint("Ingrese una cédula, por favor");
@@ -128,7 +133,8 @@ class SignupPage extends StatelessWidget {
                     }
                     //Obtenemos la referencia a la collection "usuario"
 
-                    controller.register(cc,email,nombre,password,cPassword,firma,llave,encrypter,iv,context);
+                    controller.register(cc, email, nombre, password, cPassword,
+                        firma, llave, encrypter, iv, context);
                   },
                   color: proElectricosBlue,
                   elevation: 0,

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signature/signature.dart';
@@ -28,7 +29,12 @@ class _MyButtonState extends State<MyButton> {
           backgroundColor: const Color(0xFFF5F6F9),
         ),
         onPressed: () {
-          Get.toNamed("/SignaturePad", arguments: widget.agent);
+          if (widget.text == 'Cambiar Firma' &&
+              widget.agent == 'tech_signature') {
+            Get.toNamed("/UpdateSignaturePad", arguments: widget.agent);
+          } else {
+            Get.toNamed("/SignaturePad", arguments: widget.agent);
+          }
         },
         child: Row(
           children: [
@@ -146,6 +152,112 @@ class _SignaturePadState extends State<SignaturePad> {
   Widget buildClear() => IconButton(
         iconSize: 36,
         icon: Icon(Icons.clear, color: Colors.red),
+        onPressed: () => controller.clear(),
+      );
+}
+
+class updateSignaturePad extends StatefulWidget {
+  final String agent = Get.arguments;
+  @override
+  _updateSignaturePadState createState() => _updateSignaturePadState();
+}
+
+class _updateSignaturePadState extends State<updateSignaturePad> {
+  late SignatureController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+    controller = SignatureController(
+      penStrokeWidth: 5,
+      penColor: Colors.black,
+    );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: const Text("Firma",
+            style: TextStyle(fontSize: 14, color: Colors.black)),
+        elevation: 1,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          //Te regresa a la ruta inmediatamente anterior
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ),
+      body: Column(
+        children: <Widget>[
+          Signature(
+            controller: controller,
+            backgroundColor:
+                Color(int.parse("#FFCFD8DC".replaceAll('#', '0xff'))),
+          ),
+          SizedBox(
+            child: buildButtons(context),
+          ),
+        ],
+      ));
+
+  Widget buildButtons(BuildContext context) => Container(
+        color: Color(int.parse("#FFB0BEC5".replaceAll('#', '0xff'))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            buildCheck(context),
+            buildClear(),
+          ],
+        ),
+      );
+
+  Widget buildCheck(BuildContext context) => IconButton(
+        iconSize: 36,
+        icon: const Icon(Icons.check, color: Colors.green),
+        onPressed: () async {
+          if (controller.isNotEmpty) {
+            final exportController = SignatureController(
+              penStrokeWidth: 2,
+              penColor: Colors.black,
+              exportBackgroundColor: Colors.white,
+              points: controller.points,
+            );
+
+            final signature = await exportController.toPngBytes();
+            if (signature != null) {
+              FirebaseFirestore.instance.collection("usuario").doc().update() 
+              // prefs.setString(widget.agent, base64.encode(signature));
+            }
+            exportController.dispose();
+            // Get.toNamed("/SignaturePreview", arguments: widget.agent);
+            Get.back();
+            controller.clear();
+          }
+        },
+      );
+
+  Widget buildClear() => IconButton(
+        iconSize: 36,
+        icon: const Icon(Icons.clear, color: Colors.red),
         onPressed: () => controller.clear(),
       );
 }
