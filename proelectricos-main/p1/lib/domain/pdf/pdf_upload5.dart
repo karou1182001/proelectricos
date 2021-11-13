@@ -4,6 +4,9 @@ import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path_provider/path_provider.dart';
 
+<<<<<<< HEAD:proelectricos-main/p1/lib/domain/pdf/pdf_upload5.dart
+Future<void> uploadFile5(String filePath) async {
+=======
 Future<String> get jobPath async {
   final directory = await getApplicationDocumentsDirectory();
 
@@ -11,6 +14,7 @@ Future<String> get jobPath async {
 }
 
 Future<void> uploadFile(String filePath, String uploadPath) async {
+>>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64:proelectricos-main/p1/lib/domain/pdf/pdf_upload.dart
   File file = File(filePath);
 
   try {
@@ -23,6 +27,23 @@ Future<void> uploadFile(String filePath, String uploadPath) async {
   }
 }
 
+<<<<<<< HEAD:proelectricos-main/p1/lib/domain/pdf/pdf_upload5.dart
+Future<String> get _localPath async {
+  final directory = await getApplicationDocumentsDirectory();
+
+  return directory.path;
+}
+
+void uploadPdf5() async {
+  // Check that PDF1 exists.
+  String appDocs = await _localPath;
+  String form2path = appDocs + "/Formulario5.pdf";
+  if (await File(form2path).exists()) {
+    // upload pdf
+    await uploadFile5(form2path);
+    // delete pdf
+    await File(form2path).delete();
+=======
 void uploadStoredJobPDFS(int jobNumber) async {
   // Check that all 5 pdf's exists.
   String jobpath = await jobPath;
@@ -49,6 +70,7 @@ void uploadStoredJobPDFS(int jobNumber) async {
     await File(pdf4path).delete();
     await File(pdf5path).delete();
     print("Successfully cleaned all uploaded PDFS!");
+>>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64:proelectricos-main/p1/lib/domain/pdf/pdf_upload.dart
   } else {
     print("Generate all PDFS first!");
   }

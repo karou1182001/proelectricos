@@ -67,18 +67,7 @@ void generateForm2PDF(
   // Eléctrico
   modifyBoolField(document, 4, tElectrico, removeBorder: false);
 
-  /*¡Esta parte es importante cambiarla porque en el nuevo formato se manejan varios
-  vectores para cada sección! 
-  Dentro de la carpeta Domain/Controller/ControllersForm3/controller_Form2.dart
-  hay 11 vectores para las 11 tablas del form 2 que tienen valores booleanos en sus posiciones.
-  Dejaré mientras comentada esta parte para que no genere error el programa
-  */
-  /*for (int i = 0; i < 59; i++) {
-    modifyBoolField(document, (i) * 2 + 5 + (!cont.si[i].value ? 1 : 0), true);
-    modifyBoolField(document, (i) * 2 + 5 + (cont.si[i].value ? 1 : 0), false,
-        removeBorder: true);
-  }*/
-
+ 
   // nombre y apellido
   modifyTextField(document, 123, nombreapellidos);
   // cargo

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:p1/common/constants.dart';
-import 'package:p1/domain/pdf/pdf_upload.dart';
+import 'package:p1/domain/pdf/pdf_upload1.dart';
+import 'package:p1/domain/pdf/pdf_upload2.dart';
+import 'package:p1/domain/pdf/pdf_upload5.dart';
+import 'package:p1/domain/pdf/pdf_upload3.dart';
+import 'package:p1/domain/pdf/pdf_upload4.dart';
 import 'package:p1/ui/pages/formulario_1/formulario_1.dart';
 import 'package:p1/ui/pages/formulario_2/formulario_2.dart';
 import 'package:p1/ui/pages/formulario_4/formulario4.dart';
@@ -77,7 +81,15 @@ class OpcionesMenu extends StatelessWidget {
             children: [
               RaisedButton(
                 onPressed: () {
+<<<<<<< HEAD
+                  uploadPdf1();
+                  //uploadPdf2();
+                  uploadPdf3();
+                  uploadPdf4();
+                  uploadPdf5();
+=======
                   uploadStoredJobPDFS(jobNumber);
+>>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
                 },
                 color: proElectricosBlue,
                 padding:
