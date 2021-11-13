@@ -150,7 +150,14 @@ class _FormularioTresPage extends State<FormularioTres> {
                     form3Fields.vect4_4: arr4[3],
                     form3Fields.vect4_5: arr4[4],
                     form3Fields.vect4_6: arr4[5],
-                    form3Fields.vect4_7: arr4[6]
+                    form3Fields.vect4_7: arr4[6],
+                    form3Fields.vect4_8: arr4[7],
+                    form3Fields.vect4_9: arr4[8],
+                    form3Fields.vect4_10: arr4[9],
+                    form3Fields.vect4_11: arr4[10],
+                    form3Fields.vect4_12: arr4[11],
+                    form3Fields.vect4_13: arr4[12],
+                    form3Fields.vect4_14: arr4[13]
                   };
                   //Llamamos a la función .insertar() para que inserte la info en el sheets
                   await FormSheets3.insertar([dataForm3]);
