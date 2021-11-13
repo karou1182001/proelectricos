@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/workpage_controller.dart';
-import 'package:p1/domain/pdf/pdf_upload5.dart';
+import 'package:p1/domain/pdf/pdf_upload.dart';
 import 'package:p1/ui/pages/formulario_1/formulario_1.dart';
 import 'package:p1/ui/pages/formulario_2/formulario_2.dart';
 import 'package:p1/ui/pages/formulario_4/formulario4.dart';
