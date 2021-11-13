@@ -2,9 +2,12 @@
 //los usuarios los debería ingresar directamente la empresa, pero por ahora se
 //dejará
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:p1/common/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
 import 'package:encrypt/encrypt.dart' as enc;
@@ -15,6 +18,8 @@ final encrypter = enc.Encrypter(enc.AES(llave));
 final iv = enc.IV.fromLength(16);
 
 class SignupPage extends StatelessWidget {
+  AuthenticationController controller = Get.find<AuthenticationController>();
+
   SignupPage({Key? key}) : super(key: key);
   final ccController = TextEditingController();
   final nombreController = TextEditingController();
@@ -104,7 +109,7 @@ class SignupPage extends StatelessWidget {
                     String email = emailController.text.trim();
                     String password = passController.text.trim();
                     String cPassword = confirmpassController.text.trim();
-
+                    String firma = "Mi firma";
                     //Validamos que cada campo esté llenado
                     if (cc.isEmpty) {
                       debugPrint("Ingrese una cédula, por favor");
@@ -122,42 +127,8 @@ class SignupPage extends StatelessWidget {
                       debugPrint("Las contraseñas no son iguales");
                     }
                     //Obtenemos la referencia a la collection "usuario"
-                    var users =
-                        FirebaseFirestore.instance.collection("usuario");
-                    //Función encargada de añadir usuarios a la base de datos
-                    Future<void> registrarUsuario() {
-                      return users
-                          .add({
-                            "cc": int.parse(cc),
-                            "email": email,
-                            "nombre": nombre,
-                            "password":
-                                encrypter.encrypt(password, iv: iv).base64
-                          })
-                          .then((value) => showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                    title: const Text("Registro Exitoso"),
-                                    content:
-                                        const Text("Gracias por registrarse"),
-                                    actions: <Widget>[
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const HomePage()));
-                                          },
-                                          child: const Text('OK'))
-                                    ],
-                                  )))
-                          .catchError(
-                              (error) => debugPrint("Error al añadir usuario"));
-                    }
 
-                    //Llamado a la función
-                    registrarUsuario();
+                    controller.register(cc,email,nombre,password,cPassword,firma,llave,encrypter,iv,context);
                   },
                   color: proElectricosBlue,
                   elevation: 0,
