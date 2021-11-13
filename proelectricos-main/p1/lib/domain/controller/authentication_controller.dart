@@ -3,19 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/data/local_preferences.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
+import 'package:encrypt/encrypt.dart' as enc;
+
+final llave = enc.Key.fromLength(32);
+final encrypter = enc.Encrypter(enc.AES(llave));
+final iv = enc.IV.fromLength(16);
 
 class AuthenticationController extends GetxController {
+
+
   LocalPreferences lp = LocalPreferences();
 
   var _logged = false.obs;
   var _name = "".obs;
   var _cc = "".obs;
   var _password = "".obs;
+  var _email = "".obs;
+  var _arl = "".obs;
+  var _eps = "".obs;
+  var _telefono = "".obs;
 
   bool get logged => _logged.value;
   String get name => _name.value;
   String get cc => _cc.value;
   String get password => _password.value;
+  String get email => _email.value;
+  String get arl => _arl.value;
+  String get eps => _eps.value;
+  String get tel => _telefono.value;
 
   void setLogged(bool l) {
     _logged.value = l;
@@ -23,6 +38,22 @@ class AuthenticationController extends GetxController {
   }
   void setname(String l) {
     _name.value = l;
+    update();
+  }
+  void setarl(String l) {
+    _arl.value = l;
+    update();
+  }
+  void seteps(String l) {
+    _eps.value = l;
+    update();
+  }
+  void settel(String l) {
+    _telefono.value = l;
+    update();
+  }
+  void setemail(String l) {
+    _email.value = l;
     update();
   }
   void setcc(String l) {
@@ -43,8 +74,10 @@ class AuthenticationController extends GetxController {
     _name.value = await lp.retrieveData<String>("name") ?? "";
     _cc.value = await lp.retrieveData<String>("cc") ?? "";
     _password.value = await lp.retrieveData<String>("password") ?? "";
-
-    //setLogged(false);
+    _email.value = await lp.retrieveData<String>("email") ?? "";
+    _arl.value = await lp.retrieveData<String>("arl") ?? "";
+    _eps.value = await lp.retrieveData<String>("eps") ?? "";
+    _telefono.value = await lp.retrieveData<String>("telefono") ?? "";
   }
 
 
@@ -67,17 +100,30 @@ class AuthenticationController extends GetxController {
       String  password = datos['password'] ?? '';
       String  email = datos['email'] ?? '';
 
+      String  arl = datos['arl'] ?? '';
+      String  eps = datos['eps'] ?? '';
+      String  telefono = datos['telefono'] ?? '';
+
       String cc = c.toString();
 
       await lp.storeData<bool>("logged", true);
       await lp.storeData<String>("name", name);
       await lp.storeData<String>("cc", cc);
       await lp.storeData<String>("password", password);
+      await lp.storeData<String>("email", email);
+      await lp.storeData<String>("arl", arl);
+      await lp.storeData<String>("eps", eps);
+      await lp.storeData<String>("telefono", telefono);
 
       setLogged(true);
       setname(name);
       setcc(cc);
       setpassword(password);
+      setemail(email);
+      setarl(arl);
+      seteps(eps);
+      settel(telefono);
+
     }
     else{
       await lp.storeData<bool>("logged", false);
@@ -87,7 +133,7 @@ class AuthenticationController extends GetxController {
     return Future.value(_logged.value);
   }
 
-  Future<void> register(cc,email,nombre,password,cPassword,firma,llave,encrypter,iv,context) {
+  Future<void> register(cc,email,nombre,password,cPassword,firma,arl,telefono,eps,context) {
     var users =
     FirebaseFirestore.instance.collection("usuario");
     //Función encargada de añadir usuarios a la base de datos
@@ -97,6 +143,9 @@ class AuthenticationController extends GetxController {
       "email": email,
       "nombre": nombre,
       "firma":firma,
+      "arl":arl,
+      "eps":eps,
+      "telefono":telefono,
       "password":
       encrypter.encrypt(password, iv: iv).base64
     }).then((value) => showDialog(
@@ -121,6 +170,34 @@ class AuthenticationController extends GetxController {
             (error) => debugPrint("Error al añadir usuario"));
   }
 
+  Future<void> updateData() async {
+    var users =
+    FirebaseFirestore.instance.collection("usuario");
+    var document_id = users.doc().id;
+
+    //Realizamos la consulta sobre la colección
+
+    var query = users
+        .where("cc", isEqualTo: int.parse(cc));
+
+    //Extraemos los datos de el query en cuestión
+    QuerySnapshot user = await query.get();
+    var user_ID = user.docs[0].id;
+    Future<void> updateUser() {
+      return users
+          .doc(user_ID)
+          .update({
+        "cc": cc,//int.parse(cc),
+        "email": "123456789",
+        "nombre": "Funciona",
+        "password":
+        encrypter.encrypt("1", iv: iv).base64
+      }) // <-- Updated data
+          .then((_) => print('Success'))
+          .catchError((error) => print('Failed: $error'));
+    }
+  }
+
 
   Future<bool> logout() async {
     await lp.storeData<bool>("logged", false);
@@ -129,11 +206,21 @@ class AuthenticationController extends GetxController {
 
     await lp.storeData<String>("name", "");
     await lp.storeData<String>("cc", "");
-    await lp.storeData<String>("password", " ");
+    await lp.storeData<String>("password", "");
+    await lp.storeData<String>("email", "");
+    await lp.storeData<String>("eps", "");
+    await lp.storeData<String>("arl", "");
+    await lp.storeData<String>("telefono", "");
+
     //_logged.value = true;
     setname("");
     setcc("");
     setpassword("");
+    setemail("");
+    seteps("");
+    setarl("");
+    settel("");
+
     return Future.value(true);
   }
 }

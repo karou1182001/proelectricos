@@ -24,6 +24,9 @@ class SignupPage extends StatelessWidget {
   final ccController = TextEditingController();
   final nombreController = TextEditingController();
   final emailController = TextEditingController();
+  final arlController = TextEditingController();
+  final telefonoController = TextEditingController();
+  final epsController = TextEditingController();
   final passController = TextEditingController();
   final confirmpassController = TextEditingController();
   @override
@@ -78,6 +81,9 @@ class SignupPage extends StatelessWidget {
                   inputFile(label: "CC:", controller: ccController),
                   inputFile(label: "Nombre:", controller: nombreController),
                   inputFile(label: "Email:", controller: emailController),
+                  inputFile(label: "Telefono:", controller: telefonoController),
+                  inputFile(label: "arl:", controller: arlController),
+                  inputFile(label: "eps:", controller: epsController),
                   inputFile(
                       label: "Contraseña:",
                       obscureText: true,
@@ -109,6 +115,10 @@ class SignupPage extends StatelessWidget {
                     String email = emailController.text.trim();
                     String password = passController.text.trim();
                     String cPassword = confirmpassController.text.trim();
+                    String arl = arlController.text.trim();
+                    String tel = telefonoController.text.trim();
+                    String eps = epsController.text.trim();
+
                     String firma = "Mi firma";
                     //Validamos que cada campo esté llenado
                     if (cc.isEmpty) {
@@ -127,8 +137,7 @@ class SignupPage extends StatelessWidget {
                       debugPrint("Las contraseñas no son iguales");
                     }
                     //Obtenemos la referencia a la collection "usuario"
-
-                    controller.register(cc,email,nombre,password,cPassword,firma,llave,encrypter,iv,context);
+                    controller.register(cc,email,nombre,password,cPassword,firma,arl,tel,eps,context);
                   },
                   color: proElectricosBlue,
                   elevation: 0,
