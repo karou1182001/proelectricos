@@ -11,7 +11,8 @@ import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioCinco extends StatefulWidget {
-  const FormularioCinco({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioCinco({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioCincoPage createState() => _FormularioCincoPage();
 }

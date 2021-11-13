@@ -13,7 +13,8 @@ import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioUno extends StatefulWidget {
-  const FormularioUno({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioUno({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioUnoPage createState() => _FormularioUnoPage();
 }
@@ -195,10 +196,12 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   };
                   //Función que añadirá la data al sheets
                   await FormSheets.insertar([dataForm1]);
-                  //LLeva al menu
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const MenuOptionsScreen()));
+                  //LLeva al menu (Para llevar el menu es necesario devolverse, no crear un menu nuevo)
+                  // Therefore, se debe usar pop, not push.
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (BuildContext context) =>
+                  //         const MenuOptionsScreen()));
+                  Navigator.pop(context);
                   // Process data.
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(

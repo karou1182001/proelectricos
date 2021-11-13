@@ -7,9 +7,11 @@ class JobWidget extends StatelessWidget {
     // Receives Value to display in cell, and it's respective pos in matrix
     Key? key,
     required this.jobName,
+    required this.jobNumber,
   }) : super(key: key);
 
   final String jobName;
+  final int jobNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,9 @@ class JobWidget extends StatelessWidget {
       icon: const Icon(Icons.check_box, size: 20.0, color: Color(0xff264F95)),
       press: () => {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) => const MenuOptionsScreen()))
+            builder: (BuildContext context) => MenuOptionsScreen(
+                  jobNumber: jobNumber,
+                )))
       },
     );
   }

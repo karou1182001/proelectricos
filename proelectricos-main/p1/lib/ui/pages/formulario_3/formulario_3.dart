@@ -14,7 +14,8 @@ import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 import 'components/partes/parte4_form3.dart';
 
 class FormularioTres extends StatefulWidget {
-  const FormularioTres({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioTres({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioTresPage createState() => _FormularioTresPage();
 }

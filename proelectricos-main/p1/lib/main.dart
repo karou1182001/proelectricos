@@ -15,8 +15,11 @@ import 'package:p1/ui/widgets/autenticacion/login.dart';
 
 void main() async {
   Get.put(AuthenticationController());
-  Get.put(WorkPageController());
   WidgetsFlutterBinding.ensureInitialized();
+  WorkPageController workC = WorkPageController();
+  await workC.initController();
+  Get.put(workC);
+
   await FormSheets.init();
   await FormSheets3.init();
   await Firebase.initializeApp().then((value) {
