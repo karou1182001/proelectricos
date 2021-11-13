@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
+import 'package:p1/domain/pdf/pdf_generation.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte1_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte2_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte3_form1.dart';
@@ -195,6 +196,12 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   };
                   //Función que añadirá la data al sheets
                   await FormSheets.insertar([dataForm1]);
+                  // Se genera el PDF y se almacena.
+
+                  // Reemplazar por función de generación de PDF correcta con todos los parámetros.
+                  // Dejar el mismo filename
+                  generateDummyPDF("job${widget.jobNumber}/formulario1.pdf");
+
                   //LLeva al menu (Para llevar el menu es necesario devolverse, no crear un menu nuevo)
                   // Therefore, se debe usar pop, not push.
                   // Navigator.of(context).push(MaterialPageRoute(

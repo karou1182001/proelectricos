@@ -103,7 +103,7 @@ class _FormularioDosPage extends State<FormularioDos> {
                 if (_formKey.currentState!.validate()) {
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   generateForm2PDF(
-                      "formulario2.pdf",
+                      "job${widget.jobNumber}/formulario2.pdf",
                       "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
                       nombre.text,
                       SingingCharacter.rutinario == character,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_tablaparte3_form3.dart';
+import 'package:p1/domain/pdf/pdf_generation.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/form_3_sheet.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_3.dart';
@@ -97,6 +98,7 @@ class _FormularioTresPage extends State<FormularioTres> {
                   print("Completed");
                   //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   //Data que se enviará al sheets
+
                   var arr3 =
                       List.filled(C.valorswparte3.length, '', growable: false);
                   for (var i = 0; i < C.valorswparte3.length; i++) {
@@ -151,6 +153,10 @@ class _FormularioTresPage extends State<FormularioTres> {
                   };
                   //Llamamos a la función .insertar() para que inserte la info en el sheets
                   await FormSheets3.insertar([dataForm3]);
+                  // Se genera el PDF y se almacena.
+                  // Reemplazar por función de generación de PDF correcta con todos los parámetros.
+                  // Dejar el mismo filename
+                  generateDummyPDF("job${widget.jobNumber}/formulario3.pdf");
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form4.dart';
+import 'package:p1/domain/pdf/pdf_generation.dart';
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
@@ -92,6 +93,11 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
+
+                  // Se genera el PDF y se almacena.
+                  // Reemplazar por función de generación de PDF correcta con todos los parámetros.
+                  // Dejar el mismo filename
+                  generateDummyPDF("job${widget.jobNumber}/formulario4.pdf");
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
