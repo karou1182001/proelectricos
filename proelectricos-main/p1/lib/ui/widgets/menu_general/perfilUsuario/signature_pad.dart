@@ -243,10 +243,10 @@ class _updateSignaturePadState extends State<updateSignaturePad> {
             );
 
             final signature = await exportController.toPngBytes();
-            if (signature != null) {
-              FirebaseFirestore.instance.collection("usuario").doc().update() 
+            //if (signature != null) {
+             // FirebaseFirestore.instance.collection("usuario").doc().update();
               // prefs.setString(widget.agent, base64.encode(signature));
-            }
+            //}
             exportController.dispose();
             // Get.toNamed("/SignaturePreview", arguments: widget.agent);
             Get.back();

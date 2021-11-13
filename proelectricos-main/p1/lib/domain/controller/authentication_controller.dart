@@ -10,6 +10,8 @@ final encrypter = enc.Encrypter(enc.AES(llave));
 final iv = enc.IV.fromLength(16);
 
 class AuthenticationController extends GetxController {
+
+
   LocalPreferences lp = LocalPreferences();
 
   var _logged = false.obs;
@@ -39,22 +41,18 @@ class AuthenticationController extends GetxController {
     _name.value = l;
     update();
   }
-
   void setarl(String l) {
     _arl.value = l;
     update();
   }
-
   void seteps(String l) {
     _eps.value = l;
     update();
   }
-
   void settel(String l) {
     _telefono.value = l;
     update();
   }
-
   void setemail(String l) {
     _email.value = l;
     update();
@@ -103,9 +101,9 @@ class AuthenticationController extends GetxController {
       String password = datos['password'] ?? '';
       String email = datos['email'] ?? '';
 
-      String arl = datos['arl'] ?? '';
-      String eps = datos['eps'] ?? '';
-      String telefono = datos['telefono'] ?? '';
+      String  arl = datos['arl'] ?? '';
+      String  eps = datos['eps'] ?? '';
+      String  telefono = datos['telefono'] ?? '';
 
       String cc = c.toString();
 
@@ -126,7 +124,9 @@ class AuthenticationController extends GetxController {
       setarl(arl);
       seteps(eps);
       settel(telefono);
-    } else {
+
+    }
+    else {
       await lp.storeData<bool>("logged", false);
       //_logged.value = false;
       setLogged(false);
@@ -134,36 +134,71 @@ class AuthenticationController extends GetxController {
     return Future.value(_logged.value);
   }
 
-  Future<void> register(cc, email, nombre, password, cPassword, firma, llave,
-      encrypter, iv, context) {
-    var users = FirebaseFirestore.instance.collection("usuario");
+  Future<void> register(cc,email,nombre,password,cPassword,firma,arl,telefono,eps,context) {
+    var users =
+    FirebaseFirestore.instance.collection("usuario");
     //Función encargada de añadir usuarios a la base de datos
     return users
         .add({
-          "cc": int.parse(cc),
-          "email": email,
-          "nombre": nombre,
-          "firma": firma,
-          "password": encrypter.encrypt(password, iv: iv).base64
-        })
-        .then((value) => showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: const Text("Registro Exitoso"),
-                  content: const Text("Gracias por registrarse"),
-                  actions: <Widget>[
-                    TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomePage()));
-                        },
-                        child: const Text('OK'))
-                  ],
-                )))
-        .catchError((error) => debugPrint("Error al añadir usuario"));
+      "cc": int.parse(cc),
+      "email": email,
+      "nombre": nombre,
+      "firma":firma,
+      "arl":arl,
+      "eps":eps,
+      "telefono":telefono,
+      "password":
+      encrypter.encrypt(password, iv: iv).base64
+    }).then((value) => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Registro Exitoso"),
+          content:
+          const Text("Gracias por registrarse"),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                          const HomePage()));
+                },
+                child: const Text('OK'))
+          ],
+        )))
+        .catchError(
+            (error) => debugPrint("Error al añadir usuario"));
   }
+
+  Future<void> updateData() async {
+    var users =
+    FirebaseFirestore.instance.collection("usuario");
+    var document_id = users.doc().id;
+
+    //Realizamos la consulta sobre la colección
+
+    var query = users
+        .where("cc", isEqualTo: int.parse(cc));
+
+    //Extraemos los datos de el query en cuestión
+    QuerySnapshot user = await query.get();
+    var user_ID = user.docs[0].id;
+    Future<void> updateUser() {
+      return users
+          .doc(user_ID)
+          .update({
+        "cc": cc,//int.parse(cc),
+        "email": "123456789",
+        "nombre": "Funciona",
+        "password":
+        encrypter.encrypt("1", iv: iv).base64
+      }) // <-- Updated data
+          .then((_) => print('Success'))
+          .catchError((error) => print('Failed: $error'));
+    }
+  }
+
 
   Future<bool> logout() async {
     await lp.storeData<bool>("logged", false);
