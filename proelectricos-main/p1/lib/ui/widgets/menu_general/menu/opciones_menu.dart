@@ -73,7 +73,7 @@ class OpcionesMenu extends StatelessWidget {
             children: [
               RaisedButton(
                 onPressed: () {
-                  uploadPdf2();
+                  uploadPdf5();
                 },
                 color: proElectricosBlue,
                 padding:

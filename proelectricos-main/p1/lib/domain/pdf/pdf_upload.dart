@@ -9,7 +9,7 @@ Future<void> uploadFile(String filePath) async {
 
   try {
     await firebase_storage.FirebaseStorage.instance
-        .ref('formularios/formulario2.pdf')
+        .ref('formularios/Formulario5.pdf')
         .putFile(file);
   } on firebase_core.FirebaseException catch (e) {
     // e.g, e.code == 'canceled'
@@ -23,16 +23,16 @@ Future<String> get _localPath async {
   return directory.path;
 }
 
-void uploadPdf2() async {
+void uploadPdf5() async {
   // Check that PDF1 exists.
   String appDocs = await _localPath;
-  String form2path = appDocs + "/formulario2.pdf";
+  String form2path = appDocs + "/Formulario5.pdf";
   if (await File(form2path).exists()) {
     // upload pdf
     await uploadFile(form2path);
     // delete pdf
     await File(form2path).delete();
   } else {
-    print("Generate PDF2 first!");
+    print("Generate PDF5 first!");
   }
 }

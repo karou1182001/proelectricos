@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form5.dart';
+import 'package:p1/domain/pdf/pdf_generation5.dart';
 import 'package:p1/ui/pages/formulario_5/components/partes/parte1_form5.dart';
 import 'package:p1/ui/pages/formulario_5/components/partes/parte7_form5.dart';
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
@@ -94,6 +95,18 @@ class _FormularioCincoPage extends State<FormularioCinco> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                  generateForm5PDF(
+                    "Formulario5.pdf", 
+                    "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}", 
+                    placa.text, 
+                    SingingCharacter.grua == character, 
+                    SingingCharacter1.si == character1, 
+                    SingingCharacter2.yes == character2,
+                    certDiel.text, 
+                    certIz.text, 
+                    kilometraje.text, 
+                    horometro.text, 
+                    Get.find<ControllerForm5>());
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
