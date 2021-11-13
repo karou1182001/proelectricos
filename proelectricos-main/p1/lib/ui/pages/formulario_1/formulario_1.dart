@@ -2,11 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
-<<<<<<< HEAD
 import 'package:p1/domain/pdf/pdf_generation1.dart';
-=======
-import 'package:p1/domain/pdf/pdf_generation.dart';
->>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
 import 'package:p1/ui/pages/formulario_1/components/partes/parte1_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte2_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte3_form1.dart';
@@ -115,42 +111,41 @@ class _FormularioUnoPage extends State<FormularioUno> {
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
-                  print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   generateForm1PDF(
-                    "Formulario1.pdf", 
-                    "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}", 
-                    empresa.text, 
-                    municipio.text, 
-                    cliente.text, 
-                    jornada.text, 
-                    vehiculo.text, 
-                    distrito.text, 
-                    direccion.text, 
-                    no.text, 
-                    horaInicio.text, 
-                    horaFin.text, 
-                    descargo.text, 
-                    incidencia.text, 
-                    nic.text, 
-                    aviso.text, 
-                    numero.text, 
-                    circuito.text, 
-                    mt.text, 
-                    ct.text, 
-                    tension.text, 
-                    supervisor.text, 
-                    celSupervisor.text,
-                    agenteDescargo.text, 
-                    celAgenteDescargo.text, 
-                    nombre.text, 
-                    cedula.text, 
-                    cargo.text, 
-                    trabajoRealizado.text, 
-                    preservacion, 
-                    material.text, 
-                    cantidad.text, 
-                    nuevo.text);
+                      "Formulario1.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      empresa.text,
+                      municipio.text,
+                      cliente.text,
+                      jornada.text,
+                      vehiculo.text,
+                      distrito.text,
+                      direccion.text,
+                      no.text,
+                      horaInicio.text,
+                      horaFin.text,
+                      descargo.text,
+                      incidencia.text,
+                      nic.text,
+                      aviso.text,
+                      numero.text,
+                      circuito.text,
+                      mt.text,
+                      ct.text,
+                      tension.text,
+                      supervisor.text,
+                      celSupervisor.text,
+                      agenteDescargo.text,
+                      celAgenteDescargo.text,
+                      nombre.text,
+                      cedula.text,
+                      cargo.text,
+                      trabajoRealizado.text,
+                      preservacion,
+                      material.text,
+                      cantidad.text,
+                      nuevo.text);
                   //Se envia a Firebase y a GoogleSheets
                   var data =
                       FirebaseFirestore.instance.collection("formulario_1");
@@ -235,11 +230,6 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   };
                   //Función que añadirá la data al sheets
                   await FormSheets.insertar([dataForm1]);
-                  // Se genera el PDF y se almacena.
-
-                  // Reemplazar por función de generación de PDF correcta con todos los parámetros.
-                  // Dejar el mismo filename
-                  generateDummyPDF("job${widget.jobNumber}/formulario1.pdf");
 
                   //LLeva al menu (Para llevar el menu es necesario devolverse, no crear un menu nuevo)
                   // Therefore, se debe usar pop, not push.

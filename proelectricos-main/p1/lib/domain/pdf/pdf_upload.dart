@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/domain/controller/workpage_controller.dart';
-import 'package:path/path.dart';
 import 'dart:io';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path_provider/path_provider.dart';
@@ -24,6 +24,17 @@ Future<void> uploadFile(String filePath, String uploadPath) async {
     // e.g, e.code == 'canceled'
     print("Failed to upload file!");
   }
+}
+
+Future<void> generateDummyPDF(String filename) async {
+  // Genera PDF Vacio dummy, solo para hacer pruebas
+  // La estructura del filename y del nombre del archivo SI es la que debería seguir:
+  // job${job_number}/formulario1.pdf
+  // Ejemplo: job1/formulario1.pdf <-- Note no lleva el primer /
+
+  final PdfDocument document = PdfDocument();
+  String jobpaths = await jobPath;
+  await File(jobpaths + filename).writeAsBytes(document.save());
 }
 
 Future<bool> uploadStoredJobPDFS(int jobNumber) async {

@@ -99,9 +99,8 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
-<<<<<<< HEAD
                   generateForm4PDF(
-                    "Formulario4.pdf", 
+                    "job${widget.jobNumber}/formulario4.pdf", 
                     "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}", 
                     lider.text, 
                     ubicacion.text, 
@@ -115,13 +114,6 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                     desenergizado, 
                     energizado, 
                     Get.find<ControllerForm4>());
-=======
-
-                  // Se genera el PDF y se almacena.
-                  // Reemplazar por función de generación de PDF correcta con todos los parámetros.
-                  // Dejar el mismo filename
-                  generateDummyPDF("job${widget.jobNumber}/formulario4.pdf");
->>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
