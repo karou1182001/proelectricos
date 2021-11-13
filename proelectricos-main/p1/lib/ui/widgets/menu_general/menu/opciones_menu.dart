@@ -9,9 +9,8 @@ import 'package:p1/ui/widgetReutilizables/boton_widget.dart';
 import 'package:p1/ui/pages/formulario_3/formulario_3.dart';
 
 class OpcionesMenu extends StatelessWidget {
-  const OpcionesMenu({
-    Key? key,
-  }) : super(key: key);
+  final int jobNumber; // representa el número del trabajo de este menu
+  const OpcionesMenu({Key? key, required this.jobNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,8 @@ class OpcionesMenu extends StatelessWidget {
             icon: const Icon(Icons.feed, size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const FormularioUno()))
+                  builder: (BuildContext context) =>
+                      FormularioUno(jobNumber: jobNumber)))
             },
           ),
           BotonWidget(
@@ -34,7 +34,8 @@ class OpcionesMenu extends StatelessWidget {
             icon: const Icon(Icons.lock, size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const FormularioDos()))
+                  builder: (BuildContext context) =>
+                      FormularioDos(jobNumber: jobNumber)))
             },
           ),
           BotonWidget(
@@ -43,7 +44,8 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const FormularioTres()))
+                  builder: (BuildContext context) =>
+                      FormularioTres(jobNumber: jobNumber)))
             },
           ),
           BotonWidget(
@@ -52,7 +54,8 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const FormularioCuatro()))
+                  builder: (BuildContext context) =>
+                      FormularioCuatro(jobNumber: jobNumber)))
             },
           ),
           BotonWidget(
@@ -61,7 +64,8 @@ class OpcionesMenu extends StatelessWidget {
                 size: 20.0, color: proElectricosBlue),
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => FormularioCinco()))
+                  builder: (BuildContext context) =>
+                      FormularioCinco(jobNumber: jobNumber)))
             },
           ),
           const SizedBox(

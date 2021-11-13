@@ -10,7 +10,8 @@ import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 
 class FormularioCinco extends StatefulWidget {
-  const FormularioCinco({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioCinco({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioCincoPage createState() => _FormularioCincoPage();
 }
@@ -96,17 +97,17 @@ class _FormularioCincoPage extends State<FormularioCinco> {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   generateForm5PDF(
-                    "Formulario5.pdf", 
-                    "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}", 
-                    placa.text, 
-                    SingingCharacter.grua == character, 
-                    SingingCharacter1.si == character1, 
-                    SingingCharacter2.yes == character2,
-                    certDiel.text, 
-                    certIz.text, 
-                    kilometraje.text, 
-                    horometro.text, 
-                    Get.find<ControllerForm5>());
+                      "Formulario5.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      placa.text,
+                      SingingCharacter.grua == character,
+                      SingingCharacter1.si == character1,
+                      SingingCharacter2.yes == character2,
+                      certDiel.text,
+                      certIz.text,
+                      kilometraje.text,
+                      horometro.text,
+                      Get.find<ControllerForm5>());
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),

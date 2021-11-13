@@ -9,7 +9,8 @@ import 'package:p1/ui/pages/formulario_4/components/partes/parte2_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte3_form4.dart';
 
 class FormularioCuatro extends StatefulWidget {
-  const FormularioCuatro({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioCuatro({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioCuatroPage createState() => _FormularioCuatroPage();
 }
