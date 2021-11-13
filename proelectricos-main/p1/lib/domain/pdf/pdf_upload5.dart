@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path_provider/path_provider.dart';
 
-Future<void> uploadFile(String filePath) async {
+Future<void> uploadFile5(String filePath) async {
   File file = File(filePath);
 
   try {
@@ -29,7 +29,7 @@ void uploadPdf5() async {
   String form2path = appDocs + "/Formulario5.pdf";
   if (await File(form2path).exists()) {
     // upload pdf
-    await uploadFile(form2path);
+    await uploadFile5(form2path);
     // delete pdf
     await File(form2path).delete();
   } else {

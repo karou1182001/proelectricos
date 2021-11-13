@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form2.dart';
-import 'package:p1/domain/pdf/pdf_generation.dart';
+import 'package:p1/domain/pdf/pdf_generation2.dart';
 import 'package:p1/ui/pages/formulario_2/components/partes/parte1_form2.dart';
 import 'package:p1/ui/pages/formulario_2/components/partes/parte2_form2.dart';
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
@@ -33,22 +33,7 @@ class _FormularioDosPage extends State<FormularioDos> {
   final TextEditingController arl = TextEditingController();
   final TextEditingController eps = TextEditingController();
   final TextEditingController cargo = TextEditingController();
-  //De la parte 3 a la parte 13
-  //Vectores para booleanos
-  //Llamar al controlador
-  //ControllerForm2 C = Get.find<ControllerForm2>();
-  //Son los vectores de booleanos para las tablas
-  //C.valorswparte3 tiene valores de la tabla 3
-  //C.valorswparte4
-  //C.valorswparte5
-  //C.valorswparte6
-  //C.valorswparte7
-  //C.valorswparte8
-  //C.valorswparte9
-  //C.valorswparte10
-  //C.valorswparte11
-  //C.valorswparte12
-  //C.valorswparte13
+  
 
   @override
   void initState() {

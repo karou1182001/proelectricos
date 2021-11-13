@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_tablaparte3_form3.dart';
+import 'package:p1/domain/pdf/pdf_generation3.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/form_3_sheet.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_3.dart';
@@ -95,6 +96,21 @@ class _FormularioTresPage extends State<FormularioTres> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
+                  generateForm3PDF(
+                    "Formulario3.pdf", 
+                    "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}", 
+                    horaInicio.text, 
+                    horaFin.text, 
+                    lugarTrabajo.text, 
+                    ubicacion.text, 
+                    altura.text, 
+                    tipoTrabajoAltura.text, 
+                    nombreapellidos.text, 
+                    cedula.text, 
+                    arl.text, 
+                    eps.text, 
+                    cargo.text,  
+                    Get.find<ControllerTablasForm3>());
                   //Data que se enviará al sheets
                   var arr3 =
                       List.filled(C.valorswparte3.length, '', growable: false);
