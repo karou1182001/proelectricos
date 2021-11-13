@@ -1,8 +1,10 @@
 //Aquí puedes acceder a tu cuenta y ver las cosas predeterminadas
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:p1/common/constants.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/domain/controller/workpage_controller.dart';
+import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/imagen_perfil.dart';
 import 'package:p1/ui/widgetReutilizables/boton_widget.dart';
@@ -32,22 +34,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //Aquí va todo lo que va en la barra superior
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text("Editar perfil",
-            style: TextStyle(fontSize: 14, color: Colors.black)),
-        elevation: 1,
-        //Botón back que va a la pantalla anterior
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-          //Te regresa a la ruta inmediatamente anterior
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+      appBar: const AppBarWidget(
+        text: 'Perfil de usuario',
+        backgroundColor: Color(0xff264F95),
+        height: 60,
       ),
       //Termina todo lo que va en la barra superior
 
@@ -76,8 +66,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               buildTextField("Contraseña", "********", true),
               //PARTE DE LA FIRMA
               //Llamamos a la clase BotonWidget
-              MyButton("Firmar/Cambiar firma", "tech_signature",
-                  const Icon(Icons.feed, size: 0, color: Colors.black)),
+              const MyButton("Cambiar firma", "tech_signature",
+                  Icon(Icons.feed, size: 0, color: Colors.black)),
               BotonWidget(
                 text: "Ver firma",
                 icon: const Icon(Icons.feed, size: 0, color: Colors.black),
@@ -107,7 +97,47 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: TextStyle(fontSize: 14, color: Colors.black)),
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      print("Me presionaron");
+                      var users =
+                      FirebaseFirestore.instance.collection("usuario");
+                      print("Saque la instancia");
+                      var document_id = users.doc().id;
+
+                      //User getUser = await FirebaseAuth.instance.currentUser!;
+                      print("Saco al usuario");
+                      print(document_id);
+                      print("Su ID es");
+                      print(document_id);
+
+                      //Realizamos la consulta sobre la colección
+                      var query = users
+                          .where("cc", isEqualTo: int.parse(controller.cc));
+
+                      //Extraemos los datos de el query en cuestión
+                      QuerySnapshot user = await query.get();
+                      print("Esto es user");
+                      print(user);
+                      print("Esto es user docs 0 id ");
+                      print(user.docs[0].id);
+                      var user_ID = user.docs[0].id;
+                      Future<void> updateUser() {
+                      print("Entre a update y cambiare al usuario:");
+                      print(document_id);
+                      return users
+                          .doc(user_ID)
+                          .update({
+                      "cc": 1,//int.parse(cc),
+                      "email": "123456789",
+                      "nombre": "Funciona",
+                      "password":
+                      encrypter.encrypt("1", iv: iv).base64
+                      }) // <-- Updated data
+                          .then((_) => print('Success'))
+                          .catchError((error) => print('Failed: $error'));
+                      }
+                      updateUser();
+                    },
                     color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     elevation: 2,

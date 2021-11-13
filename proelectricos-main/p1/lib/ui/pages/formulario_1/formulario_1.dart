@@ -2,7 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
+<<<<<<< HEAD
 import 'package:p1/domain/pdf/pdf_generation1.dart';
+=======
+import 'package:p1/domain/pdf/pdf_generation.dart';
+>>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
 import 'package:p1/ui/pages/formulario_1/components/partes/parte1_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte2_form1.dart';
 import 'package:p1/ui/pages/formulario_1/components/partes/parte3_form1.dart';
@@ -11,9 +15,11 @@ import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_1.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 import 'package:p1/ui/pages/sheets/form_1_sheet.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioUno extends StatefulWidget {
-  const FormularioUno({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioUno({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioUnoPage createState() => _FormularioUnoPage();
 }
@@ -229,10 +235,18 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   };
                   //Función que añadirá la data al sheets
                   await FormSheets.insertar([dataForm1]);
-                  //LLeva al menu
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const MenuOptionsScreen()));
+                  // Se genera el PDF y se almacena.
+
+                  // Reemplazar por función de generación de PDF correcta con todos los parámetros.
+                  // Dejar el mismo filename
+                  generateDummyPDF("job${widget.jobNumber}/formulario1.pdf");
+
+                  //LLeva al menu (Para llevar el menu es necesario devolverse, no crear un menu nuevo)
+                  // Therefore, se debe usar pop, not push.
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (BuildContext context) =>
+                  //         const MenuOptionsScreen()));
+                  Navigator.pop(context);
                   // Process data.
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -340,9 +354,10 @@ class _FormularioUnoPage extends State<FormularioUno> {
         Step(
           state: currentStep > 4 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 4,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),

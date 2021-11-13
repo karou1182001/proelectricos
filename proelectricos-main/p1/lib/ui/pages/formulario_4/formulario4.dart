@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form4.dart';
+<<<<<<< HEAD
 import 'package:p1/domain/pdf/pdf_generation4.dart';
+=======
+import 'package:p1/domain/pdf/pdf_generation.dart';
+>>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte1_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte2_form4.dart';
 import 'package:p1/ui/pages/formulario_4/components/partes/parte3_form4.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioCuatro extends StatefulWidget {
-  const FormularioCuatro({Key? key}) : super(key: key);
+  final int jobNumber; // Representa a que trabajo pertenece este formulario.
+  const FormularioCuatro({Key? key, required this.jobNumber}) : super(key: key);
   @override
   _FormularioCuatroPage createState() => _FormularioCuatroPage();
 }
@@ -93,6 +99,7 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
+<<<<<<< HEAD
                   generateForm4PDF(
                     "Formulario4.pdf", 
                     "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}", 
@@ -108,6 +115,13 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                     desenergizado, 
                     energizado, 
                     Get.find<ControllerForm4>());
+=======
+
+                  // Se genera el PDF y se almacena.
+                  // Reemplazar por función de generación de PDF correcta con todos los parámetros.
+                  // Dejar el mismo filename
+                  generateDummyPDF("job${widget.jobNumber}/formulario4.pdf");
+>>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
@@ -204,9 +218,10 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
         Step(
           state: currentStep > 4 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 4,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),

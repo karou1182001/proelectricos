@@ -1,5 +1,6 @@
 import 'package:p1/domain/controller/ControllersForm3/controller_form2.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:p1/domain/pdf/pdf_upload.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -90,4 +91,15 @@ void generateForm2PDF(
   await File(appDocs + "/" + filename).writeAsBytes(document.save());
 
   document.dispose();
+}
+
+void generateDummyPDF(String filename) async {
+  // Genera PDF Vacio dummy, solo para hacer pruebas
+  // La estructura del filename y del nombre del archivo SI es la que debería seguir:
+  // job${job_number}/formulario1.pdf
+  // Ejemplo: job1/formulario1.pdf <-- Note no lleva el primer /
+
+  final PdfDocument document = PdfDocument();
+  String jobpaths = await jobPath;
+  await File(jobpaths + filename).writeAsBytes(document.save());
 }

@@ -56,10 +56,10 @@ class _SignaturePadState extends State<SignaturePad> {
   @override
   void initState() {
     super.initState();
-    //SystemChrome.setPreferredOrientations([
-    //  DeviceOrientation.landscapeRight,
-    //  DeviceOrientation.landscapeLeft,
-    //]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     controller = SignatureController(
       penStrokeWidth: 5,
       penColor: Colors.black,
@@ -69,12 +69,10 @@ class _SignaturePadState extends State<SignaturePad> {
   @override
   void dispose() {
     controller.dispose();
-    //SystemChrome.setPreferredOrientations([
-    //  DeviceOrientation.landscapeRight,
-    //  DeviceOrientation.landscapeLeft,
-     // DeviceOrientation.portraitUp,
-      //DeviceOrientation.portraitDown,
-    //]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     super.dispose();
   }
 
@@ -164,20 +162,18 @@ class _SignaturePreviewState extends State<SignaturePreview> {
   void initState() {
     super.initState();
     _getSignature();
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.landscapeRight,
-    //   DeviceOrientation.landscapeLeft,
-    //   DeviceOrientation.portraitUp,
-    //   DeviceOrientation.portraitDown,
-    // ]);
+    SystemChrome.setPreferredOrientations([
+      // DeviceOrientation.landscapeLeft,
+      // DeviceOrientation.landscapeRight,
+    ]);
   }
 
   @override
   void dispose() {
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.landscapeRight,
-    //   DeviceOrientation.landscapeLeft,
-    // ]);
+    SystemChrome.setPreferredOrientations([
+      // DeviceOrientation.portraitDown,
+      // DeviceOrientation.portraitUp,
+    ]);
     super.dispose();
   }
 
@@ -213,9 +209,11 @@ class _SignaturePreviewState extends State<SignaturePreview> {
         ),
       ),
       body: Center(
-        child: Image.memory(
-          base64.decode(_signature),
-        ),
+        child: _signature == ''
+            ? const Text('El usuario aún no ha registrado su firma')
+            : Image.memory(
+                base64.decode(_signature),
+              ),
       ),
     );
   }
