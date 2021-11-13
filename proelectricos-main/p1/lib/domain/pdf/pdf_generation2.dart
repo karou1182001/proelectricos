@@ -1,6 +1,5 @@
 import 'package:p1/domain/controller/ControllersForm3/controller_form2.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:p1/domain/pdf/pdf_upload.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -67,18 +66,6 @@ void generateForm2PDF(
   // Eléctrico
   modifyBoolField(document, 4, tElectrico, removeBorder: false);
 
-  /*¡Esta parte es importante cambiarla porque en el nuevo formato se manejan varios
-  vectores para cada sección! 
-  Dentro de la carpeta Domain/Controller/ControllersForm3/controller_Form2.dart
-  hay 11 vectores para las 11 tablas del form 2 que tienen valores booleanos en sus posiciones.
-  Dejaré mientras comentada esta parte para que no genere error el programa
-  */
-  /*for (int i = 0; i < 59; i++) {
-    modifyBoolField(document, (i) * 2 + 5 + (!cont.si[i].value ? 1 : 0), true);
-    modifyBoolField(document, (i) * 2 + 5 + (cont.si[i].value ? 1 : 0), false,
-        removeBorder: true);
-  }*/
-
   // nombre y apellido
   modifyTextField(document, 123, nombreapellidos);
   // cargo
@@ -102,15 +89,4 @@ void generateForm2PDF(
   await File(appDocs + "/" + filename).writeAsBytes(document.save());
 
   document.dispose();
-}
-
-void generateDummyPDF(String filename) async {
-  // Genera PDF Vacio dummy, solo para hacer pruebas
-  // La estructura del filename y del nombre del archivo SI es la que debería seguir:
-  // job${job_number}/formulario1.pdf
-  // Ejemplo: job1/formulario1.pdf <-- Note no lleva el primer /
-
-  final PdfDocument document = PdfDocument();
-  String jobpaths = await jobPath;
-  await File(jobpaths + filename).writeAsBytes(document.save());
 }

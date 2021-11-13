@@ -54,26 +54,25 @@ void generateForm5PDF(
   // placa
   modifyTextField(document, 1, placa);
   // GruaCanasta
-  if(GruaCanasta ){
+  if (GruaCanasta) {
     modifyBoolField(document, 2, true, removeBorder: true);
     modifyBoolField(document, 3, false, removeBorder: true);
-  }else{
+  } else {
     modifyBoolField(document, 3, true, removeBorder: true);
     modifyBoolField(document, 2, false, removeBorder: true);
   }
-  
 
-  if(tecnicomecanica){
+  if (tecnicomecanica) {
     modifyBoolField(document, 4, true, removeBorder: true);
     modifyBoolField(document, 5, false, removeBorder: true);
-  }else{
+  } else {
     modifyBoolField(document, 5, true, removeBorder: true);
     modifyBoolField(document, 4, false, removeBorder: true);
   }
-  if(soat){
+  if (soat) {
     modifyBoolField(document, 6, true, removeBorder: true);
     modifyBoolField(document, 7, false, removeBorder: true);
-  }else{
+  } else {
     modifyBoolField(document, 7, true, removeBorder: true);
     modifyBoolField(document, 6, false, removeBorder: true);
   }
@@ -81,42 +80,39 @@ void generateForm5PDF(
   modifyTextField(document, 8, certificadosPruebas);
   //Certificados izaje
   modifyTextField(document, 9, CertificadoIzajes);
-  
-  
+
   int actual = 10;
 
   for (var element in cont.valorswparte2) {
-    modifyBoolField(document, element.value ? actual: actual+1, true);
-    modifyBoolField(document, element.value ? actual+1: actual, false);
-    actual +=2;
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
   }
 
   for (var element in cont.valorswparte3) {
-    modifyBoolField(document, element.value ? actual: actual+1, true);
-    modifyBoolField(document, element.value ? actual+1: actual, false);
-    actual +=2;
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
   }
 
   for (var element in cont.valorswparte4) {
-    modifyBoolField(document, element.value ? actual: actual+1, true);
-    modifyBoolField(document, element.value ? actual+1: actual, false);
-    actual +=2;
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
   }
-  
+
   for (var element in cont.valorswparte5) {
-     modifyBoolField(document, element.value ? actual: actual+1, true);
-     modifyBoolField(document, element.value ? actual+1: actual, false);
-    actual +=2;
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
   }
 
   for (var element in cont.valorswparte6) {
-     modifyBoolField(document, element.value ? actual: actual+1, true);
-     modifyBoolField(document, element.value ? actual+1: actual, false);
-    actual +=2;
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
   }
 
-  
-  
   modifyTextField(document, actual, kilometraje);
   // horometraje
   actual += 1;
@@ -131,6 +127,4 @@ void generateForm5PDF(
 
   document.dispose();
   print("pdf creado");
-  
 }
- 
