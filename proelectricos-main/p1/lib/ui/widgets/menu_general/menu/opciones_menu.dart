@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/common/constants.dart';
@@ -82,15 +84,22 @@ class OpcionesMenu extends StatelessWidget {
             children: [
               RaisedButton(
                 onPressed: () async {
-                  if (await uploadStoredJobPDFS(jobNumber)) {
+                  try {
+                    if (await uploadStoredJobPDFS(jobNumber)
+                        .timeout(const Duration(seconds: 30))) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              'Se enviaron los formularios correctamente.')));
+                      Navigator.pop(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              'Completar todos los formularios primero!')));
+                    }
+                  } on TimeoutException catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text(
-                            'Se enviaron los formularios correctamente.')));
-                    Navigator.pop(context);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content:
-                            Text('Completar todos los formularios primero!')));
+                            'No se pudo enviar los formularios, verificar la conexión de internet.')));
                   }
                 },
                 color: proElectricosBlue,
