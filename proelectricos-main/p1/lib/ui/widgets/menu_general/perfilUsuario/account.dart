@@ -76,8 +76,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               buildTextField("Contraseña", "********", true),
               //PARTE DE LA FIRMA
               //Llamamos a la clase BotonWidget
-              MyButton("Firmar/Cambiar firma", "tech_signature",
-                  const Icon(Icons.feed, size: 0, color: Colors.black)),
+              const MyButton("Cambiar firma", "tech_signature",
+                  Icon(Icons.feed, size: 0, color: Colors.black)),
               BotonWidget(
                 text: "Ver firma",
                 icon: const Icon(Icons.feed, size: 0, color: Colors.black),

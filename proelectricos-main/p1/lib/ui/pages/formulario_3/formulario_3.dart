@@ -9,6 +9,7 @@ import 'package:p1/ui/pages/formulario_3/components/partes/parte1_form3.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
 
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 import 'components/partes/parte4_form3.dart';
 
@@ -257,9 +258,10 @@ class _FormularioTresPage extends State<FormularioTres> {
         Step(
           state: currentStep > 4 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 4,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),

@@ -8,6 +8,7 @@ import 'package:p1/ui/pages/formulario_2/components/partes/parte2_form2.dart';
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
+import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
 
 class FormularioDos extends StatefulWidget {
   const FormularioDos({Key? key}) : super(key: key);
@@ -329,9 +330,10 @@ class _FormularioDosPage extends State<FormularioDos> {
         Step(
           state: currentStep > 13 ? StepState.complete : StepState.indexed,
           isActive: currentStep >= 13,
-          title: const Text("Firmas"),
-          content: Align(
-            child: Container(),
+          title: const Text("Firma del supervisor"),
+          content: const Align(
+            child: MyButton("Firmar", "supervisor_signature",
+                Icon(Icons.feed, size: 0, color: Colors.black)),
             alignment: Alignment.center,
           ),
         ),
