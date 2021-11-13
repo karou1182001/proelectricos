@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:p1/ui/widgets/componentes/boton_widget.dart';
+import 'package:p1/ui/widgetReutilizables/boton_widget.dart';
 import 'package:p1/ui/widgets/menu_general/menu/menu.dart';
 
 class JobWidget extends StatelessWidget {
