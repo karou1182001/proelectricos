@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:p1/domain/pdf/pdf_upload1.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -27,40 +26,40 @@ void modifyBoolField(PdfDocument document, int index, bool val,
 }
 
 void generateForm1PDF(
-    String filename,
-    String fecha,
-    String empresa,
-    String municipio,
-    String cliente,
-    String jornada,
-    String vehiculo,
-    String distrito,
-    String direccion,
-    String numero,
-    String horaInicio,
-    String horaFinal,
-    String descargo,
-    String incidencia,
-    String nic,
-    String aviso,
-    String numero2,
-    String circuito,
-    String mt,
-    String ct,
-    String tension,
-    String supervisor,
-    String celularsup,
-    String agentedes,
-    String celularagn,
-    String nombre,
-    String cedula,
-    String cargo,
-    String trabajo,
-    bool preservacion,
-    String material,
-    String cantidad,
-    String nuevo,
-    ) async {
+  String filename,
+  String fecha,
+  String empresa,
+  String municipio,
+  String cliente,
+  String jornada,
+  String vehiculo,
+  String distrito,
+  String direccion,
+  String numero,
+  String horaInicio,
+  String horaFinal,
+  String descargo,
+  String incidencia,
+  String nic,
+  String aviso,
+  String numero2,
+  String circuito,
+  String mt,
+  String ct,
+  String tension,
+  String supervisor,
+  String celularsup,
+  String agentedes,
+  String celularagn,
+  String nombre,
+  String cedula,
+  String cargo,
+  String trabajo,
+  bool preservacion,
+  String material,
+  String cantidad,
+  String nuevo,
+) async {
   var bytedatas = await rootBundle.load('assets/form1template_fillable.pdf');
   final buffer = bytedatas.buffer;
   final PdfDocument document = PdfDocument(
@@ -128,24 +127,21 @@ void generateForm1PDF(
   modifyTextField(document, 27, trabajo);
 
   // GruaCanasta
-  if(preservacion){
+  if (preservacion) {
     modifyBoolField(document, 28, true, removeBorder: true);
     modifyBoolField(document, 29, false, removeBorder: true);
-  }else{
+  } else {
     modifyBoolField(document, 29, true, removeBorder: true);
     modifyBoolField(document, 28, false, removeBorder: true);
   }
-  
 
-  
   //Certificados dieléctricas
   modifyTextField(document, 30, material);
   //Certificados izaje
   modifyTextField(document, 31, cantidad);
-  
-  
+
   modifyTextField(document, 32, nuevo);
-  
+
   for (int i = 0; i < document.form.fields.count; i++) {
     document.form.fields[i].readOnly = true;
   }
@@ -155,6 +151,4 @@ void generateForm1PDF(
 
   document.dispose();
   print("pdf creado");
-  
 }
- 

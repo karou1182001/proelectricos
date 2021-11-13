@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form4.dart';
-<<<<<<< HEAD
 import 'package:p1/domain/pdf/pdf_generation4.dart';
-=======
-import 'package:p1/domain/pdf/pdf_generation.dart';
->>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
 import 'package:p1/ui/widgetReutilizables/Campos/campos_formularios.dart';
 import 'package:p1/ui/widgetReutilizables/app_bar.dart';
 import 'package:p1/ui/widgetReutilizables/tablas_form.dart';
@@ -40,7 +36,7 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
   final bool desenergizado = true;
   final bool energizado = false;
   //Parte4 form 4
-  
+
   //Vectores para booleanos
   //Llamar al controlador
   //ControllerForm4 C = Get.find<ControllerForm4>();
@@ -99,29 +95,21 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                 if (_formKey.currentState!.validate()) {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
-<<<<<<< HEAD
                   generateForm4PDF(
-                    "Formulario4.pdf", 
-                    "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}", 
-                    lider.text, 
-                    ubicacion.text, 
-                    contratista.text, 
-                    nombreapellidos.text, 
-                    cedula.text, 
-                    arl.text, 
-                    eps.text, 
-                    cargo.text, 
-                    trabajoRealizado.text, 
-                    desenergizado, 
-                    energizado, 
-                    Get.find<ControllerForm4>());
-=======
-
-                  // Se genera el PDF y se almacena.
-                  // Reemplazar por función de generación de PDF correcta con todos los parámetros.
-                  // Dejar el mismo filename
-                  generateDummyPDF("job${widget.jobNumber}/formulario4.pdf");
->>>>>>> 119981a914db3b07b8647d096bfad0b773c86e64
+                      "job${widget.jobNumber}/formulario4.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      lider.text,
+                      ubicacion.text,
+                      contratista.text,
+                      nombreapellidos.text,
+                      cedula.text,
+                      arl.text,
+                      eps.text,
+                      cargo.text,
+                      trabajoRealizado.text,
+                      desenergizado,
+                      energizado,
+                      Get.find<ControllerForm4>());
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),

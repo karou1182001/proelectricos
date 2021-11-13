@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:p1/domain/controller/ControllersForm3/controller_form4.dart';
-import 'package:p1/domain/pdf/pdf_upload4.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -72,19 +71,16 @@ void generateForm4PDF(
 
   modifyTextField(document, 9, tipoTrabajo);
 
-
   modifyBoolField(document, 10, trabajoDesenergizado, removeBorder: true);
   modifyBoolField(document, 11, trabajoEnergizado, removeBorder: true);
-  
-  
+
   int actual = 12;
 
   for (var element in cont.valorswparte4) {
-    modifyBoolField(document, element.value ? actual: actual+1, true);
-    modifyBoolField(document, element.value ? actual+1: actual, false);
-    actual +=2;
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
   }
-  
 
   for (int i = 0; i < document.form.fields.count; i++) {
     document.form.fields[i].readOnly = true;
@@ -95,6 +91,4 @@ void generateForm4PDF(
 
   document.dispose();
   print("pdf creado");
-  
 }
- 
