@@ -96,7 +96,7 @@ class AuthenticationController extends GetxController {
       "cc": int.parse(cc),
       "email": email,
       "nombre": nombre,
-      //"firma":firma,
+      "firma":firma,
       "password":
       encrypter.encrypt(password, iv: iv).base64
     }).then((value) => showDialog(
