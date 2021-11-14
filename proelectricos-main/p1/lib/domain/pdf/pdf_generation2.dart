@@ -36,16 +36,16 @@ void generateForm2PDF(
     String filename,
     String fecha,
     String nombre,
+    String trabajorealizado,
     bool rutinario,
     bool noRutinario,
     bool tAltura,
     bool tElectrico,
-    String trabajo,
     String nombreapellidos,
-    String cargo,
     String cedula,
     String arl,
     String eps,
+    String cargo,
     ControllerForm2 cont) async {
   var bytedatas = await rootBundle.load('assets/form2template_fillable.pdf');
   final buffer = bytedatas.buffer;
@@ -62,17 +62,35 @@ void generateForm2PDF(
   //   print("--------------");
   // }
   // Nombre
-  modifyTextField(document, 0, nombre);
-  // Rutinario
-  modifyBoolField(document, 1, rutinario, removeBorder: false);
-  // No Rutinario
-  modifyBoolField(document, 2, noRutinario, removeBorder: false);
-  // tAltura
-  modifyBoolField(document, 3, tAltura, removeBorder: false);
-  // Eléctrico
-  modifyBoolField(document, 4, tElectrico, removeBorder: false);
+  modifyTextField(document, 0, fecha);
 
+  modifyTextField(document, 1, nombre);
+
+  modifyTextField(document, 2, trabajorealizado);
+  // Rutinario
+  modifyBoolField(document, 3, rutinario, removeBorder: false);
+  // No Rutinario
+  modifyBoolField(document, 4, noRutinario, removeBorder: false);
+  // tAltura
+  modifyBoolField(document, 5, tAltura, removeBorder: false);
+  // Eléctrico
+  modifyBoolField(document, 6, tElectrico, removeBorder: false);
+
+  modifyTextField(document, 7, nombreapellidos);
+
+  modifyTextField(document, 8, cedula);
+
+  modifyTextField(document, 9, arl);
+
+  modifyTextField(document, 10, eps);
+
+<<<<<<< HEAD
   int actual = 5;
+=======
+  modifyTextField(document, 11, cargo);
+
+  int actual = 12;
+>>>>>>> 56445b8db5dd637b816da25c4f8b048b1c4052dd
 
   for (var element in cont.valorswparte3) {
     modifyBoolField(document, element.value ? actual : actual + 1, true);
@@ -140,6 +158,7 @@ void generateForm2PDF(
     actual += 2;
   }
 
+<<<<<<< HEAD
   modifyTextField(document, actual + 1, nombreapellidos);
   // // cargo
   modifyTextField(document, actual + 2, cargo);
@@ -153,6 +172,8 @@ void generateForm2PDF(
   modifyTextField(document, actual + 6, fecha);
   // // Trabajo Realizado
   modifyTextField(document, actual + 7, trabajo);
+=======
+>>>>>>> 56445b8db5dd637b816da25c4f8b048b1c4052dd
 
   for (int i = 0; i < document.form.fields.count; i++) {
     document.form.fields[i].readOnly = true;

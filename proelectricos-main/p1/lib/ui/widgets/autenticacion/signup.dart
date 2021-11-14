@@ -30,6 +30,8 @@ class SignupPage extends StatelessWidget {
   final epsController = TextEditingController();
   final passController = TextEditingController();
   final confirmpassController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,7 +121,12 @@ class SignupPage extends StatelessWidget {
                     String nombre = nombreController.text.trim();
                     String email = emailController.text.trim();
                     String password = passController.text.trim();
+                    String arl = arlController.text.trim();
+                    String  eps = epsController.text.trim();
+                    String telefono = telefonoController.text.trim();
                     String cPassword = confirmpassController.text.trim();
+
+                    //
                     String firma = sig!;
                     //Validamos que cada campo esté llenado
                     if (cc.isEmpty) {
@@ -140,7 +147,7 @@ class SignupPage extends StatelessWidget {
                     //Obtenemos la referencia a la collection "usuario"
 
                     controller.register(cc, email, nombre, password, cPassword,
-                        firma, llave, encrypter, iv, context);
+                        firma, arl, telefono, eps, context);
                   },
                   color: proElectricosBlue,
                   elevation: 0,

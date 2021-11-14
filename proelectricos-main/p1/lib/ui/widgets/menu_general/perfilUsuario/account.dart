@@ -30,6 +30,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   bool showPassword = false;
 
+  final nameController = TextEditingController();
+  final ccController = TextEditingController();
+  final emailController = TextEditingController();
+  final arlController = TextEditingController();
+  final epsController = TextEditingController();
+  final telefonoController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,13 +68,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 35,
               ),
+              inputFile(label: "Nombre completo:",placeholder: controller.name, controller: nameController),
+              inputFile(label: "Nombre completo:",placeholder: controller.cc, controller: ccController),
+              inputFile(label: "email:",placeholder: controller.email, controller: emailController),
+              inputFile(label: "arl:",placeholder: controller.arl, controller: arlController),
+              inputFile(label: "eps:",placeholder: controller.eps, controller: epsController),
+              inputFile(label: "tel:",placeholder: controller.tel, controller: telefonoController),
 
-              buildTextField("Nombre completo", controller.name, false),
-              buildTextField("CC", controller.cc, false),
-              buildTextField("Email", controller.email, false),
-              buildTextField("arl", controller.arl, false),
-              buildTextField("eps", controller.eps, false),
-              buildTextField("telefono", controller.tel, false),
+              //buildTextField("Nombre completo", controller.name, false),
+             // buildTextField("CC", controller.cc, false),
+              //buildTextField("Email", controller.email, false),
+              //buildTextField("arl", controller.arl, false),
+              //buildTextField("eps", controller.eps, false),
+              //buildTextField("telefono", controller.tel, false),
 
               buildTextField("Contraseña", "********", true),
 
@@ -102,7 +116,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   RaisedButton(
                     onPressed: () async {
-                      controller.updateData();
+                      print("Me presionaron");
+                      String cc = ccController.text.trim();
+                      String nombre = nameController.text.trim();
+                      String email = emailController.text.trim();
+                      //String password = passController.text.trim();
+                      String arl = arlController.text.trim();
+                      String  eps = epsController.text.trim();
+                      String telefono = telefonoController.text.trim();
+                      String firma = "hola";
+                      print("Voy a update");
+                      controller.updateData(email, telefono, arl, eps, firma);
                     },
                     color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -156,4 +180,34 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
     );
   }
+}
+Widget inputFile({label,placeholder, obscureText = false, controller}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Text(
+        label,
+        style: const TextStyle(
+            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
+      ),
+      const SizedBox(
+        height: 5,
+      ),
+      TextField(
+        obscureText: obscureText,
+        controller: controller,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            hintText: placeholder,
+            border:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
+      ),
+      const SizedBox(
+        height: 10,
+      )
+    ],
+  );
 }
