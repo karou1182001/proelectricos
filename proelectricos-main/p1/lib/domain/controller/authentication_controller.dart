@@ -171,32 +171,36 @@ class AuthenticationController extends GetxController {
             (error) => debugPrint("Error al añadir usuario"));
   }
 
-  Future<void> updateData() async {
+  Future<void> updateData(email_nuevo,tel_nuevo,arl_nuevo,eps_nueva,firma_nueva) async {
+    print("Empiezo a updetear");
     var users =
     FirebaseFirestore.instance.collection("usuario");
-    var document_id = users.doc().id;
-
     //Realizamos la consulta sobre la colección
-
     var query = users
         .where("cc", isEqualTo: int.parse(cc));
 
     //Extraemos los datos de el query en cuestión
     QuerySnapshot user = await query.get();
     var user_ID = user.docs[0].id;
-    Future<void> updateUser() {
-      return users
-          .doc(user_ID)
-          .update({
-        "cc": cc,//int.parse(cc),
-        "email": "123456789",
-        "nombre": "Funciona",
-        "password":
-        encrypter.encrypt("1", iv: iv).base64
+    print("Cambiare los datos del usuario:");
+    print(user_ID);
+    print(user.docs[0].data());
+    return users
+        .doc(user_ID)
+        .update({
+      "cc": int.parse(cc),
+      "email": email_nuevo,
+      "nombre": name,
+      "firma":firma_nueva,
+      "arl":arl_nuevo,
+      "eps":eps_nueva,
+      "telefono":tel_nuevo,
+      "password":
+      encrypter.encrypt(password, iv: iv).base64
       }) // <-- Updated data
           .then((_) => print('Success'))
           .catchError((error) => print('Failed: $error'));
-    }
+
   }
 
 
