@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'dart:ui';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:p1/data/local_preferences.dart';
 import 'package:p1/domain/controller/ControllersForm3/controller_form4.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -49,7 +55,7 @@ void generateForm4PDF(
 
   document.form.exportEmptyFields = true;
   document.form.setDefaultAppearance(true);
-   for (int i = 0; i < document.form.fields.count; i++) {
+  for (int i = 0; i < document.form.fields.count; i++) {
     print(document.form.fields[i]);
     print(i);
   }
@@ -88,12 +94,46 @@ void generateForm4PDF(
   for (int i = 0; i < document.form.fields.count; i++) {
     document.form.fields[i].readOnly = true;
   }
-  
+
+  // Firma Supervisor
+  final prefs = await SharedPreferences.getInstance();
+  final stringSupervisorSignature = prefs.getString('supervisor_signature');
+  var byteSupervisorSignature = base64.decode(stringSupervisorSignature!);
+
+  //Load the image using PdfBitmap.
+  final PdfBitmap supervisorImage = PdfBitmap(byteSupervisorSignature);
+  //Draw the image to the PDF page.
+  document.pages
+      .add()
+      .graphics
+      .drawImage(supervisorImage, const Rect.fromLTWH(0, 0, 500, 200));
+
+  // Firma Tecnico
+  LocalPreferences lp = LocalPreferences();
+  String cc = await lp.retrieveData<String>("cc") ?? "";
+  var users = FirebaseFirestore.instance.collection("usuario");
+  var document_id = users.doc().id;
+  var query = users.where("cc", isEqualTo: int.parse(cc));
+  QuerySnapshot user = await query.get();
+  var user_ID = user.docs[0].id;
+  final stringTechSignature = await users.doc(user_ID).get().then((value) {
+    return value.data()!['firma']; // Access your after your get the data
+  });
+
+  var byteTechSignature = base64.decode(stringTechSignature);
+
+  //Load the image using PdfBitmap.
+  final PdfBitmap techImage = PdfBitmap(byteTechSignature);
+  //Draw the image to the PDF page.
+  document.pages
+      .add()
+      .graphics
+      .drawImage(techImage, const Rect.fromLTWH(0, 0, 500, 200));
+
   String appDocs = await _localPath;
   // print(appDocs + "/" + filename);
   await File(appDocs + "/" + filename).writeAsBytes(document.save());
 
   document.dispose();
   print("pdf creado");
-  
 }
