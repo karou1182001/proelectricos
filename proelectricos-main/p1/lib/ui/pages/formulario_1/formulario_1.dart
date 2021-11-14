@@ -238,6 +238,13 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   //         const MenuOptionsScreen()));
                   Navigator.pop(context);
                   // Process data.
+
+                  //Enviamos un mensaje que le indique al ususario que el formulario
+                  //ha sido llenado exitosamente
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('¡Formulario llenado con éxito!')),
+                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),

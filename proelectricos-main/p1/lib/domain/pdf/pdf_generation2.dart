@@ -84,13 +84,9 @@ void generateForm2PDF(
 
   modifyTextField(document, 10, eps);
 
-<<<<<<< HEAD
-  int actual = 5;
-=======
   modifyTextField(document, 11, cargo);
 
   int actual = 12;
->>>>>>> 56445b8db5dd637b816da25c4f8b048b1c4052dd
 
   for (var element in cont.valorswparte3) {
     modifyBoolField(document, element.value ? actual : actual + 1, true);
@@ -157,23 +153,6 @@ void generateForm2PDF(
     modifyBoolField(document, element.value ? actual + 1 : actual, false);
     actual += 2;
   }
-
-<<<<<<< HEAD
-  modifyTextField(document, actual + 1, nombreapellidos);
-  // // cargo
-  modifyTextField(document, actual + 2, cargo);
-  // // cedula
-  modifyTextField(document, actual + 3, cedula);
-  // // ARL
-  modifyTextField(document, actual + 4, arl);
-  // // EPS
-  modifyTextField(document, actual + 5, eps);
-  // // Fecha
-  modifyTextField(document, actual + 6, fecha);
-  // // Trabajo Realizado
-  modifyTextField(document, actual + 7, trabajo);
-=======
->>>>>>> 56445b8db5dd637b816da25c4f8b048b1c4052dd
 
   for (int i = 0; i < document.form.fields.count; i++) {
     document.form.fields[i].readOnly = true;

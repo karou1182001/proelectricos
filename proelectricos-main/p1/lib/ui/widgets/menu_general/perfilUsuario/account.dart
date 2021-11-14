@@ -37,15 +37,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final epsController = TextEditingController();
   final telefonoController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //Aquí va todo lo que va en la barra superior
-      appBar: const AppBarWidget(
-        text: 'Perfil de usuario',
-        backgroundColor: Color(0xff264F95),
-        height: 60,
+      appBar: AppBar(
+        backgroundColor: proElectricosBlue,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          //Te regresa a la ruta inmediatamente anterior
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text("Perfil de usuario",
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.white,
+            )),
       ),
       //Termina todo lo que va en la barra superior
 
@@ -68,15 +81,33 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 35,
               ),
-              inputFile(label: "Nombre completo:",placeholder: controller.name, controller: nameController),
-              inputFile(label: "Nombre completo:",placeholder: controller.cc, controller: ccController),
-              inputFile(label: "email:",placeholder: controller.email, controller: emailController),
-              inputFile(label: "arl:",placeholder: controller.arl, controller: arlController),
-              inputFile(label: "eps:",placeholder: controller.eps, controller: epsController),
-              inputFile(label: "tel:",placeholder: controller.tel, controller: telefonoController),
+              inputFile(
+                  label: "Nombre completo:",
+                  placeholder: controller.name,
+                  controller: nameController),
+              inputFile(
+                  label: "Nombre completo:",
+                  placeholder: controller.cc,
+                  controller: ccController),
+              inputFile(
+                  label: "email:",
+                  placeholder: controller.email,
+                  controller: emailController),
+              inputFile(
+                  label: "arl:",
+                  placeholder: controller.arl,
+                  controller: arlController),
+              inputFile(
+                  label: "eps:",
+                  placeholder: controller.eps,
+                  controller: epsController),
+              inputFile(
+                  label: "tel:",
+                  placeholder: controller.tel,
+                  controller: telefonoController),
 
               //buildTextField("Nombre completo", controller.name, false),
-             // buildTextField("CC", controller.cc, false),
+              // buildTextField("CC", controller.cc, false),
               //buildTextField("Email", controller.email, false),
               //buildTextField("arl", controller.arl, false),
               //buildTextField("eps", controller.eps, false),
@@ -122,7 +153,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       String email = emailController.text.trim();
                       //String password = passController.text.trim();
                       String arl = arlController.text.trim();
-                      String  eps = epsController.text.trim();
+                      String eps = epsController.text.trim();
                       String telefono = telefonoController.text.trim();
                       String firma = "hola";
                       print("Voy a update");
@@ -181,7 +212,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 }
-Widget inputFile({label,placeholder, obscureText = false, controller}) {
+
+Widget inputFile({label, placeholder, obscureText = false, controller}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -197,13 +229,14 @@ Widget inputFile({label,placeholder, obscureText = false, controller}) {
         obscureText: obscureText,
         controller: controller,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey),
             ),
             hintText: placeholder,
             border:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
       ),
       const SizedBox(
         height: 10,

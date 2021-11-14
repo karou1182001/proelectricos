@@ -39,21 +39,12 @@ Future<void> generateDummyPDF(String filename) async {
 
 Future<bool> uploadStoredJobPDFS(int jobNumber) async {
   // generate all 5 pdfs for testing.
-<<<<<<< HEAD
-  await generateDummyPDF("job$jobNumber/formulario1.pdf");
-  await generateDummyPDF("job$jobNumber/formulario2.pdf");
-  await generateDummyPDF("job$jobNumber/formulario3.pdf");
-  await generateDummyPDF("job$jobNumber/formulario4.pdf");
-  await generateDummyPDF("job$jobNumber/formulario5.pdf");
-  print("generated dummies!");
-=======
   //await generateDummyPDF("job$jobNumber/formulario1.pdf");
   //await generateDummyPDF("job$jobNumber/formulario2.pdf");
   //await generateDummyPDF("job$jobNumber/formulario3.pdf");
   //await generateDummyPDF("job$jobNumber/formulario4.pdf");
   //await generateDummyPDF("job$jobNumber/formulario5.pdf");
   //print("generated dummies!");
->>>>>>> 56445b8db5dd637b816da25c4f8b048b1c4052dd
   // Check that all 5 pdf's exists.
 
   String jobpath = await jobPath;

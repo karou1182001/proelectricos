@@ -35,7 +35,6 @@ class _FormularioDosPage extends State<FormularioDos> {
   final TextEditingController arl = TextEditingController();
   final TextEditingController eps = TextEditingController();
   final TextEditingController cargo = TextEditingController();
-  
 
   @override
   void initState() {
@@ -89,20 +88,26 @@ class _FormularioDosPage extends State<FormularioDos> {
                 if (_formKey.currentState!.validate()) {
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   generateForm2PDF(
-                    "jobs/job${widget.jobNumber}/formulario2.pdf",
-                    "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
-                    nombre.text,
-                    trabajo.text,
-                    SingingCharacter.rutinario == character, 
-                    SingingCharacter.noRutinario == character, 
-                    SingingCharacter1.tAltura == character1, 
-                    SingingCharacter1.tElectrico == character1, 
-                    nombreapellidos.text,  
-                    cedula.text, 
-                    arl.text, 
-                    eps.text,
-                    cargo.text, 
-                    Get.find<ControllerForm2>());
+                      "jobs/job${widget.jobNumber}/formulario2.pdf",
+                      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
+                      nombre.text,
+                      trabajo.text,
+                      SingingCharacter.rutinario == character,
+                      SingingCharacter.noRutinario == character,
+                      SingingCharacter1.tAltura == character1,
+                      SingingCharacter1.tElectrico == character1,
+                      nombreapellidos.text,
+                      cedula.text,
+                      arl.text,
+                      eps.text,
+                      cargo.text,
+                      Get.find<ControllerForm2>());
+                  //Enviamos un mensaje que le indique al ususario que el formulario
+                  //ha sido llenado exitosamente
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('¡Formulario llenado con éxito!')),
+                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),

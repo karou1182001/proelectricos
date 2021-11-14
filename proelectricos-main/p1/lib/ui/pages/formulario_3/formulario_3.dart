@@ -176,6 +176,12 @@ class _FormularioTresPage extends State<FormularioTres> {
                   };
                   //Llamamos a la función .insertar() para que inserte la info en el sheets
                   await FormSheets3.insertar([dataForm3]);
+                  //Enviamos un mensaje que le indique al ususario que el formulario
+                  //ha sido llenado exitosamente
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('¡Formulario llenado con éxito!')),
+                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
