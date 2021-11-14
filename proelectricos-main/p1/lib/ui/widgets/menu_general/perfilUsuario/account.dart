@@ -77,9 +77,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               BotonWidget(
                 text: "Ver firma",
                 icon: const Icon(Icons.feed, size: 0, color: Colors.black),
-                press: () => {
-                  Get.toNamed('/SignaturePreview', arguments: 'tech_signature')
-                },
+                press: () => {Get.toNamed('/SignaturePreview')},
               ),
               BotonWidget(
                 text: "Cerrar sesión",
