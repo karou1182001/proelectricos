@@ -30,16 +30,16 @@ void generateForm2PDF(
     String filename,
     String fecha,
     String nombre,
+    String trabajorealizado,
     bool rutinario,
     bool noRutinario,
     bool tAltura,
     bool tElectrico,
-    String trabajo,
     String nombreapellidos,
-    String cargo,
     String cedula,
     String arl,
     String eps,
+    String cargo,
     ControllerForm2 cont) async {
   var bytedatas = await rootBundle.load('assets/form2template_fillable.pdf');
   final buffer = bytedatas.buffer;
@@ -56,30 +56,98 @@ void generateForm2PDF(
   //   print("--------------");
   // }
   // Nombre
-  modifyTextField(document, 0, nombre);
-  // Rutinario
-  modifyBoolField(document, 1, rutinario, removeBorder: false);
-  // No Rutinario
-  modifyBoolField(document, 2, noRutinario, removeBorder: false);
-  // tAltura
-  modifyBoolField(document, 3, tAltura, removeBorder: false);
-  // Eléctrico
-  modifyBoolField(document, 4, tElectrico, removeBorder: false);
+  modifyTextField(document, 0, fecha);
 
-  // nombre y apellido
-  modifyTextField(document, 123, nombreapellidos);
-  // cargo
-  modifyTextField(document, 124, cargo);
-  // cedula
-  modifyTextField(document, 125, cedula);
-  // ARL
-  modifyTextField(document, 126, arl);
-  // EPS
-  modifyTextField(document, 127, eps);
-  // Fecha
-  modifyTextField(document, 128, fecha);
-  // Trabajo Realizado
-  modifyTextField(document, 129, trabajo);
+  modifyTextField(document, 1, nombre);
+
+  modifyTextField(document, 2, trabajorealizado);
+  // Rutinario
+  modifyBoolField(document, 3, rutinario, removeBorder: false);
+  // No Rutinario
+  modifyBoolField(document, 4, noRutinario, removeBorder: false);
+  // tAltura
+  modifyBoolField(document, 5, tAltura, removeBorder: false);
+  // Eléctrico
+  modifyBoolField(document, 6, tElectrico, removeBorder: false);
+
+  modifyTextField(document, 7, nombreapellidos);
+
+  modifyTextField(document, 8, cedula);
+
+  modifyTextField(document, 9, arl);
+
+  modifyTextField(document, 10, eps);
+
+  modifyTextField(document, 11, cargo);
+
+  int actual = 12;
+
+  for (var element in cont.valorswparte3) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte4) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte5) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte6) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte7) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte8) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte9) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte10) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte11) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte12) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte13) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
 
   for (int i = 0; i < document.form.fields.count; i++) {
     document.form.fields[i].readOnly = true;

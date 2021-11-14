@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:p1/data/local_preferences.dart';
 import 'package:signature/signature.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,7 +30,7 @@ class _MyButtonState extends State<MyButton> {
           backgroundColor: const Color(0xFFF5F6F9),
         ),
         onPressed: () {
-          if (widget.text == 'Cambiar Firma' &&
+          if (widget.text == 'Cambiar firma' &&
               widget.agent == 'tech_signature') {
             Get.toNamed("/UpdateSignaturePad", arguments: widget.agent);
           } else {
@@ -243,10 +244,18 @@ class _updateSignaturePadState extends State<updateSignaturePad> {
             );
 
             final signature = await exportController.toPngBytes();
-            //if (signature != null) {
-             // FirebaseFirestore.instance.collection("usuario").doc().update();
+            if (signature != null) {
+              LocalPreferences lp = LocalPreferences();
+              String cc = await lp.retrieveData<String>("cc") ?? "";
+              var users = FirebaseFirestore.instance.collection("usuario");
+              var document_id = users.doc().id;
+              var query = users.where("cc", isEqualTo: int.parse(cc));
+              QuerySnapshot user = await query.get();
+              var user_ID = user.docs[0].id;
+              users.doc(user_ID).update({"firma": base64.encode(signature)});
+
               // prefs.setString(widget.agent, base64.encode(signature));
-            //}
+            }
             exportController.dispose();
             // Get.toNamed("/SignaturePreview", arguments: widget.agent);
             Get.back();
@@ -263,7 +272,6 @@ class _updateSignaturePadState extends State<updateSignaturePad> {
 }
 
 class SignaturePreview extends StatefulWidget {
-  final String agent = Get.arguments;
   @override
   _SignaturePreviewState createState() => _SignaturePreviewState();
 }
@@ -290,11 +298,23 @@ class _SignaturePreviewState extends State<SignaturePreview> {
   }
 
   Future<void> _getSignature() async {
-    final prefs = await SharedPreferences.getInstance();
-    final sig = prefs.getString(widget.agent);
-    if (sig != null) {
-      setState(() => _signature = sig);
-    }
+    LocalPreferences lp = LocalPreferences();
+    String cc = await lp.retrieveData<String>("cc") ?? "";
+    var users = FirebaseFirestore.instance.collection("usuario");
+    var document_id = users.doc().id;
+    var query = users.where("cc", isEqualTo: int.parse(cc));
+    QuerySnapshot user = await query.get();
+    var user_ID = user.docs[0].id;
+    final sig = await users.doc(user_ID).get().then((value) {
+      return value.data()!['firma']; // Access your after your get the data
+    });
+    setState(() => _signature = sig);
+
+    // final prefs = await SharedPreferences.getInstance();
+    // final sig = prefs.getString();
+    // if (sig != null) {
+    //   setState(() => _signature = sig);
+    // }
   }
 
   _SignaturePreviewState() {
@@ -322,7 +342,7 @@ class _SignaturePreviewState extends State<SignaturePreview> {
       ),
       body: Center(
         child: _signature == ''
-            ? const Text('El usuario aún no ha registrado su firma')
+            ? const Text('Cargando ...')
             : Image.memory(
                 base64.decode(_signature),
               ),

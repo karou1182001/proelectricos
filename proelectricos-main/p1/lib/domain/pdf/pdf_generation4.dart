@@ -49,7 +49,10 @@ void generateForm4PDF(
 
   document.form.exportEmptyFields = true;
   document.form.setDefaultAppearance(true);
-
+   for (int i = 0; i < document.form.fields.count; i++) {
+    print(document.form.fields[i]);
+    print(i);
+  }
   // Fecha
   modifyTextField(document, 0, fecha);
   // placa
@@ -85,10 +88,12 @@ void generateForm4PDF(
   for (int i = 0; i < document.form.fields.count; i++) {
     document.form.fields[i].readOnly = true;
   }
+  
   String appDocs = await _localPath;
   // print(appDocs + "/" + filename);
   await File(appDocs + "/" + filename).writeAsBytes(document.save());
 
   document.dispose();
   print("pdf creado");
+  
 }

@@ -24,9 +24,9 @@ class _FormularioUnoPage extends State<FormularioUno> {
   int currentStep = 0;
   final _formKey = GlobalKey<FormState>();
   //Parte 1 form 1
+  DateTime pickedDate = DateTime.now();
   final TextEditingController empresa = TextEditingController();
   final TextEditingController municipio = TextEditingController();
-  DateTime pickedDate = DateTime.now();
   final TextEditingController cliente = TextEditingController();
   final TextEditingController jornada = TextEditingController();
   final TextEditingController vehiculo = TextEditingController();
@@ -113,7 +113,7 @@ class _FormularioUnoPage extends State<FormularioUno> {
                 if (_formKey.currentState!.validate()) {
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   generateForm1PDF(
-                      "Formulario1.pdf",
+                      "jobs/job${widget.jobNumber}/formulario1.pdf",
                       "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
                       empresa.text,
                       municipio.text,

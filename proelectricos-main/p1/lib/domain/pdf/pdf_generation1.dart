@@ -127,12 +127,12 @@ void generateForm1PDF(
   modifyTextField(document, 27, trabajo);
 
   // GruaCanasta
-  if (preservacion) {
-    modifyBoolField(document, 28, true, removeBorder: true);
-    modifyBoolField(document, 29, false, removeBorder: true);
-  } else {
+  if (preservacion == true) {
     modifyBoolField(document, 29, true, removeBorder: true);
     modifyBoolField(document, 28, false, removeBorder: true);
+  } else {
+    modifyBoolField(document, 28, true, removeBorder: true);
+    modifyBoolField(document, 29, false, removeBorder: true);
   }
 
   //Certificados dieléctricas
