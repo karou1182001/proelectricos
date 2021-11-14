@@ -41,7 +41,7 @@ void generateForm3PDF(
     String eps,
     String cargo,
     ControllerTablasForm3 cont) async {
-  var bytedatas = await rootBundle.load('assets/form3Rtemplate_fillable.pdf');
+  var bytedatas = await rootBundle.load('assets/form3template_fillable.pdf');
   final buffer = bytedatas.buffer;
   final PdfDocument document = PdfDocument(
       inputBytes:

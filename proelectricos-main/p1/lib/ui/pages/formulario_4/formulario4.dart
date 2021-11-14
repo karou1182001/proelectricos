@@ -96,7 +96,7 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                   print("Completed");
                   //EN ESTA PARTE VA LO QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   generateForm4PDF(
-                      "job${widget.jobNumber}/formulario4.pdf",
+                      "jobs/job${widget.jobNumber}/formulario4.pdf",
                       "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
                       lider.text,
                       ubicacion.text,

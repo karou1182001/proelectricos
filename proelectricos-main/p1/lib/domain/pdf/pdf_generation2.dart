@@ -66,20 +66,88 @@ void generateForm2PDF(
   // Eléctrico
   modifyBoolField(document, 4, tElectrico, removeBorder: false);
 
-  // nombre y apellido
-  modifyTextField(document, 123, nombreapellidos);
-  // cargo
-  modifyTextField(document, 124, cargo);
-  // cedula
-  modifyTextField(document, 125, cedula);
-  // ARL
-  modifyTextField(document, 126, arl);
-  // EPS
-  modifyTextField(document, 127, eps);
-  // Fecha
-  modifyTextField(document, 128, fecha);
-  // Trabajo Realizado
-  modifyTextField(document, 129, trabajo);
+
+  int actual = 5;
+
+  for (var element in cont.valorswparte3) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte4) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte5) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte6) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte7) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte8) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte9) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte10) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte11) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte12) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  for (var element in cont.valorswparte13) {
+    modifyBoolField(document, element.value ? actual : actual + 1, true);
+    modifyBoolField(document, element.value ? actual + 1 : actual, false);
+    actual += 2;
+  }
+
+  modifyTextField(document, actual+1, nombreapellidos);
+  // // cargo
+  modifyTextField(document, actual+2, cargo);
+  // // cedula
+  modifyTextField(document, actual+3, cedula);
+  // // ARL
+  modifyTextField(document, actual+4, arl);
+  // // EPS
+  modifyTextField(document, actual+5, eps);
+  // // Fecha
+  modifyTextField(document, actual+6, fecha);
+  // // Trabajo Realizado
+  modifyTextField(document, actual+7, trabajo);
 
   for (int i = 0; i < document.form.fields.count; i++) {
     document.form.fields[i].readOnly = true;

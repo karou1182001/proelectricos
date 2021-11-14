@@ -99,7 +99,7 @@ class _FormularioTresPage extends State<FormularioTres> {
                   print("Completed");
                   //AQUÍ ES DONDE DEBEMOS PONER QUÉ PASA CUANDO TERMINA EL FORMULARIO
                   generateForm3PDF(
-                      "job${widget.jobNumber}/formulario3.pdf",
+                      "jobs/job${widget.jobNumber}/formulario3.pdf",
                       "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}",
                       horaInicio.text,
                       horaFin.text,
