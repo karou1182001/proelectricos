@@ -1,17 +1,12 @@
-//En esta el usuario puede registrarse, se está pensando en eliminar dado que
-//los usuarios los debería ingresar directamente la empresa, pero por ahora se
-//dejará
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:p1/common/constants.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:p1/common/constants.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:p1/domain/controller/authentication_controller.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:p1/ui/widgets/autenticacion/login.dart';
-import 'package:encrypt/encrypt.dart' as enc;
 import 'package:p1/ui/widgets/menu_general/perfilUsuario/signature_pad.dart';
+import 'package:encrypt/encrypt.dart' as enc;
 import 'package:shared_preferences/shared_preferences.dart';
 
 final llave = enc.Key.fromLength(32);
@@ -31,158 +26,240 @@ class SignupPage extends StatelessWidget {
   final passController = TextEditingController();
   final confirmpassController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         brightness: Brightness.light,
-        backgroundColor: Colors.white,
+        backgroundColor: proElectricosBlue,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
       ),
-      //Aquí le cambiamos el orden para que no resulte en un problema de RenderFlex (al SingleChildScrollView)
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height - 50,
+      body: Container(
         width: double.infinity,
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Column(
+        decoration: const BoxDecoration(color: proElectricosBlue),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(
+              height: 50,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
                   const Text(
-                    "Registro de Cuenta",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    "Registro de cuenta",
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
+                  const SizedBox(height: 10),
+                  const Text(
                     "¡Crea tu cuenta!",
-                    style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                  )
-                ],
-              ),
-              Column(
-                children: <Widget>[
-                  inputFile(label: "CC:", controller: ccController),
-                  inputFile(label: "Nombre:", controller: nombreController),
-                  inputFile(label: "Email:", controller: emailController),
-                  inputFile(label: "Telefono:", controller: telefonoController),
-                  inputFile(label: "arl:", controller: arlController),
-                  inputFile(label: "eps:", controller: epsController),
-                  inputFile(
-                      label: "Contraseña:",
-                      obscureText: true,
-                      controller: passController),
-                  inputFile(
-                      label: "Confirmar contraseña:",
-                      obscureText: true,
-                      controller: confirmpassController),
-                  sigButton(),
-                ],
-              ),
-              Container(
-                padding: const EdgeInsets.only(top: 3, left: 3),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: const Border(
-                      bottom: BorderSide(color: Colors.black),
-                      top: BorderSide(color: Colors.black),
-                      left: BorderSide(color: Colors.black),
-                      right: BorderSide(color: Colors.black),
-                    )),
-                child: MaterialButton(
-                  minWidth: double.infinity,
-                  height: 60,
-                  onPressed: () async {
-                    //Extraemos la firma del sharedPreferences
-                    final prefs = await SharedPreferences.getInstance();
-                    final sig = prefs.getString('tech_signature');
-
-                    //Extraemos la información de los textboxes
-                    String cc = ccController.text.trim();
-                    String nombre = nombreController.text.trim();
-                    String email = emailController.text.trim();
-                    String password = passController.text.trim();
-                    String arl = arlController.text.trim();
-                    String  eps = epsController.text.trim();
-                    String telefono = telefonoController.text.trim();
-                    String cPassword = confirmpassController.text.trim();
-                    String firma = sig!;
-                    //Validamos que cada campo esté llenado
-                    if (cc.isEmpty) {
-                      debugPrint("Ingrese una cédula, por favor");
-                    } else if (nombre.isEmpty) {
-                      debugPrint("Ingrese un nombre, por favor");
-                    } else if (email.isEmpty) {
-                      debugPrint("Ingrese un e-mail, por favor");
-                    } else if (password.isEmpty) {
-                      debugPrint("Recuerde ingresar una contraseña, por favor");
-                    } else if (cPassword.isEmpty) {
-                      debugPrint("Confirme su contraseña, por favor");
-                    }
-                    //Validamos que las contraseñas sean iguales
-                    if (password != cPassword) {
-                      debugPrint("Las contraseñas no son iguales");
-                    }
-                    //Obtenemos la referencia a la collection "usuario"
-
-                    controller.register(cc, email, nombre, password, cPassword,
-                        firma, arl, telefono, eps, context);
-                  },
-                  color: proElectricosBlue,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
+                    style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
-                  child: const Text(
-                    "Registrarse",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: Colors.white,
+                ],
+              ),
+            ),
+            const SizedBox(height: 40),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(60),
+                        topRight: Radius.circular(60))),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(30),
+                    child: Column(
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Column(
+                          children: <Widget>[
+                            /*CompTextFormField(
+                              casoVacio: '',
+                              hintText: '',
+                              labelText: 'Cédula',
+                              cont: ccController,
+                            ),
+                            CompTextFormField(
+                              casoVacio: '',
+                              hintText: '',
+                              labelText: 'Nombre',
+                              cont: nombreController,
+                            ),
+                            CompTextFormField(
+                              casoVacio: '',
+                              hintText: '',
+                              labelText: 'Email',
+                              cont: emailController,
+                            ),
+                            CompTextFormField(
+                              casoVacio: '',
+                              hintText: '',
+                              labelText: 'Teléfono',
+                              cont: telefonoController,
+                            ),
+                            CompTextFormField(
+                              casoVacio: '',
+                              hintText: '',
+                              labelText: 'ARL',
+                              cont: arlController,
+                            ),
+                            CompTextFormField(
+                              casoVacio: '',
+                              hintText: '',
+                              labelText: 'EPS',
+                              cont: epsController,
+                            ),
+                            CompTextFormField(
+                              casoVacio: '',
+                              hintText: '',
+                              labelText: 'Contraseña',
+                              cont: passController,
+                            ),
+                            CompTextFormField(
+                              casoVacio: '',
+                              hintText: '',
+                              labelText: 'Confirmar contraseña',
+                              cont: confirmpassController,
+                            ),*/
+                            inputFile(
+                                label: "Cédula:", controller: ccController),
+                            inputFile(
+                                label: "Nombre:", controller: nombreController),
+                            inputFile(
+                                label: "Email:", controller: emailController),
+                            inputFile(
+                                label: "Teléfono:",
+                                controller: telefonoController),
+                            inputFile(label: "arl:", controller: arlController),
+                            inputFile(label: "eps:", controller: epsController),
+                            inputFile(
+                                label: "Contraseña:",
+                                obscureText: true,
+                                controller: passController),
+                            inputFile(
+                                label: "Confirmar contraseña:",
+                                obscureText: true,
+                                controller: confirmpassController),
+                            sigButton(),
+                          ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 3, left: 3),
+                          child: MaterialButton(
+                            minWidth: double.infinity,
+                            height: 60,
+                            onPressed: () async {
+                              //Extraemos la firma del sharedPreferences
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              final sig = prefs.getString('tech_signature');
+
+                              //Extraemos la información de los textboxes
+                              String cc = ccController.text.trim();
+                              String nombre = nombreController.text.trim();
+                              String email = emailController.text.trim();
+                              String password = passController.text.trim();
+                              String arl = arlController.text.trim();
+                              String eps = epsController.text.trim();
+                              String telefono = telefonoController.text.trim();
+                              String cPassword =
+                                  confirmpassController.text.trim();
+                              String firma = sig!;
+                              //Validamos que cada campo esté llenado
+                              if (cc.isEmpty) {
+                                debugPrint("Ingrese una cédula, por favor");
+                              } else if (nombre.isEmpty) {
+                                debugPrint("Ingrese un nombre, por favor");
+                              } else if (email.isEmpty) {
+                                debugPrint("Ingrese un e-mail, por favor");
+                              } else if (password.isEmpty) {
+                                debugPrint(
+                                    "Recuerde ingresar una contraseña, por favor");
+                              } else if (cPassword.isEmpty) {
+                                debugPrint("Confirme su contraseña, por favor");
+                              }
+                              //Validamos que las contraseñas sean iguales
+                              if (password != cPassword) {
+                                debugPrint("Las contraseñas no son iguales");
+                              }
+                              //Obtenemos la referencia a la collection "usuario"
+
+                              controller.register(
+                                  cc,
+                                  email,
+                                  nombre,
+                                  password,
+                                  cPassword,
+                                  firma,
+                                  arl,
+                                  telefono,
+                                  eps,
+                                  context);
+                            },
+                            color: proElectricosBlue,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            child: const Text(
+                              "Registrarse",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Text("¿Ya tiene una cuenta?"),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              },
+                              child: const Text(
+                                " Inicie sesión",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text("¿Ya tiene una cuenta?"),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));
-                    },
-                    child: const Text(
-                      " Inicie sesión",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
@@ -206,12 +283,10 @@ Widget inputFile({label, obscureText = false, controller}) {
         obscureText: obscureText,
         controller: controller,
         decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-            border:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderSide: BorderSide(color: proElectricosBlue)),
+        ),
       ),
       const SizedBox(
         height: 10,
