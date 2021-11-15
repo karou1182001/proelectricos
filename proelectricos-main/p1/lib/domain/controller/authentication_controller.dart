@@ -201,12 +201,12 @@ class AuthenticationController extends GetxController {
         .update(
         {
           "cc": int.parse(cc),
-          "email": email_nuevo,
+          "email": (email_nuevo =="" ) ? email:email_nuevo ,
           "nombre": name,
           "firma":firma,
-          "arl":arl_nuevo,
-          "eps": eps_nueva,
-          "telefono":tel_nuevo,
+          "arl":(arl_nuevo =="" ) ? arl:arl_nuevo ,
+          "eps": (eps_nueva =="" ) ? eps:eps_nueva,
+          "telefono":(tel_nuevo =="" ) ? tel:tel_nuevo,
           "password":
           encrypter.encrypt(password, iv: iv).base64
         }
