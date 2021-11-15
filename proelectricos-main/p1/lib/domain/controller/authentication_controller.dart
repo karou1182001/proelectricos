@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 import 'package:p1/data/local_preferences.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:encrypt/encrypt.dart' as enc;
+import 'package:shared_preferences/shared_preferences.dart';
 
 final llave = enc.Key.fromLength(32);
 final encrypter = enc.Encrypter(enc.AES(llave));
 final iv = enc.IV.fromLength(16);
 
 class AuthenticationController extends GetxController {
-
 
   LocalPreferences lp = LocalPreferences();
 
@@ -136,7 +136,6 @@ class AuthenticationController extends GetxController {
       seteps(eps);
       settel(telefono);
       setfirma(firma);
-
     }
     else {
       await lp.storeData<bool>("logged", false);
@@ -183,7 +182,8 @@ class AuthenticationController extends GetxController {
             (error) => debugPrint("Error al añadir usuario"));
   }
 
-  Future<void> updateData(email_nuevo,tel_nuevo,arl_nuevo,eps_nueva,firma_nueva) async {
+  Future<void> updateData(email_nuevo,tel_nuevo,arl_nuevo,eps_nueva) async {
+
     var users =
     FirebaseFirestore.instance.collection("usuario");
     //Realizamos la consulta sobre la colección
@@ -198,17 +198,19 @@ class AuthenticationController extends GetxController {
     print(user.docs[0].data());
     return users
         .doc(user_ID)
-        .update({
-      "cc": int.parse(cc),
-      "email": (email_nuevo=="") ? _email: email_nuevo,
-    "nombre": name,
-      "firma":(firma_nueva=="") ? _firma: firma_nueva,
-      "arl":(arl_nuevo=="") ? _arl: arl_nuevo,
-      "eps":(eps_nueva=="") ? _eps: eps_nueva,
-      "telefono":(tel_nuevo=="") ? _telefono: tel_nuevo,
-      "password":
-      encrypter.encrypt(password, iv: iv).base64
-      }) // <-- Updated data
+        .update(
+        {
+          "cc": int.parse(cc),
+          "email": email_nuevo,
+          "nombre": name,
+          "firma":firma,
+          "arl":arl_nuevo,
+          "eps": eps_nueva,
+          "telefono":tel_nuevo,
+          "password":
+          encrypter.encrypt(password, iv: iv).base64
+        }
+      ) // <-- Updated data
           .then((_) => print('Success'))
           .catchError((error) => print('Failed: $error'));
 
