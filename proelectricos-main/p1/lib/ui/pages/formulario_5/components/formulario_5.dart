@@ -162,11 +162,30 @@ class _FormularioCincoPage extends State<FormularioCinco> {
                     }
                   }
 
+                  String veh;
+                  if (character == SingingCharacter.grua) {
+                    veh = "Grua";
+                  } else {
+                    veh = "Canasta";
+                  }
+                  String tMeca;
+                  if (character1 == SingingCharacter1.si) {
+                    tMeca = "Sí";
+                  } else {
+                    tMeca = "No";
+                  }
+                  String soat;
+                  if (character2 == SingingCharacter2.yes) {
+                    soat = "Sí";
+                  } else {
+                    soat = "No";
+                  }
+
                   final dataForm5 = {
                     form5Fields.fecha: pickedDate.toString(),
-                    form5Fields.character: character.toString(),
-                    form5Fields.character1: character1.toString(),
-                    form5Fields.character2: character2.toString(),
+                    form5Fields.character: veh,
+                    form5Fields.character1: tMeca,
+                    form5Fields.character2: soat,
                     form5Fields.placa: placa.text.toString(),
                     form5Fields.certDiel: certDiel.text.toString(),
                     form5Fields.certIz: certIz.text.toString(),
@@ -243,6 +262,7 @@ class _FormularioCincoPage extends State<FormularioCinco> {
                     const SnackBar(
                         content: Text('¡Formulario llenado con éxito!')),
                   );
+                  Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),

@@ -182,6 +182,7 @@ class _FormularioTresPage extends State<FormularioTres> {
                     const SnackBar(
                         content: Text('¡Formulario llenado con éxito!')),
                   );
+                  Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),

@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_1.dart';
+import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_2.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_3.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_4.dart';
 import 'package:p1/ui/pages/sheets/sheet%20connection/sheets_connection_5.dart';
@@ -23,6 +24,7 @@ void main() async {
   Get.put(workC);
 
   await FormSheets.init();
+  await FormSheets2.init();
   await FormSheets3.init();
   await FormSheets4.init();
   await FormSheets5.init();

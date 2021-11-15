@@ -74,7 +74,7 @@ class _FormularioUnoPage extends State<FormularioUno> {
       backgroundColor: Colors.white,
       //BARRA DE NAVEGACIÓN
       appBar: const AppBarWidget(
-        text: 'Lista de chequeo para trabajo en alturas',
+        text: 'Autorización y ejecución de trabajos',
         backgroundColor: proElectricosBlue,
         height: 60,
       ),
@@ -230,7 +230,12 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   };
                   //Función que añadirá la data al sheets
                   await FormSheets.insertar([dataForm1]);
-
+                  //Enviamos un mensaje que le indique al ususario que el formulario
+                  //ha sido llenado exitosamente
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('¡Formulario llenado con éxito!')),
+                  );
                   //LLeva al menu (Para llevar el menu es necesario devolverse, no crear un menu nuevo)
                   // Therefore, se debe usar pop, not push.
                   // Navigator.of(context).push(MaterialPageRoute(
@@ -239,12 +244,6 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   Navigator.pop(context);
                   // Process data.
 
-                  //Enviamos un mensaje que le indique al ususario que el formulario
-                  //ha sido llenado exitosamente
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('¡Formulario llenado con éxito!')),
-                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),

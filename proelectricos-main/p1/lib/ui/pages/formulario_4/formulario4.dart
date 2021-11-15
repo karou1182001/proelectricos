@@ -176,6 +176,7 @@ class _FormularioCuatroPage extends State<FormularioCuatro> {
                     const SnackBar(
                         content: Text('¡Formulario llenado con éxito!')),
                   );
+                  Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Rellene todos los campos')),
