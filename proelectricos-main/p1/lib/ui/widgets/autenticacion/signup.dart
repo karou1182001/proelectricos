@@ -125,8 +125,6 @@ class SignupPage extends StatelessWidget {
                     String  eps = epsController.text.trim();
                     String telefono = telefonoController.text.trim();
                     String cPassword = confirmpassController.text.trim();
-
-                    //
                     String firma = sig!;
                     //Validamos que cada campo esté llenado
                     if (cc.isEmpty) {
