@@ -155,9 +155,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       String arl = arlController.text.trim();
                       String eps = epsController.text.trim();
                       String telefono = telefonoController.text.trim();
-                      String firma = "hola";
-                      print("Voy a update");
-                      controller.updateData(email, telefono, arl, eps, firma);
+                      controller.updateData(email, telefono, arl, eps);
                     },
                     color: proElectricosBlue,
                     padding: const EdgeInsets.symmetric(horizontal: 50),

@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 import 'package:p1/data/local_preferences.dart';
 import 'package:p1/ui/widgets/autenticacion/home.dart';
 import 'package:encrypt/encrypt.dart' as enc;
+import 'package:shared_preferences/shared_preferences.dart';
 
 final llave = enc.Key.fromLength(32);
 final encrypter = enc.Encrypter(enc.AES(llave));
 final iv = enc.IV.fromLength(16);
 
 class AuthenticationController extends GetxController {
-
 
   LocalPreferences lp = LocalPreferences();
 
@@ -22,6 +22,9 @@ class AuthenticationController extends GetxController {
   var _arl = "".obs;
   var _eps = "".obs;
   var _telefono = "".obs;
+  var _firma = "".obs;
+
+
 
   bool get logged => _logged.value;
   String get name => _name.value;
@@ -31,12 +34,16 @@ class AuthenticationController extends GetxController {
   String get arl => _arl.value;
   String get eps => _eps.value;
   String get tel => _telefono.value;
+  String get firma => _telefono.value;
 
   void setLogged(bool l) {
     _logged.value = l;
     update();
   }
-
+  void setfirma(String l) {
+    _firma.value = l;
+    update();
+  }
   void setname(String l) {
     _name.value = l;
     update();
@@ -81,6 +88,8 @@ class AuthenticationController extends GetxController {
     _arl.value = await lp.retrieveData<String>("arl") ?? "";
     _eps.value = await lp.retrieveData<String>("eps") ?? "";
     _telefono.value = await lp.retrieveData<String>("telefono") ?? "";
+    _firma.value = await lp.retrieveData<String>("firma") ?? "";
+
   }
 
   Future<bool> login(cc, password) async {
@@ -104,6 +113,7 @@ class AuthenticationController extends GetxController {
       String  arl = datos['arl'] ?? '';
       String  eps = datos['eps'] ?? '';
       String  telefono = datos['telefono'] ?? '';
+      String  firma = datos['firma'] ?? '';
 
       String cc = c.toString();
 
@@ -115,6 +125,7 @@ class AuthenticationController extends GetxController {
       await lp.storeData<String>("arl", arl);
       await lp.storeData<String>("eps", eps);
       await lp.storeData<String>("telefono", telefono);
+      await lp.storeData<String>("firma", firma);
 
       setLogged(true);
       setname(name);
@@ -124,7 +135,7 @@ class AuthenticationController extends GetxController {
       setarl(arl);
       seteps(eps);
       settel(telefono);
-
+      setfirma(firma);
     }
     else {
       await lp.storeData<bool>("logged", false);
@@ -171,8 +182,8 @@ class AuthenticationController extends GetxController {
             (error) => debugPrint("Error al añadir usuario"));
   }
 
-  Future<void> updateData(email_nuevo,tel_nuevo,arl_nuevo,eps_nueva,firma_nueva) async {
-    print("Empiezo a updetear");
+  Future<void> updateData(email_nuevo,tel_nuevo,arl_nuevo,eps_nueva) async {
+
     var users =
     FirebaseFirestore.instance.collection("usuario");
     //Realizamos la consulta sobre la colección
@@ -187,17 +198,19 @@ class AuthenticationController extends GetxController {
     print(user.docs[0].data());
     return users
         .doc(user_ID)
-        .update({
-      "cc": int.parse(cc),
-      "email": email_nuevo,
-      "nombre": name,
-      "firma":firma_nueva,
-      "arl":arl_nuevo,
-      "eps":eps_nueva,
-      "telefono":tel_nuevo,
-      "password":
-      encrypter.encrypt(password, iv: iv).base64
-      }) // <-- Updated data
+        .update(
+        {
+          "cc": int.parse(cc),
+          "email": email_nuevo,
+          "nombre": name,
+          "firma":firma,
+          "arl":arl_nuevo,
+          "eps": eps_nueva,
+          "telefono":tel_nuevo,
+          "password":
+          encrypter.encrypt(password, iv: iv).base64
+        }
+      ) // <-- Updated data
           .then((_) => print('Success'))
           .catchError((error) => print('Failed: $error'));
 
@@ -216,6 +229,7 @@ class AuthenticationController extends GetxController {
     await lp.storeData<String>("eps", "");
     await lp.storeData<String>("arl", "");
     await lp.storeData<String>("telefono", "");
+    await lp.storeData<String>("firma", "");
 
     //_logged.value = true;
     setname("");
@@ -225,6 +239,7 @@ class AuthenticationController extends GetxController {
     seteps("");
     setarl("");
     settel("");
+    setfirma("");
 
     return Future.value(true);
   }
