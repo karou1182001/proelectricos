@@ -1,59 +1,59 @@
 class form3Fields {
-  static String fecha = 'fecha';
-  static String horaInicio = 'hora inicio';
-  static String horaFin = 'hora fin';
-  static String lugarTrabajo = 'lugar trabajo';
-  static String ubicacion = 'ubicación';
-  static String altura = 'altura';
-  static String tipoTrabajoAltura = 'tipo trabajo altura';
+  static String fecha = 'FECHA';
+  static String horaInicio = 'HORA INICIO';
+  static String horaFin = 'HORA FIN';
+  static String lugarTrabajo = 'LUGAR TRABAJO';
+  static String ubicacion = 'UBICACIÓN';
+  static String altura = 'ALTURA';
+  static String tipoTrabajoAltura = 'TIPO TRABAJO ALTURA';
   //Las segundas variables son los vectores de los sw
   //Parte 4 form 4
-  static String nombreapellidos = 'nombre y apellidos';
-  static String cedula = 'cedula';
-  static String arl = 'arl';
-  static String eps = 'eps';
-  static String cargo = 'cargo';
+  static String nombreapellidos = 'NOMBRE Y APELLIDOS';
+  static String cedula = 'CÉDULA';
+  static String arl = 'ARL';
+  static String eps = 'EPS';
+  static String cargo = 'CARGO';
 
   //Parte 3
   static String vect3_1 =
-      "Se dispone de los elementos necesarios para trabajar en alturas";
+      "SE DISPONE DE LOS ELEMENTOS NECESARIOS PARA TRABAJAR EN ALTURAS";
   static String vect3_2 =
-      "Trabajadores autorizados y capacitados para el trabajo en alturas";
-  static String vect3_3 = "Guantes de poliuretano y/o carnaza";
-  static String vect3_4 = "Botas de seguridad dieléctricas";
-  static String vect3_5 = "Gafas de seguridad";
-  static String vect3_6 = "Casco con barbuquejo";
+      "TRABAJADORES AUTORIZADOS Y CAPACITADOS PARA EL TRABAJO EN ALTURAS";
+  static String vect3_3 = "GUANTES DE POLIURETANO Y/O CARNAZA";
+  static String vect3_4 = "BOTAS DE SEGURIDAD DIELÉCTRICAS";
+  static String vect3_5 = "GAFAS DE SEGURIDAD";
+  static String vect3_6 = "CASCO CON BARBUQUEJO";
   static String vect3_7 =
-      "Están todos los elementos de protección contra caídas";
-  static String vect3_8 = "Eslinga con retenedor de caída dieléctricos";
-  static String vect3_9 = "Gancho de la eslinga en buen estado";
-  static String vect3_10 = "Retenedor de caída en buen estado";
-  static String vect3_11 = "Arnes de seguridad dieléctrico";
-  static String vect3_12 = "Argollas del arnes en buen estado";
+      "ESTÁN TODOS LOS ELEMENTOS DE PROTECCIÓN CONTRA CAÍDAS";
+  static String vect3_8 = "ESLINGA CON RETENEDOR DE CAÍDA DIELÉCTRICOS";
+  static String vect3_9 = "GANCHO DE LA ESLINGA EN BUEN ESTADO";
+  static String vect3_10 = "RETENEDOR DE CAÍDA EN BUEN ESTADO";
+  static String vect3_11 = "ARNES DE SEGURIDAD DIELÉCTRICO";
+  static String vect3_12 = "ARGOLLAS DEL ARNES EN BUEN ESTADO";
 
   //Parte 4
   static String vect4_1 =
-      "Los equipos utilizados se encuentran certificados y vigentes";
+      "LOS EQUIPOS UTILIZADOS SE ENCUENTRAN CERTIFICADOS Y VIGENTES";
   static String vect4_2 =
-      "Existen equipos contra incendios, en buen estado y próximos";
+      "EXISTEN EQUIPOS CONTRA INCENDIOS, EN BUEN ESTADO Y PRÓXIMOS";
   static String vect4_3 =
-      "Las condiciones físicas y psicológicas del personal son óptimas";
-  static String vect4_4 = "Se señalizó y delimitó el área de trabajo";
-  static String vect4_5 = "Se cuenta con todos los documentos del personal";
-  static String vect4_6 = "Se cuenta con el AST/ correctamente diligenciado";
+      "LAS CONDICIONES FÍSICAS Y PSICOLÓGICAS DEL PERSONAL SON ÓPTIMAS";
+  static String vect4_4 = "SE SEÑALIZÓ Y DELIMITÓ EL ÁREA DE TRABAJO";
+  static String vect4_5 = "SE CUENTA CON TODOS LOS DOCUMENTOS DEL PERSONAL";
+  static String vect4_6 = "SE CUENTA CON EL AST/ CORRECTAMENTE DILIGENCIADO";
   static String vect4_7 =
-      "El área de ejecución de la labor se encuentra limpia";
+      "EL ÁREA DE EJECUCIÓN DE LA LABOR SE ENCUENTRA LIMPIA";
   static String vect4_8 =
-      "Las condiciones del personal son óptimas para el trabajo";
+      "LAS CONDICIONES DEL PERSONAL SON ÓPTIMAS PARA EL TRABAJO";
   static String vect4_9 =
-      "Se realizo la charla de seguridad inicial del trabajo";
-  static String vect4_10 = "Se contemplo la mitigación de riesgos y peligros";
-  static String vect4_11 = "La superficie de trabajo es adecuado";
+      "SE REALIZÓ LA CHARLA DE SEGURIDAD INICIAL DEL TRABAJO";
+  static String vect4_10 = "SE CONTEMPLÓ LA MITIGACIÓN DE RIESGOS Y PELIGROS";
+  static String vect4_11 = "LA SUPERFICIE DE TRABAJO ES ADECUADA";
   static String vect4_12 =
-      "Los puntos de apoyo son adecuados (certificados, estructurales, autorizados)";
+      "LOS PUNTOS DE APOYO SON ADECUADOS (CERTIFICADOS, ESTRUCTURALES, AUTORIZADOS)";
   static String vect4_13 =
-      "Se cuenta con la información de actuación en caso de emergencia";
-  static String vect4_14 = "Las condiciones climáticas son favoriables";
+      "SE CUENTA CON LA INFORMACIÓN DE ACTUACIÓN EN CASO DE EMERGENCIA";
+  static String vect4_14 = "LAS CONDICIONES CLIMÁTICAS SON FAVORIABLES";
 
   static List<String> getFields() => [
         fecha,

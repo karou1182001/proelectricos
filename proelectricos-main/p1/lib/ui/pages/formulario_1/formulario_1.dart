@@ -195,40 +195,46 @@ class _FormularioUnoPage extends State<FormularioUno> {
                   enviarData();
                   //Enviamos la data a google sheets
                   final dataForm1 = {
-                    form1Fields.empresa: empresa.text.trim(),
-                    form1Fields.municipio: municipio.text.trim(),
+                    form1Fields.empresa: empresa.text.trim().toUpperCase(),
+                    form1Fields.municipio: municipio.text.trim().toUpperCase(),
                     form1Fields.fecha: pickedDate.toString(),
-                    form1Fields.cliente: cliente.text.trim(),
-                    form1Fields.jornada: jornada.text.trim(),
-                    form1Fields.vehiculo: vehiculo.text.trim(),
-                    form1Fields.distrito: distrito.text.trim(),
-                    form1Fields.direccion: direccion.text.trim(),
-                    form1Fields.no: no.text.trim(),
-                    form1Fields.horaInicio: horaInicio.text.trim(),
-                    form1Fields.horaFin: horaFin.text.trim(),
-                    form1Fields.descargo: descargo.text.trim(),
-                    form1Fields.incidencia: incidencia.text.trim(),
-                    form1Fields.nic: nic.text.trim(),
-                    form1Fields.aviso: aviso.text.trim(),
-                    form1Fields.numero: numero.text.trim(),
-                    form1Fields.circuito: circuito.text.trim(),
-                    form1Fields.mt: mt.text.trim(),
-                    form1Fields.ct: ct.text.trim(),
-                    form1Fields.tension: tension.text.trim(),
-                    form1Fields.supervisor: supervisor.text.trim(),
-                    form1Fields.celSupervisor: celSupervisor.text.trim(),
-                    form1Fields.agenteDescargo: celAgenteDescargo.text.trim(),
-                    form1Fields.celAgenteDescargo: tension.text.trim(),
-                    form1Fields.nombre: nombre.text.trim(),
-                    form1Fields.cedula: cedula.text.trim(),
-                    form1Fields.cargo: cargo.text.trim(),
-                    form1Fields.trabajoRealizado: trabajoRealizado.text.trim(),
-                    form1Fields.preservacion: pres,
-                    form1Fields.material: material.text.trim(),
-                    form1Fields.cantidad: cantidad.text.trim(),
-                    form1Fields.nuevo: nuevo.text.trim(),
-                  };
-                  //Función que añadirá la data al sheets
+                    form1Fields.cliente: cliente.text.trim().toUpperCase(),
+                    form1Fields.jornada: jornada.text.trim().toUpperCase(),
+                    form1Fields.vehiculo: vehiculo.text.trim().toUpperCase(),
+                    form1Fields.distrito: distrito.text.trim().toUpperCase(),
+                    form1Fields.direccion: direccion.text.trim().toUpperCase(),
+                    form1Fields.no: no.text.trim().toUpperCase(),
+                    form1Fields.horaInicio:
+                        horaInicio.text.trim().toUpperCase(),
+                    form1Fields.horaFin: horaFin.text.trim().toUpperCase(),
+                    form1Fields.descargo: descargo.text.trim().toUpperCase(),
+                    form1Fields.incidencia:
+                        incidencia.text.trim().toUpperCase(),
+                    form1Fields.nic: nic.text.trim().toUpperCase(),
+                    form1Fields.aviso: aviso.text.trim().toUpperCase(),
+                    form1Fields.numero: numero.text.trim().toUpperCase(),
+                    form1Fields.circuito: circuito.text.trim().toUpperCase(),
+                    form1Fields.mt: mt.text.trim().toUpperCase(),
+                    form1Fields.ct: ct.text.trim().toUpperCase(),
+                    form1Fields.tension: tension.text.trim().toUpperCase(),
+                    form1Fields.supervisor:
+                        supervisor.text.trim().toUpperCase(),
+                    form1Fields.celSupervisor:
+                        celSupervisor.text.trim().toUpperCase(),
+                    form1Fields.agenteDescargo:
+                        celAgenteDescargo.text.trim().toUpperCase(),
+                    form1Fields.celAgenteDescargo:
+                        tension.text.trim().toUpperCase(),
+                    form1Fields.nombre: nombre.text.trim().toUpperCase(),
+                    form1Fields.cedula: cedula.text.trim().toUpperCase(),
+                    form1Fields.cargo: cargo.text.trim().toUpperCase(),
+                    form1Fields.trabajoRealizado:
+                        trabajoRealizado.text.trim().toUpperCase(),
+                    form1Fields.preservacion: pres.toUpperCase(),
+                    form1Fields.material: material.text.trim().toUpperCase(),
+                    form1Fields.cantidad: cantidad.text.trim().toUpperCase(),
+                    form1Fields.nuevo: nuevo.text.trim().toUpperCase(),
+                  }; //Función que añadirá la data al sheets
                   await FormSheets.insertar([dataForm1]);
                   //Enviamos un mensaje que le indique al ususario que el formulario
                   //ha sido llenado exitosamente

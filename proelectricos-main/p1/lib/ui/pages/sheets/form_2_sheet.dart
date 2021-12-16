@@ -1,87 +1,87 @@
 class Form2Fields {
-  static String fecha = "Fecha";
-  static String nombre = "Nombre";
-  static String trabajo = "Trabajo";
-  static String tRutinario = "Clasificación del trabajo";
-  static String tElectrico = "La actividad incluye";
+  static String fecha = "FECHA";
+  static String nombre = "NOMBRE";
+  static String trabajo = "TRABAJO";
+  static String tRutinario = "CLASIFICACIÓN DEL TRABAJO";
+  static String tElectrico = "LA ACTIVIDAD INCLUYE";
 
   //Parte 2
-  static String nombreapellidos = 'Nombre y apellidos';
-  static String cedula = 'Cédula';
+  static String nombreapellidos = 'NOMBRE Y APELLIDOS';
+  static String cedula = 'CÉDULA';
   static String arl = 'ARL';
   static String eps = 'EPS';
-  static String cargo = 'Cargo';
+  static String cargo = 'CARGO';
 
   //Formulario 2 - Parte 3
-  static String vec3_1 = "Autorización y/o orden de trabajo";
-  static String vec3_2 = 'Usar botas dieléctricas';
-  static String vec3_3 = 'Casco dieléctrico';
-  static String vec3_4 = 'Mantiene las distancias de seguridad correctas';
+  static String vec3_1 = "AUTORIZACIÓN Y/O ORDEN DE TRABAJO";
+  static String vec3_2 = 'USAR BOTAS DIELÉCTRICAS';
+  static String vec3_3 = 'CASCO DIELÉCTRICO';
+  static String vec3_4 = 'MANTIENE LAS DISTANCIAS DE SEGURIDAD CORRECTAS';
 
   //Formulario 2 - Parte 4
-  static String vec4_1 = 'Usar guantes de vaqueta, nitrilo o carnaza';
-  static String vec4_2 = 'Dotación (camisa manga larga y pantalón)';
-  static String vec4_3 = 'Usar casco con barbuquejo';
-  static String vec4_4 = 'Protección visual gafas con filtro UV';
-  static String vec4_5 = 'Usar botas dielectricas';
-  static String vec4_6 = 'Herramientas en buen estado';
-  static String vec4_7 = 'Barandas o cintas antideslizantes';
+  static String vec4_1 = 'USAR GUANTES DE VAQUETA, NITRILO O CARNAZA';
+  static String vec4_2 = 'DOTACIÓN (CAMISA MANGA LARGA Y PANTALÓN)';
+  static String vec4_3 = 'USAR CASCO CON BARBUQUEJO';
+  static String vec4_4 = 'PROTECCIÓN VISUAL GAFAS CON FILTRO UV';
+  static String vec4_5 = 'USAR BOTAS DIELÉCTRICAS';
+  static String vec4_6 = 'HERRAMIENTAS EN BUEN ESTADO';
+  static String vec4_7 = 'BARANDAS O CINTAS ANTIDESLIZANTES';
 
   //Formulario 2 - Parte 5
-  static String vec5_1 = 'Usar puntos de anclaje portatíl (Tie off)';
-  static String vec5_2 = 'Usar linea de vida';
-  static String vec5_3 = 'Usar casco con barbuquejo';
-  static String vec5_4 = 'Eslinga para protección de caídas';
-  static String vec5_5 = 'Eslinga de posicionamiento';
-  static String vec5_6 = 'Arnés de seguridad';
-  static String vec5_7 = 'Verificación del sistema de acceso';
-  static String vec5_8 = 'Aplicación de Procedimiento de trabajo seguros';
+  static String vec5_1 = 'USAR PUNTOS DE ANCLAJE PORTATÍL (TIE OFF)';
+  static String vec5_2 = 'USAR LÍNEA DE VIDA';
+  static String vec5_3 = 'USAR CASCO CON BARBUQUEJO';
+  static String vec5_4 = 'ESLINGA PARA PROTECCIÓN DE CAÍDAS';
+  static String vec5_5 = 'ESLINGA DE POSICIONAMIENTO';
+  static String vec5_6 = 'ARNÉS DE SEGURIDAD';
+  static String vec5_7 = 'VERIFICACIÓN DEL SISTEMA DE ACCESO';
+  static String vec5_8 = 'APLICACIÓN DE PROCEDIMIENTO DE TRABAJO SEGUROS';
 
   //Formulario 2 - Parte 6
-  static String vec6_1 = 'Hacer calentamiento previo';
-  static String vec6_2 = 'Levantar correctamente las cargas';
-  static String vec6_3 = 'Realización de pausas activas';
+  static String vec6_1 = 'HACER CALENTAMIENTO PREVIO';
+  static String vec6_2 = 'LEVANTAR CORRECTAMENTE LAS CARGAS';
+  static String vec6_3 = 'REALIZACIÓN DE PAUSAS ACTIVAS';
 
   //Formulario 2 - Parte 7
-  static String vec7_1 = 'Hidratación';
-  static String vec7_2 = 'Uso de protector solar';
-  static String vec7_3 = 'Usar linterna';
-  static String vec7_4 = 'Uso de iluminación preventiva en vehículos';
-  static String vec7_5 = 'Usar protección auditiva';
-  static String vec7_6 = 'Dotación de uniforme camisas manga larga';
-  static String vec7_7 = 'Usar gafas con filtro UV';
+  static String vec7_1 = 'HIDRATACIÓN';
+  static String vec7_2 = 'USO DE PROTECTOR SOLAR';
+  static String vec7_3 = 'USAR LINTERNA';
+  static String vec7_4 = 'USO DE ILUMINACIÓN PREVENTIVA EN VEHÍCULOS';
+  static String vec7_5 = 'USAR PROTECCIÓN AUDITIVA';
+  static String vec7_6 = 'DOTACIÓN DE UNIFORME CAMISAS MANGA LARGA';
+  static String vec7_7 = 'USAR GAFAS CON FILTRO UV';
 
   //Formulario 2 - Parte 8
-  static String vec8_1 = 'Sistema de monitoreo - Acompañamiento policiaco';
-  static String vec8_2 = 'Comunicación y plantificación';
+  static String vec8_1 = 'SISTEMA DE MONITOREO - ACOMPAÑAMIENTO POLICIACO';
+  static String vec8_2 = 'COMUNICACIÓN Y PLANTIFICACIÓN';
 
   //Formulario 2- Parte 9
   static String vec9_1 =
-      'Señalización con vallas, conos, tubulares, cinta, etc';
-  static String vec9_2 = 'Protección completa de la zona de trabajo';
+      'SEÑALIZACIÓN CON VALLAS, CONOS, TUBULARES, CINTA, ETC';
+  static String vec9_2 = 'PROTECCIÓN COMPLETA DE LA ZONA DE TRABAJO';
 
   //Formulario 2- Parte 10
-  static String vec10_1 = 'Usar botas de caucho caña alta';
-  static String vec10_2 = 'Higienización de vahículo y herramientas';
-  static String vec10_3 = 'Usar protector respiratorio y gafas';
-  static String vec10_4 = 'Dotación camisa manga larga';
-  static String vec10_5 = 'Lavado de manos con agua y jabón';
+  static String vec10_1 = 'USAR BOTAS DE CAUCHO CAÑA ALTA';
+  static String vec10_2 = 'HIGIENIZACIÓN DE VEHÍCULO Y HERRAMIENTAS';
+  static String vec10_3 = 'USAR PROTECTOR RESPIRATORIO Y GAFAS';
+  static String vec10_4 = 'DOTACIÓN CAMISA MANGA LARGA';
+  static String vec10_5 = 'LAVADO DE MANOS CON AGUA Y JABÓN';
 
   //Formulario 2- Parte 11
-  static String vec11_1 = 'Manejo de estrés';
-  static String vec11_2 = 'Comunicación efectiva';
+  static String vec11_1 = 'MANEJO DE ESTRÉS';
+  static String vec11_2 = 'COMUNICACIÓN EFECTIVA';
 
   //Formulario 2- Parte 12
-  static String vec12_1 = 'Señalización y demarcación de área';
-  static String vec12_2 = 'Caminar con precaución';
-  static String vec12_3 = 'Verificación del área de trabajo';
-  static String vec12_4 = 'Usar botas de seguridad';
-  static String vec12_5 = 'Usar botas de caña alta';
+  static String vec12_1 = 'SEÑALIZACIÓN Y DEMARCACIÓN DE ÁREA';
+  static String vec12_2 = 'CAMINAR CON PRECAUCIÓN';
+  static String vec12_3 = 'VERIFICACIÓN DEL ÁREA DE TRABAJO';
+  static String vec12_4 = 'USAR BOTAS DE SEGURIDAD';
+  static String vec12_5 = 'USAR BOTAS DE CAÑA ALTA';
 
   //Formulario 2- Parte 13
-  static String vec13_1 = 'Protección respiratoria';
-  static String vec13_2 = 'Usar gafas con filtro UV';
-  static String vec13_3 = 'Kit de derrames';
+  static String vec13_1 = 'PROTECCIÓN RESPIRATORIA';
+  static String vec13_2 = 'USAR GAFAS CON FILTRO UV';
+  static String vec13_3 = 'KIT DE DERRAMES';
 
   static List<String> getFields() => [
         fecha,
